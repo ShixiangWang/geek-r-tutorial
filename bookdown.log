@@ -1,0 +1,34 @@
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.12.14)  6 MAR 2020 17:56
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**bookdown.tex
+(./bookdown.tex
+LaTeX2e <2019-10-01> patch level 3
+
+! LaTeX Error: File `ctexbook.cls' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: cls)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.2 \usepackage
+               {lmodern}^^M 
+Here is how much of TeX's memory you used:
+ 10 strings out of 494458
+ 119 string characters out of 6171841
+ 58050 words of memory out of 5000000
+ 4470 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 14i,0n,8p,53b,10s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+No pages of output.
+
+
+! kpathsea: Running mktexfmt xelatex.fmt
+
+! The command name is C:\Users\Shixiang\AppData\Roaming\TinyTeX\bin\win32\mktexfmt
