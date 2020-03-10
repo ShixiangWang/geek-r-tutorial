@@ -133,6 +133,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
 <ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#内容简介"><i class="fa fa-check"></i>内容简介</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#建议与反馈"><i class="fa fa-check"></i>建议与反馈</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#致谢"><i class="fa fa-check"></i>致谢</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
@@ -149,12 +151,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="expand-reading.html"><a href="expand-reading.html#生信技能树语雀知识库"><i class="fa fa-check"></i><b>A.1</b> 生信技能树语雀知识库</a></li>
 <li class="chapter" data-level="A.2" data-path="expand-reading.html"><a href="expand-reading.html#图书"><i class="fa fa-check"></i><b>A.2</b> 图书</a>
 <ul>
-<li class="chapter" data-level="A.2.1" data-path="expand-reading.html"><a href="expand-reading.html#统计建模"><i class="fa fa-check"></i><b>A.2.1</b> 统计建模</a></li>
-<li class="chapter" data-level="A.2.2" data-path="expand-reading.html"><a href="expand-reading.html#核心集合"><i class="fa fa-check"></i><b>A.2.2</b> 核心集合</a></li>
-<li class="chapter" data-level="A.2.3" data-path="expand-reading.html"><a href="expand-reading.html#生物信息学"><i class="fa fa-check"></i><b>A.2.3</b> 生物信息学</a></li>
+<li class="chapter" data-level="A.2.1" data-path="expand-reading.html"><a href="expand-reading.html#问题与方案"><i class="fa fa-check"></i><b>A.2.1</b> 问题与方案</a></li>
+<li class="chapter" data-level="A.2.2" data-path="expand-reading.html"><a href="expand-reading.html#统计建模"><i class="fa fa-check"></i><b>A.2.2</b> 统计建模</a></li>
+<li class="chapter" data-level="A.2.3" data-path="expand-reading.html"><a href="expand-reading.html#核心集合"><i class="fa fa-check"></i><b>A.2.3</b> 核心集合</a></li>
+<li class="chapter" data-level="A.2.4" data-path="expand-reading.html"><a href="expand-reading.html#生物信息学"><i class="fa fa-check"></i><b>A.2.4</b> 生物信息学</a></li>
 </ul></li>
 <li class="chapter" data-level="A.3" data-path="expand-reading.html"><a href="expand-reading.html#视频"><i class="fa fa-check"></i><b>A.3</b> 视频</a></li>
-<li class="chapter" data-level="A.4" data-path="expand-reading.html"><a href="expand-reading.html#其他资料"><i class="fa fa-check"></i><b>A.4</b> 其他资料</a></li>
+<li class="chapter" data-level="A.4" data-path="expand-reading.html"><a href="expand-reading.html#公众号"><i class="fa fa-check"></i><b>A.4</b> 公众号</a></li>
+<li class="chapter" data-level="A.5" data-path="expand-reading.html"><a href="expand-reading.html#其他资料"><i class="fa fa-check"></i><b>A.5</b> 其他资料</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 </ul>
@@ -181,7 +185,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="前言" class="section level1">
 <h1>前言</h1>
-<p>你好，世界。我写了一本书。这本书是这样的，</p>
+<p>这是一本 R 语言入门的教程书。它旨在为生物信息学相关方向的研究人员（包括学生）以及相关从业者提供 R 语言基础知识的学习指导。当然，由于本书内容的普适性，我相信对数据科学感兴趣的读者都能够从阅读中受益。如果读者已经掌握了一些 R 的编程知识，可以翻看目录挑选感兴趣的内容阅读；如果读者已经掌握的 R 编程基础知识，我推荐翻看本书的附录部分查找感兴趣的内容进一步深入学习。</p>
+<p>R 语言与知名的 C、Python 这类通用编程语言相比，它是一门领域特定语言（domain-specific language、DSL），专注于数据科学领域。由于 Python 的普及以及它在商业、科研分析中的流行，R 语言常常被用来与 Python 作比较。我在此无意做这样的比较，就我的个人使用经验来看，两者都有其独特和独到之处。作为一名数据科学家，我们常常需要掌握多门编程语言作为工具进行工作，其中主要包括 R、Python 和 Shell。R 和 Python 都是作为主要的数据探索、分析和可视化工具，读者任选其一熟练掌握即可。初学者同时学习 R 和 Python 是不可取，因为不同的编程语言都有相似的数据结构和运算控制逻辑，所以深度掌握一门语言能够更好地工作和更快地学习其他编程语言。另外，初学者往往困惑于 R 和 Python 两种语言中哪种更值得学习。就我的个人观点看，对于生物信息学方向的<strong>大部分读者</strong>，R 是更好的选择，有以下一些理由：</p>
+<ul>
+<li>R 语言对于没有编程经验的读者更加友好，内置向量化运算机制和默认统计分析包可以快速开始分析和获取结果。</li>
+<li>由于 <a href="https://www.bioconductor.org/">Bioconductor</a> 项目库和 <a href="https://cran.r-project.org/">CRAN</a> 库中保存了上千个生物信息学软件包，涉及生物信息学领域的各个方面，读者在实际的研究工作中很难完全离开 R 语言环境。</li>
+<li><a href="https://github.com/tidyverse/">tidyverse 系列工具包</a>的强力驱动让 R 在数据分析各个方面工作都非常强力。</li>
+</ul>
+<div id="内容简介" class="section level2">
+<h2>内容简介</h2>
+<p>当前已经有不少 R 语言和数据分析相关的教程和书籍，本书无力像它们一样详尽地介绍 R 众多方面的内容，而是聚焦于指导读者学习和理解数据分析的核心要点，并能快速应用到自己实际的工作中。本书的核心内容包括 R 的基础语法和一系列数据分析编程知识，后者将根据 Hadley 在《R for Data Science》提供的数据分析流程概览图 <a href="index.html#fig:r4ds-overview">0.1</a> 中指出的核心要点分别按章节进行介绍。最后，我们将通过一些 R 包学习 R 在生物信息学方向的应用。</p>
+<div class="figure" style="text-align: center"><span id="fig:r4ds-overview"></span>
+<img src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" alt="数据分析概览 （图源：R for Data Science 第 1 章）"  />
+<p class="caption">
+图 0.1: 数据分析概览 （图源：R for Data Science 第 1 章）
+</p>
+</div>
+<p>本书的章节概要如下：</p>
 <ul>
 <li>第 <a href="base.html#base">1</a> 章介绍 R 基础编程语法，包括数据结构、控制流程等。</li>
 <li>第 <a href="import.html#import">2</a> 章介绍如何使用 R 导入常见的数据文件格式。</li>
@@ -191,11 +211,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>第 <a href="report.html#report">6</a> 章介绍 R 怎样导出结果和生成分析报告。</li>
 <li>第 <a href="bioapp.html#bioapp">7</a> 章通过一些包的使用示例介绍 R 在生物信息学方向的应用。</li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
-<img src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" alt="数据分析概览 （图源：R for Data Science 第 1 章）"  />
-<p class="caption">
-图 0.1: 数据分析概览 （图源：R for Data Science 第 1 章）
-</p>
+</div>
+<div id="建议与反馈" class="section level2">
+<h2>建议与反馈</h2>
+<p>这是我第一次编写比较系统的 R 语言教程，由于个人能力有限，难免存在错误和不当，恳请读者批评指正。<strong>目前我在业余时间对本书内容进行积极的开发，如果读者有任何建议，欢迎到 <a href="https://github.com/ShixiangWang/geek-r-tutorial/issues">GitHub 仓库 Issue</a> 中进行讨论</strong>。</p>
 </div>
 <div id="致谢" class="section level2">
 <h2>致谢</h2>
@@ -258,7 +277,7 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

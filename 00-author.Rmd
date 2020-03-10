@@ -1,3 +1,3 @@
 # 作者简介 {#author .unnumbered}
 
-上不了厅堂，下得了厨房。敲得了代码，逮得住蟑螂。
+[王诗翔](https://shixiangwang.github.io/home/cn/)，生信技能树成员，R 语言爱好者。对编程、数据分析都有比较浓厚的兴趣，喜欢开源与开放的科学。长期在简书发文，连载文集[《极客RrR<<-数据分析之道》](https://www.jianshu.com/nb/22007361)，并运营微信公众号[《优雅R》](https://shixiangwang.github.io/home/logo/qrcode.jpg)用于推送数据分析相关知识。
