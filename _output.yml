@@ -2,16 +2,13 @@ bookdown::gitbook:
   css: css/style.css
   config:
     toc:
-      collapse: none
       before: |
-        <li><a href="./">中文书示例</a></li>
-      after: |
-        <li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+        <li><a href="./">数据分析之道</a></li>
 #    download: [pdf, epub]
-    edit: https://github.com/yihui/bookdown-chinese/edit/master/%s
+    edit: https://github.com/ShixiangWang/geek-r-tutorial/edit/master/%s
     sharing:
       github: yes
-      facebook: no
+      twitter: yes
 bookdown::pdf_book:
   includes:
     in_header: latex/preamble.tex

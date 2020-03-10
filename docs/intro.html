@@ -4,27 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第 1 章 牛刀小试 | 麻麻说我们可以用 R Markdown 写书了</title>
-  <meta name="description" content="一个简单的中文书示例。" />
+  <title>第 1 章 介绍 | 极客R：数据分析之道</title>
+  <meta name="description" content="一本极简 R 入门图书" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第 1 章 牛刀小试 | 麻麻说我们可以用 R Markdown 写书了" />
+  <meta property="og:title" content="第 1 章 介绍 | 极客R：数据分析之道" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="一个简单的中文书示例。" />
-  <meta name="github-repo" content="yihui/bookdown-chinese" />
+  <meta property="og:description" content="一本极简 R 入门图书" />
+  <meta name="github-repo" content="ShixiangWang/geek-r-tutorial" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第 1 章 牛刀小试 | 麻麻说我们可以用 R Markdown 写书了" />
+  <meta name="twitter:title" content="第 1 章 介绍 | 极客R：数据分析之道" />
   
-  <meta name="twitter:description" content="一个简单的中文书示例。" />
+  <meta name="twitter:description" content="一本极简 R 入门图书" />
   
 
-<meta name="author" content="张三" />
+<meta name="author" content="王诗翔, 生信技能树" />
 
 
-<meta name="date" content="2020-03-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">中文书示例</a></li>
+<li><a href="./">数据分析之道</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
@@ -137,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#致谢"><i class="fa fa-check"></i>致谢</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> 牛刀小试</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> 介绍</a></li>
 <li class="chapter" data-level="2" data-path="wind.html"><a href="wind.html"><i class="fa fa-check"></i><b>2</b> 白苹风末</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="wind.html"><a href="wind.html#张老爷子"><i class="fa fa-check"></i><b>2.1</b> 张老爷子</a></li>
@@ -158,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">麻麻说我们可以用 R Markdown 写书了</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">极客R：数据分析之道</a>
           </h1>
         </div>
 
@@ -167,7 +166,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="intro" class="section level1">
-<h1><span class="header-section-number">第 1 章</span> 牛刀小试</h1>
+<h1><span class="header-section-number">第 1 章</span> 介绍</h1>
+<p><img src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" /></p>
 <p>现在我们可以试试 <strong>bookdown</strong> 的一些初级功能了，例如图表。图 <a href="intro.html#fig:hello">1.1</a> 是一幅无趣的散点图，表 <a href="intro.html#tab:iris">1.1</a> 是一份枯燥的数据。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="fl">.1</span>))</span>
 <span id="cb3-2"><a href="intro.html#cb3-2"></a><span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
@@ -263,7 +263,7 @@ gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": true,
-"facebook": false,
+"facebook": true,
 "twitter": true,
 "linkedin": false,
 "weibo": false,
@@ -277,7 +277,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yihui/bookdown-chinese/edit/master/01-introduction.Rmd",
+"link": "https://github.com/ShixiangWang/geek-r-tutorial/edit/master/01-introduction.Rmd",
 "text": "编辑"
 },
 "history": {

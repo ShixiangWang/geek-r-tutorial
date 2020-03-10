@@ -1,7 +1,7 @@
 --- 
-title: "麻麻说我们可以用 R Markdown 写书了"
-author: "张三"
-date: "`r Sys.Date()`"
+title: "极客R：数据分析之道"
+author: "王诗翔, 生信技能树"
+date: "上次修改 `r Sys.Date()`"
 documentclass: ctexbook
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
@@ -11,8 +11,8 @@ lot: yes
 lof: yes
 geometry: [b5paper, tmargin=2.5cm, bmargin=2.5cm, lmargin=3.5cm, rmargin=2.5cm]
 site: bookdown::bookdown_site
-description: "一个简单的中文书示例。"
-github-repo: yihui/bookdown-chinese
+description: "一本极简 R 入门图书"
+github-repo: ShixiangWang/geek-r-tutorial
 #cover-image: images/cover.jpg
 ---
 
@@ -22,27 +22,35 @@ options(
 )
 
 # 填上你需要用到的包，如 c('ggplot2', 'dplyr')
-lapply(c(), function(pkg) {
+lapply(c("tidyverse"), function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })
 ```
 
 # 前言 {-}
 
-你好，世界。我写了一本书。这本书是这样的，第 \@ref(intro) 章介绍了啥啥，第 \@ref(wind) 章说了啥啥，然后是啥啥……
+你好，世界。我写了一本书。这本书是这样的，
 
-我用了两个 R 包编译这本书，分别是 **knitr**\index{knitr} [@xie2015] 和 **bookdown**\index{bookdown} [@R-bookdown]。以下是我的 R 进程信息：
+- 第 \@ref(base) 章介绍 R 基础编程语法，包括数据结构、控制流程等。
+- 第 \@ref(import) 章介绍如何使用 R 导入常见的数据文件格式。
+- 第 \@ref(clean) 章介绍数据清洗操作在 R 中的实现。
+- 第 \@ref(visualization) 章介绍数据可视化。
+- 第 \@ref(model) 章介绍 R 在统计建模方面的和实践。
+- 第 \@ref(report) 章介绍 R 怎样导出结果和生成分析报告。
+- 第 \@ref(bioapp) 章通过一些包的使用示例介绍 R 在生物信息学方向的应用。
 
-```{r}
-sessionInfo()
+
+```{r, fig.align="center", echo=FALSE, fig.cap="数据分析概览 （图源：R for Data Science 第 1 章）"}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png")
 ```
+
 
 ## 致谢 {-}
 
-非常感谢谁谁以及谁谁对我的帮助。艾玛，要不是他们神一样的队友，我两年前就写完这本书了。
+非常感谢谁谁以及谁谁对我的帮助。
 
 ```{block2, type='flushright', html.tag='p'}
-张三  
-于 A 村某角落
+王诗翔  
+于 上海
 ```
 
