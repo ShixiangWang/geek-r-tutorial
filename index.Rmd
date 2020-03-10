@@ -42,7 +42,7 @@ R 语言与知名的 C、Python 这类通用编程语言相比，它是一门领
 当前已经有不少 R 语言和数据分析相关的教程和书籍，本书无力像它们一样详尽地介绍 R 众多方面的内容，而是聚焦于指导读者学习和理解数据分析的核心要点，并能快速应用到自己实际的工作中。本书的核心内容包括 R 的基础语法和一系列数据分析编程知识，后者将根据 Hadley 在《R for Data Science》提供的数据分析流程概览图 \@ref(fig:r4ds-overview) 中指出的核心要点分别按章节进行介绍。最后，我们将通过一些 R 包学习 R 在生物信息学方向的应用。
 
 ```{r r4ds-overview, fig.align="center", echo=FALSE, fig.cap="数据分析概览 （图源：R for Data Science 第 1 章）"}
-knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png")
+knitr::include_graphics("fig/ch00-data-science.png")
 ```
 
 本书的章节概要如下：
