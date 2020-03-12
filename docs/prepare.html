@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>参考文献 | 极客R：数据分析之道</title>
+  <title>第 1 章 准备工作 | 极客R：数据分析之道</title>
   <meta name="description" content="一本极简 R 入门图书" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="参考文献 | 极客R：数据分析之道" />
+  <meta property="og:title" content="第 1 章 准备工作 | 极客R：数据分析之道" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="ShixiangWang/geek-r-tutorial" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="参考文献 | 极客R：数据分析之道" />
+  <meta name="twitter:title" content="第 1 章 准备工作 | 极客R：数据分析之道" />
   
   <meta name="twitter:description" content="一本极简 R 入门图书" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="expand-reading.html"/>
-
+<link rel="prev" href="author.html"/>
+<link rel="next" href="base.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -160,17 +160,121 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1">
-<h1>参考文献</h1>
+<div id="prepare" class="section level1">
+<h1><span class="header-section-number">第 1 章</span> 准备工作</h1>
+<p>如果读者已经在计算机上安装好 R 和 RStudio，可以跳过本节内容。</p>
+<div id="r-的下载和安装" class="section level2">
+<h2>R 的下载和安装</h2>
+<ol style="list-style-type: decimal">
+<li>安装R，下载<a href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/windows/base/R-3.5.1-win.exe" class="uri">https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/windows/base/R-3.5.1-win.exe</a></li>
+<li>安装RStudio，下载<a href="https://download1.rstudio.org/RStudio-1.1.456.exe" class="uri">https://download1.rstudio.org/RStudio-1.1.456.exe</a></li>
+<li>（可选）安装Rtools，这个是用来编译源码包的，一般是含有其他语言写的包需要该步骤，下载<a href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/windows/Rtools/Rtools35.exe" class="uri">https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/windows/Rtools/Rtools35.exe</a></li>
+</ol>
+<p>所有链接都是2018-08-10的最新版本。</p>
+<p>根据我这一年多反复安装R，遇到错误不得不重装R的一些经历，在安装时有以下几个重要的建议：</p>
+<ol style="list-style-type: decimal">
+<li>尽量不要安装在<code>Program files</code>相关目录下，考虑到现在大多数电脑都是一个C盘，可以选择在C盘下创建一个目录专门用来装R、R包以及R tools。下面展示的就是我选择了<code>C:/Tools</code>作为本文软件安装的目录。大家根据自己电脑合理选择，有其他盘的朋友可以装到其他盘。带固态硬盘的最好装到固态硬盘目录里，因为读写数据快。</li>
+<li>一般现在电脑是64位的，如果你确定是这样，在安装时有关于32位的选项都可以不勾选。</li>
+<li>涉及到添加环境变量/路径之类的，勾选添加即可。</li>
+<li>以上没提到的，一路点下一步。</li>
+</ol>
+<blockquote>
+<p>注意，R和RStudio可以单独安装，但RStudio只有在R安装好了以后才能正常使用。</p>
+</blockquote>
+</div>
+<div id="编程环境的下载和安装" class="section level2">
+<h2>编程环境的下载和安装</h2>
+<div id="rstudio" class="section level3">
+<h3>RStudio</h3>
+</div>
+<div id="vs-code" class="section level3">
+<h3>VS Code</h3>
+</div>
+</div>
+<div id="配置" class="section level2">
+<h2>配置</h2>
+<p>Windows R默认使用用户文档目录作为家目录（等同于Linux中的<code>~</code>），使用系统指定的临时目录作为临时目录，使用安装路径下的<code>R版本/library</code>目录作为R包存储目录。</p>
+<p>如果你什么都选择默认的，</p>
+<ul>
+<li>当你一时安装包过多，或者装了电脑管家之类的管理软件时，系统的临时目录经常会把RStudio锁死，导致不能进行读写。</li>
+<li>当你想要更新R版本时，你不得不面临重装所有包的举动（如果你使用几个月，装了几百个包~~），或者想其他办法解决。</li>
+</ul>
+<p>下面就是教你自己创建自定义的临时目录与包目录，这样上面情况都不会发生了。</p>
+<p>在安装好R和RStudio后，打开RStudio，在R控制台键入：</p>
+<pre><code>file.edit(&quot;~/.Rprofile&quot;)</code></pre>
+<p>在启动RStudio时，RStudio会首先执行里面的R代码，所以我们可以在这里用R代码进行配置。</p>
+<p>在该文档内添加内容：</p>
+<pre><code>#--------------------------------------------
+# Set custom library and temp directory for R
+# NOTE: please only change following 2 paths
+#   Any Question, please email to 
+#       Shixiang Wang &lt;w_shixiang@163.com&gt;
+#--------------------------------------------
+.CUSTOM_LIB = &quot;C:/Tools/R/R_Library&quot; # set your custom library location
+.TMP = &quot;C:/Tools/R/Rtmp&quot;             # set a temp dir for R running
+                                     # please do not add &#39;/&#39; at the end !!!
 
+if(!dir.exists(.CUSTOM_LIB)){
+    dir.create(.CUSTOM_LIB, recursive = TRUE)
+}
+
+.libPaths(c(.CUSTOM_LIB, .libPaths()))
+message(&quot;Using library: &quot;, .libPaths()[1])
+
+
+if(dirname(tempdir()) != .TMP){
+    if(!dir.exists(.TMP)) dir.create(.TMP, recursive = TRUE)
+    cat(paste0(&quot;TMPDIR = &quot;, .TMP), file=&quot;~/.Renviron&quot;, sep = &quot;\n&quot;)
+}
+message(&quot;Using temp directory: &quot;, .TMP)
+
+#---------------------------------------------------
+# pacman is optional, you can delete following code
+# If you wanna use pacman, please read:
+#   &lt;https://www.jianshu.com/p/cb16ded75672&gt;
+# Basically, 
+# #1, you can use &#39;p_load&#39; to load multiple package into R
+#       like p_load(data.table, dplyr)
+# #2, you can use &#39;p_get&#39; just to install package
+# #3, you can use &#39;p_update&#39; to update all packages
+#---------------------------------------------------
+if(!require(pacman)){
+    install.packages(&quot;pacman&quot;, dependencies = TRUE)
+}
+library(pacman)
+#----------------------------------------------------</code></pre>
+<p>如下图：</p>
+<div class="figure">
+<img src="https://upload-images.jianshu.io/upload_images/3884693-719810a185fcfff5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p class="caption">Rstudio截图</p>
+</div>
+<p>你主要对下面的目录进行修改即可</p>
+<pre><code>.CUSTOM_LIB = &quot;C:/Tools/R/R_Library&quot; # set your custom library location
+.TMP = &quot;C:/Tools/R/Rtmp&quot;             # set a temp dir for R running
+                                     # please do not add &#39;/&#39; at the end !!!</code></pre>
+<p>pacman那段代码是可选的，该包是<code>library()</code>函数的替代品，使用更简单。具体<a href="https://www.jianshu.com/p/cb16ded75672">点击阅读</a>我之前的文章。</p>
+<p>为了方便大家使用，我添加了一些必要注释，如果有问题可以评论或者email我。</p>
+<p>保存后重启RStudio或者点击菜单栏<code>Session</code>下的<code>Restart R</code>。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3884693-d3e23e15c7d662dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>每次都会输出你包的存储路径和R的临时路径。方便你自己查询。</p>
+<p>这样以后升级R，只要重装下R版本就可以了，R包还在那里，最多再在控制台来一句：</p>
+<pre><code>p_update()</code></pre>
+<hr />
+<p>配置部分同样适用于其他系统。</p>
+</div>
+<div id="常见问题与方案" class="section level2">
+<h2>常见问题与方案</h2>
+<p>除了本节目前罗列的问题，读者在学习本章内容时遇到的其他问题都可以通过 <a href="https://github.com/ShixiangWang/geek-r-tutorial/issues">GitHub Issue</a> 提出和进行讨论。如果读者提出的是通性问题，将增补到该节。</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="expand-reading.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="author.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="base.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -201,7 +305,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ShixiangWang/geek-r-tutorial/edit/master/10-references.Rmd",
+"link": "https://github.com/ShixiangWang/geek-r-tutorial/edit/master/01-prepare.Rmd",
 "text": "编辑"
 },
 "history": {

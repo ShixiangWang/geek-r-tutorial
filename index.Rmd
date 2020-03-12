@@ -47,6 +47,7 @@ knitr::include_graphics("fig/ch00-data-science.png")
 
 本书的章节概要如下：
 
+- 第 \@ref(prepare) 章介绍 R 与相应编程环境的安装和使用。
 - 第 \@ref(base) 章介绍 R 基础编程语法，包括数据结构、控制流程等。
 - 第 \@ref(import) 章介绍如何使用 R 导入常见的数据文件格式。
 - 第 \@ref(clean) 章介绍数据清洗操作在 R 中的实现。
