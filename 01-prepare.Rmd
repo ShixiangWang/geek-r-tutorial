@@ -92,7 +92,6 @@ library(pacman)
 
 如下图：
 
-![Rstudio截图](https://upload-images.jianshu.io/upload_images/3884693-719810a185fcfff5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 你主要对下面的目录进行修改即可
 
@@ -108,7 +107,6 @@ pacman那段代码是可选的，该包是`library()`函数的替代品，使用
 
 保存后重启RStudio或者点击菜单栏`Session`下的`Restart R`。
 
-![](https://upload-images.jianshu.io/upload_images/3884693-d3e23e15c7d662dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 每次都会输出你包的存储路径和R的临时路径。方便你自己查询。
 

@@ -244,10 +244,6 @@ if(!require(pacman)){
 library(pacman)
 #----------------------------------------------------</code></pre>
 <p>如下图：</p>
-<div class="figure">
-<img src="https://upload-images.jianshu.io/upload_images/3884693-719810a185fcfff5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
-<p class="caption">Rstudio截图</p>
-</div>
 <p>你主要对下面的目录进行修改即可</p>
 <pre><code>.CUSTOM_LIB = &quot;C:/Tools/R/R_Library&quot; # set your custom library location
 .TMP = &quot;C:/Tools/R/Rtmp&quot;             # set a temp dir for R running
@@ -255,7 +251,6 @@ library(pacman)
 <p>pacman那段代码是可选的，该包是<code>library()</code>函数的替代品，使用更简单。具体<a href="https://www.jianshu.com/p/cb16ded75672">点击阅读</a>我之前的文章。</p>
 <p>为了方便大家使用，我添加了一些必要注释，如果有问题可以评论或者email我。</p>
 <p>保存后重启RStudio或者点击菜单栏<code>Session</code>下的<code>Restart R</code>。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3884693-d3e23e15c7d662dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
 <p>每次都会输出你包的存储路径和R的临时路径。方便你自己查询。</p>
 <p>这样以后升级R，只要重装下R版本就可以了，R包还在那里，最多再在控制台来一句：</p>
 <pre><code>p_update()</code></pre>
