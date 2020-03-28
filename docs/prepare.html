@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 1 章 准备工作 | 极客R：数据分析之道</title>
   <meta name="description" content="一本极简 R 入门图书" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 1 章 准备工作 | 极客R：数据分析之道" />
   <meta property="og:type" content="book" />
@@ -51,6 +51,69 @@
 
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="css\style.css" type="text/css" />
 </head>
@@ -77,14 +140,15 @@
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
 <li class="chapter" data-level="1" data-path="prepare.html"><a href="prepare.html"><i class="fa fa-check"></i><b>1</b> 准备工作</a>
 <ul>
-<li class="chapter" data-level="" data-path="prepare.html"><a href="prepare.html#r-的下载和安装"><i class="fa fa-check"></i>R 的下载和安装</a></li>
-<li class="chapter" data-level="" data-path="prepare.html"><a href="prepare.html#编程环境的下载和安装"><i class="fa fa-check"></i>编程环境的下载和安装</a>
+<li class="chapter" data-level="1.1" data-path="prepare.html"><a href="prepare.html#r-的下载和安装"><i class="fa fa-check"></i><b>1.1</b> R 的下载和安装</a></li>
+<li class="chapter" data-level="1.2" data-path="prepare.html"><a href="prepare.html#rstudio-的下载和安装"><i class="fa fa-check"></i><b>1.2</b> RStudio 的下载和安装</a></li>
+<li class="chapter" data-level="1.3" data-path="prepare.html"><a href="prepare.html#配置可选"><i class="fa fa-check"></i><b>1.3</b> 配置（可选）</a></li>
+<li class="chapter" data-level="1.4" data-path="prepare.html"><a href="prepare.html#常见问题与方案"><i class="fa fa-check"></i><b>1.4</b> 常见问题与方案</a>
 <ul>
-<li class="chapter" data-level="" data-path="prepare.html"><a href="prepare.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
-<li class="chapter" data-level="" data-path="prepare.html"><a href="prepare.html#vs-code"><i class="fa fa-check"></i>VS Code</a></li>
+<li class="chapter" data-level="1.4.1" data-path="prepare.html"><a href="prepare.html#r-在-linux-系统下的安装"><i class="fa fa-check"></i><b>1.4.1</b> R 在 Linux 系统下的安装</a></li>
+<li class="chapter" data-level="1.4.2" data-path="prepare.html"><a href="prepare.html#rtools-安装"><i class="fa fa-check"></i><b>1.4.2</b> Rtools 安装</a></li>
+<li class="chapter" data-level="1.4.3" data-path="prepare.html"><a href="prepare.html#rstudio-server-安装"><i class="fa fa-check"></i><b>1.4.3</b> RStudio Server 安装</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="prepare.html"><a href="prepare.html#配置"><i class="fa fa-check"></i>配置</a></li>
-<li class="chapter" data-level="" data-path="prepare.html"><a href="prepare.html#常见问题与方案"><i class="fa fa-check"></i>常见问题与方案</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="base.html"><a href="base.html"><i class="fa fa-check"></i><b>2</b> 基础语法</a>
 <ul>
@@ -162,105 +226,267 @@
             <section class="normal" id="section-">
 <div id="prepare" class="section level1">
 <h1><span class="header-section-number">第 1 章</span> 准备工作</h1>
+<p>想要在本地计算机上运行 R 语言代码，读者需要安装 R。为了方便 R 语言环境的使用和代码编写，我推荐读者使用 RStudio 开发的 R 集成开发环境（IDE）RStudio。</p>
 <p>如果读者已经在计算机上安装好 R 和 RStudio，可以跳过本节内容。</p>
+<p>如果读者倾向于使用像 VS Code 和 Idea 这样的流行编辑器，请自行安装对应的 R 语言拓展插件。</p>
 <div id="r-的下载和安装" class="section level2">
-<h2>R 的下载和安装</h2>
+<h2><span class="header-section-number">1.1</span> R 的下载和安装</h2>
+<p>点击链接 <a href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/" class="uri">https://mirrors.tuna.tsinghua.edu.cn/CRAN/</a> 进入 CRAN 的清华镜像源，选择与自己操作系统对应的 R 进行下载。</p>
+<ul>
+<li>Windows 系统用户进入 <a href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/">base 子目录</a>，点击 <strong>Download R x.x.x for Windows</strong>。</li>
+<li>MacOS 系统用户通过镜像地址进入 <strong>R for Mac OS X</strong> 页面后，点击 <code>R-x.x.x.pkg</code> 进行下载。</li>
+<li>Linux 系统发行版众多，且需要一些额外的技术知识，请相应用户请阅读本章【<strong>常见问题与方案</strong>】一节学习 R 在 Linux 发行版下的安装。</li>
+</ul>
+<blockquote>
+<p>上述的 <code>x.x.x</code> 指代 R 的版本号，目前是 <code>3.6.3</code>（2020-03），以用户下载时的实际版本号为准。</p>
+</blockquote>
+<p>对于 MacOS 系统用户，下载后直接双击一路向下进行傻瓜式操作即可安装成功。</p>
+<p>对于 Windows 系统用户，根据笔者几年的安装和使用经验，安装时有一些额外的注意事项：</p>
 <ol style="list-style-type: decimal">
-<li>安装R，下载<a href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/windows/base/R-3.5.1-win.exe" class="uri">https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/windows/base/R-3.5.1-win.exe</a></li>
-<li>安装RStudio，下载<a href="https://download1.rstudio.org/RStudio-1.1.456.exe" class="uri">https://download1.rstudio.org/RStudio-1.1.456.exe</a></li>
-<li>（可选）安装Rtools，这个是用来编译源码包的，一般是含有其他语言写的包需要该步骤，下载<a href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/windows/Rtools/Rtools35.exe" class="uri">https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/windows/Rtools/Rtools35.exe</a></li>
-</ol>
-<p>所有链接都是2018-08-10的最新版本。</p>
-<p>根据我这一年多反复安装R，遇到错误不得不重装R的一些经历，在安装时有以下几个重要的建议：</p>
-<ol style="list-style-type: decimal">
-<li>尽量不要安装在<code>Program files</code>相关目录下，考虑到现在大多数电脑都是一个C盘，可以选择在C盘下创建一个目录专门用来装R、R包以及R tools。下面展示的就是我选择了<code>C:/Tools</code>作为本文软件安装的目录。大家根据自己电脑合理选择，有其他盘的朋友可以装到其他盘。带固态硬盘的最好装到固态硬盘目录里，因为读写数据快。</li>
-<li>一般现在电脑是64位的，如果你确定是这样，在安装时有关于32位的选项都可以不勾选。</li>
-<li>涉及到添加环境变量/路径之类的，勾选添加即可。</li>
+<li>Windows 一般包含多个盘符，请读者尽量不要将 R 安装在 <code>Program files</code> 这样有空格的目录或中文目录下。读者可以自行创建一个专门的工具用于安装 R 以及放置 R 的三方包，如 <code>C:/Tools</code>，见图 1.1。</li>
+<li>读者的电脑如果有 SSD 固态硬盘，最好将 R 安装到固态硬盘目录里，因为读写数据快。</li>
+<li>一般现在电脑是 64 位的，如果你确定是这样，在安装时有关于 32 位的选项都可以不勾选，如图 1.2。</li>
+<li>如果涉及到添加环境变量/路径之类的步骤，勾选添加即可。</li>
 <li>以上没提到的，一路点下一步。</li>
 </ol>
-<blockquote>
-<p>注意，R和RStudio可以单独安装，但RStudio只有在R安装好了以后才能正常使用。</p>
-</blockquote>
+<div class="figure" style="text-align: center"><span id="fig:set-install-path"></span>
+<img src="fig/ch01-set-install-path-win.PNG" alt="设置安装路径"  />
+<p class="caption">
+图 1.1: 设置安装路径
+</p>
 </div>
-<div id="编程环境的下载和安装" class="section level2">
-<h2>编程环境的下载和安装</h2>
-<div id="rstudio" class="section level3">
-<h3>RStudio</h3>
+<div class="figure" style="text-align: center"><span id="fig:select-64bit"></span>
+<img src="fig/ch01-select-64-bit.PNG" alt="只选择 64 位"  />
+<p class="caption">
+图 1.2: 只选择 64 位
+</p>
 </div>
-<div id="vs-code" class="section level3">
-<h3>VS Code</h3>
+<p>在 Windows 或 MacOS 下读者如果想要安装含有像 C++ 这样的源码的包，需要安装编译工具如 g++，这些编译工具都被 R 语言团队打包成了 Rtools，如果读者有这方面的需求，请阅读本章【<strong>常见问题与方案</strong>】一节学习 Rtools 的安装。</p>
 </div>
+<div id="rstudio-的下载和安装" class="section level2">
+<h2><span class="header-section-number">1.2</span> RStudio 的下载和安装</h2>
+<p>点击链接 <a href="https://rstudio.com/products/rstudio/download/" class="uri">https://rstudio.com/products/rstudio/download/</a> 进入 RStudio 下载界面，根据自己的操作系统选择适合的安装文件进行安装即可。</p>
+<div class="figure" style="text-align: center"><span id="fig:install-rstudio"></span>
+<img src="fig/ch01-download-rstudio.PNG" alt="下载 RStudio"  />
+<p class="caption">
+图 1.3: 下载 RStudio
+</p>
 </div>
-<div id="配置" class="section level2">
-<h2>配置</h2>
-<p>Windows R默认使用用户文档目录作为家目录（等同于Linux中的<code>~</code>），使用系统指定的临时目录作为临时目录，使用安装路径下的<code>R版本/library</code>目录作为R包存储目录。</p>
-<p>如果你什么都选择默认的，</p>
+<p>RStudio 的安装非常简单，没有特别的注意事项，读者可以直接一路点击向下。另外，读者可以自定义 RStudio 的安装路径，这不会影响 R 的使用。</p>
+<p>RStudio 安装完成后可以像普通软件一样搜索和双击打开。</p>
+<div class="figure" style="text-align: center"><span id="fig:rstudio-overview"></span>
+<img src="fig/ch01-rstudio-overview.PNG" alt="RStudio 界面"  />
+<p class="caption">
+图 1.4: RStudio 界面
+</p>
+</div>
+<p>下面对 RStudio 的界面进行简单介绍，读者在后续的使用中将会逐渐熟悉。</p>
 <ul>
-<li>当你一时安装包过多，或者装了电脑管家之类的管理软件时，系统的临时目录经常会把RStudio锁死，导致不能进行读写。</li>
-<li>当你想要更新R版本时，你不得不面临重装所有包的举动（如果你使用几个月，装了几百个包~~），或者想其他办法解决。</li>
+<li>最上方是菜单栏，所有的功能都可以通过它们找到，没事可以多点一点。</li>
+<li>左上方是代码编辑窗口，平时写代码的地方。</li>
+<li>左下方是 R 控制台（还有终端和任务设定），我们可以通过控制台键入命令并观察 R 的输出（在代码编辑窗口中通过 Ctrl + Enter 快捷键可以将光标行代码发送到控制台，<strong>非常有用</strong>）。</li>
+<li>整个右方是一些辅助窗口，最重要的是右上方的环境 Environment 窗口（用于展示当前环境中的对象：包括变量、函数等）和下方的 5 个窗口：Files、Plots、Packages、Help 以及 Viewer。</li>
 </ul>
-<p>下面就是教你自己创建自定义的临时目录与包目录，这样上面情况都不会发生了。</p>
-<p>在安装好R和RStudio后，打开RStudio，在R控制台键入：</p>
-<pre><code>file.edit(&quot;~/.Rprofile&quot;)</code></pre>
-<p>在启动RStudio时，RStudio会首先执行里面的R代码，所以我们可以在这里用R代码进行配置。</p>
-<p>在该文档内添加内容：</p>
-<pre><code>#--------------------------------------------
-# Set custom library and temp directory for R
-# NOTE: please only change following 2 paths
-#   Any Question, please email to 
-#       Shixiang Wang &lt;w_shixiang@163.com&gt;
-#--------------------------------------------
-.CUSTOM_LIB = &quot;C:/Tools/R/R_Library&quot; # set your custom library location
-.TMP = &quot;C:/Tools/R/Rtmp&quot;             # set a temp dir for R running
-                                     # please do not add &#39;/&#39; at the end !!!
-
-if(!dir.exists(.CUSTOM_LIB)){
-    dir.create(.CUSTOM_LIB, recursive = TRUE)
-}
-
-.libPaths(c(.CUSTOM_LIB, .libPaths()))
-message(&quot;Using library: &quot;, .libPaths()[1])
-
-
-if(dirname(tempdir()) != .TMP){
-    if(!dir.exists(.TMP)) dir.create(.TMP, recursive = TRUE)
-    cat(paste0(&quot;TMPDIR = &quot;, .TMP), file=&quot;~/.Renviron&quot;, sep = &quot;\n&quot;)
-}
-message(&quot;Using temp directory: &quot;, .TMP)
-
-#---------------------------------------------------
-# pacman is optional, you can delete following code
-# If you wanna use pacman, please read:
-#   &lt;https://www.jianshu.com/p/cb16ded75672&gt;
-# Basically, 
-# #1, you can use &#39;p_load&#39; to load multiple package into R
-#       like p_load(data.table, dplyr)
-# #2, you can use &#39;p_get&#39; just to install package
-# #3, you can use &#39;p_update&#39; to update all packages
-#---------------------------------------------------
-if(!require(pacman)){
-    install.packages(&quot;pacman&quot;, dependencies = TRUE)
-}
-library(pacman)
-#----------------------------------------------------</code></pre>
-<p>如下图：</p>
-<p>你主要对下面的目录进行修改即可</p>
-<pre><code>.CUSTOM_LIB = &quot;C:/Tools/R/R_Library&quot; # set your custom library location
-.TMP = &quot;C:/Tools/R/Rtmp&quot;             # set a temp dir for R running
-                                     # please do not add &#39;/&#39; at the end !!!</code></pre>
-<p>pacman那段代码是可选的，该包是<code>library()</code>函数的替代品，使用更简单。具体<a href="https://www.jianshu.com/p/cb16ded75672">点击阅读</a>我之前的文章。</p>
-<p>为了方便大家使用，我添加了一些必要注释，如果有问题可以评论或者email我。</p>
-<p>保存后重启RStudio或者点击菜单栏<code>Session</code>下的<code>Restart R</code>。</p>
-<p>每次都会输出你包的存储路径和R的临时路径。方便你自己查询。</p>
-<p>这样以后升级R，只要重装下R版本就可以了，R包还在那里，最多再在控制台来一句：</p>
-<pre><code>p_update()</code></pre>
-<hr />
-<p>配置部分同样适用于其他系统。</p>
+</div>
+<div id="配置可选" class="section level2">
+<h2><span class="header-section-number">1.3</span> 配置（可选）</h2>
+<blockquote>
+<p>下面的说明针对的是 Windows 系统，但对于其他系统也可以进行类似的设定。</p>
+</blockquote>
+<p>Windows 下的 R 默认使用用户文档目录作为家目录（等同于 Linux 中的<code>~</code>），使用系统指定的临时目录作为临时目录，使用安装路径下的 <code>R版本/library</code> 目录作为 R 包存储目录。</p>
+<p>如果读者什么都选择默认的，</p>
+<ul>
+<li>当你一时安装包过多，或者装了电脑管家之类的管理软件时，系统的临时目录经常会把 RStudio 锁死，导致不能进行读写。</li>
+<li>当你想要更新 R 版本时，有时你不得不面临重装所有包的举动（如果你使用几个月，装了几百个包~~），或者想其他办法解决。</li>
+</ul>
+<p>下面介绍如何创建自定义的临时目录与包目录，这样上面情况都不会发生了。</p>
+<p>读者在安装好 R 和 RStudio 后，打开 RStudio，在 R 控制台键入：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="prepare.html#cb1-1"></a><span class="kw">file.edit</span>(<span class="st">&quot;~/.Rprofile&quot;</span>)</span></code></pre></div>
+<p>在启动RStudio时，RStudio会首先执行里面的 R 代码，所以我们可以在这里用 R 代码进行配置。</p>
+<p>首先在该文档内添加内容：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="prepare.html#cb2-1"></a><span class="co">#--------------------------------------------</span></span>
+<span id="cb2-2"><a href="prepare.html#cb2-2"></a><span class="co"># Set custom library and temp directory for R</span></span>
+<span id="cb2-3"><a href="prepare.html#cb2-3"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: please only change following 2 paths</span></span>
+<span id="cb2-4"><a href="prepare.html#cb2-4"></a><span class="co">#   Any Question, please email to </span></span>
+<span id="cb2-5"><a href="prepare.html#cb2-5"></a><span class="co">#       Shixiang Wang &lt;w_shixiang@163.com&gt;</span></span>
+<span id="cb2-6"><a href="prepare.html#cb2-6"></a><span class="co">#--------------------------------------------</span></span>
+<span id="cb2-7"><a href="prepare.html#cb2-7"></a>.CUSTOM_LIB =<span class="st"> &quot;C:/Tools/R/R_Library&quot;</span> <span class="co"># set your custom library location</span></span>
+<span id="cb2-8"><a href="prepare.html#cb2-8"></a>.TMP =<span class="st"> &quot;C:/Tools/R/Rtmp&quot;</span>             <span class="co"># set a temp dir for R running</span></span>
+<span id="cb2-9"><a href="prepare.html#cb2-9"></a>                                     <span class="co"># please do not add &#39;/&#39; at the end !!!</span></span>
+<span id="cb2-10"><a href="prepare.html#cb2-10"></a></span>
+<span id="cb2-11"><a href="prepare.html#cb2-11"></a><span class="cf">if</span>(<span class="op">!</span><span class="kw">dir.exists</span>(.CUSTOM_LIB)){</span>
+<span id="cb2-12"><a href="prepare.html#cb2-12"></a>    <span class="kw">dir.create</span>(.CUSTOM_LIB, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb2-13"><a href="prepare.html#cb2-13"></a>}</span>
+<span id="cb2-14"><a href="prepare.html#cb2-14"></a></span>
+<span id="cb2-15"><a href="prepare.html#cb2-15"></a><span class="kw">.libPaths</span>(<span class="kw">c</span>(.CUSTOM_LIB, <span class="kw">.libPaths</span>()))</span>
+<span id="cb2-16"><a href="prepare.html#cb2-16"></a><span class="kw">message</span>(<span class="st">&quot;Using library: &quot;</span>, <span class="kw">.libPaths</span>()[<span class="dv">1</span>])</span>
+<span id="cb2-17"><a href="prepare.html#cb2-17"></a></span>
+<span id="cb2-18"><a href="prepare.html#cb2-18"></a></span>
+<span id="cb2-19"><a href="prepare.html#cb2-19"></a><span class="cf">if</span>(<span class="kw">dirname</span>(<span class="kw">tempdir</span>()) <span class="op">!=</span><span class="st"> </span>.TMP){</span>
+<span id="cb2-20"><a href="prepare.html#cb2-20"></a>    <span class="cf">if</span>(<span class="op">!</span><span class="kw">dir.exists</span>(.TMP)) <span class="kw">dir.create</span>(.TMP, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb2-21"><a href="prepare.html#cb2-21"></a>    <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;TMPDIR = &quot;</span>, .TMP), <span class="dt">file=</span><span class="st">&quot;~/.Renviron&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb2-22"><a href="prepare.html#cb2-22"></a>}</span>
+<span id="cb2-23"><a href="prepare.html#cb2-23"></a><span class="kw">message</span>(<span class="st">&quot;Using temp directory: &quot;</span>, .TMP)</span>
+<span id="cb2-24"><a href="prepare.html#cb2-24"></a></span>
+<span id="cb2-25"><a href="prepare.html#cb2-25"></a><span class="co">#---------------------------------------------------</span></span>
+<span id="cb2-26"><a href="prepare.html#cb2-26"></a><span class="co"># pacman is optional, you can delete following code</span></span>
+<span id="cb2-27"><a href="prepare.html#cb2-27"></a><span class="co"># If you wanna use pacman, please read:</span></span>
+<span id="cb2-28"><a href="prepare.html#cb2-28"></a><span class="co">#   &lt;https://www.jianshu.com/p/cb16ded75672&gt;</span></span>
+<span id="cb2-29"><a href="prepare.html#cb2-29"></a><span class="co"># Basically, </span></span>
+<span id="cb2-30"><a href="prepare.html#cb2-30"></a><span class="co"># #1, you can use &#39;p_load&#39; to load multiple package into R</span></span>
+<span id="cb2-31"><a href="prepare.html#cb2-31"></a><span class="co">#       like p_load(data.table, dplyr)</span></span>
+<span id="cb2-32"><a href="prepare.html#cb2-32"></a><span class="co"># #2, you can use &#39;p_get&#39; just to install package</span></span>
+<span id="cb2-33"><a href="prepare.html#cb2-33"></a><span class="co"># #3, you can use &#39;p_update&#39; to update all packages</span></span>
+<span id="cb2-34"><a href="prepare.html#cb2-34"></a><span class="co">#---------------------------------------------------</span></span>
+<span id="cb2-35"><a href="prepare.html#cb2-35"></a><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(pacman)){</span>
+<span id="cb2-36"><a href="prepare.html#cb2-36"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb2-37"><a href="prepare.html#cb2-37"></a>}</span>
+<span id="cb2-38"><a href="prepare.html#cb2-38"></a><span class="kw">library</span>(pacman)</span>
+<span id="cb2-39"><a href="prepare.html#cb2-39"></a><span class="co">#----------------------------------------------------</span></span></code></pre></div>
+<p>然后根据情况对上述内容中的目录设定进行修改即可。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="prepare.html#cb3-1"></a>.CUSTOM_LIB =<span class="st"> &quot;C:/Tools/R/R_Library&quot;</span> <span class="co"># set your custom library location</span></span>
+<span id="cb3-2"><a href="prepare.html#cb3-2"></a>.TMP =<span class="st"> &quot;C:/Tools/R/Rtmp&quot;</span>             <span class="co"># set a temp dir for R running</span></span>
+<span id="cb3-3"><a href="prepare.html#cb3-3"></a>                                     <span class="co"># please do not add &#39;/&#39; at the end !!!</span></span></code></pre></div>
+<p><strong>pacman</strong> 那段代码是可选的，该包是 <code>library()</code> 函数的替代品，使用它安装和管理 R 包更简单。具体的使用方法可以<a href="https://www.jianshu.com/p/cb16ded75672">点击阅读</a>我之前的简书文章。</p>
+<p>这里为了方便大家使用，我添加了一些必要注释，如果上述配置存在问题，读者可以发邮件给我。</p>
+<p>保存后重启 RStudio 或者点击菜单栏 <strong>Session</strong> 下的 <strong>Restart R</strong>。</p>
+<p>以后 RStudio 每次启动后都会输出读者计算机中 R 包的存储路径和它使用的临时路径。读者如果以后升级 R，只要重装下 R 安装文件就可以了，R 包的目录并不会改动，键入下面的命令可以更新所有的 R 包：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="prepare.html#cb4-1"></a><span class="kw">p_update</span>()</span></code></pre></div>
 </div>
 <div id="常见问题与方案" class="section level2">
-<h2>常见问题与方案</h2>
+<h2><span class="header-section-number">1.4</span> 常见问题与方案</h2>
 <p>除了本节目前罗列的问题，读者在学习本章内容时遇到的其他问题都可以通过 <a href="https://github.com/ShixiangWang/geek-r-tutorial/issues">GitHub Issue</a> 提出和进行讨论。如果读者提出的是通性问题，将增补到该节。</p>
+<div id="r-在-linux-系统下的安装" class="section level3">
+<h3><span class="header-section-number">1.4.1</span> R 在 Linux 系统下的安装</h3>
+<div id="ubuntu-从源安装-r" class="section level4">
+<h4><span class="header-section-number">1.4.1.1</span> Ubuntu 从源安装 R</h4>
+<p>下述操作基于在 Ubuntu 18 系统上安装 R 3.5 的实践。</p>
+<blockquote>
+<p><code>$</code> 前缀指明命令在 <code>shell</code> 终端中进行。</p>
+</blockquote>
+<p>安装依赖：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="prepare.html#cb5-1"></a>$ <span class="fu">sudo</span> apt-get install xorg-dev libreadline-dev</span>
+<span id="cb5-2"><a href="prepare.html#cb5-2"></a>$ <span class="fu">sudo</span> apt-get install libcurl4-openssl-dev</span>
+<span id="cb5-3"><a href="prepare.html#cb5-3"></a>$ <span class="fu">sudo</span> apt-get install libbz2-dev</span>
+<span id="cb5-4"><a href="prepare.html#cb5-4"></a>$ <span class="fu">sudo</span> apt-get install libcairo2-dev libgtk2.0-dev</span>
+<span id="cb5-5"><a href="prepare.html#cb5-5"></a>$ <span class="fu">sudo</span> apt-get install texinfo texlive</span>
+<span id="cb5-6"><a href="prepare.html#cb5-6"></a>$ <span class="fu">wget</span> http://mirrors.ctan.org/fonts/inconsolata.zip</span>
+<span id="cb5-7"><a href="prepare.html#cb5-7"></a>$ <span class="fu">sudo</span> cp -Rfp inconsolata/* /usr/share/texmf/</span>
+<span id="cb5-8"><a href="prepare.html#cb5-8"></a>$ <span class="co"># 或者 sudo cp -r inconsolata/ /usr/share/texlive/texmf-dist/tex/latex/</span></span>
+<span id="cb5-9"><a href="prepare.html#cb5-9"></a>$ <span class="fu">sudo</span> mktexlsr <span class="co"># 刷新</span></span>
+<span id="cb5-10"><a href="prepare.html#cb5-10"></a></span>
+<span id="cb5-11"><a href="prepare.html#cb5-11"></a><span class="co"># 如果没有java解释器，安装下</span></span>
+<span id="cb5-12"><a href="prepare.html#cb5-12"></a>$ <span class="fu">sudo</span> apt-get install default-jdk</span></code></pre></div>
+<p>下载与安装 R：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="prepare.html#cb6-1"></a>$ <span class="ex">curl</span> -O http://cran.utstat.utoronto.ca/src/base/R-3/R-3.5.0.tar.gz</span>
+<span id="cb6-2"><a href="prepare.html#cb6-2"></a>$ <span class="fu">tar</span> -zxvf R-3.5.0.tar.gz</span>
+<span id="cb6-3"><a href="prepare.html#cb6-3"></a>$ <span class="bu">cd</span> R-3.5.0/</span>
+<span id="cb6-4"><a href="prepare.html#cb6-4"></a>$  <span class="ex">./configure</span> --prefix=<span class="va">$HOME</span>/local/R --enable-R-shlib --with-cairo=yes</span>
+<span id="cb6-5"><a href="prepare.html#cb6-5"></a>$ <span class="co"># ./configure --with-cairo --with-libpng --with-libtiff --with-jpeglib --enable-R-shlib --prefix=$HOME/local/R</span></span>
+<span id="cb6-6"><a href="prepare.html#cb6-6"></a>$ <span class="fu">make</span></span>
+<span id="cb6-7"><a href="prepare.html#cb6-7"></a>$ <span class="fu">make</span> install</span></code></pre></div>
+<p>创建符号链接：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="prepare.html#cb7-1"></a>$ <span class="bu">cd</span> /usr/bin/</span>
+<span id="cb7-2"><a href="prepare.html#cb7-2"></a>$ <span class="fu">sudo</span> ln -s <span class="va">$HOME</span>/local/R/bin/Rscript Rscript</span>
+<span id="cb7-3"><a href="prepare.html#cb7-3"></a>$ <span class="fu">sudo</span> ln -s <span class="va">$HOME</span>/local/R/bin/R R</span></code></pre></div>
+<p>检查：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="prepare.html#cb8-1"></a>$ <span class="fu">ls</span> -l R*</span>
+<span id="cb8-2"><a href="prepare.html#cb8-2"></a><span class="ex">lrwxrwxrwx</span> 1 root root 23 6月  28 17:01 R -<span class="op">&gt;</span> /home/wsx/local/R/bin/R</span>
+<span id="cb8-3"><a href="prepare.html#cb8-3"></a><span class="ex">lrwxrwxrwx</span> 1 root root 29 6月  28 17:01 Rscript -<span class="op">&gt;</span> /home/wsx/local/R/bin/Rscript</span></code></pre></div>
+<p>使用：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="prepare.html#cb9-1"></a>$ <span class="ex">R</span></span>
+<span id="cb9-2"><a href="prepare.html#cb9-2"></a></span>
+<span id="cb9-3"><a href="prepare.html#cb9-3"></a><span class="ex">R</span> version 3.5.0 (2018-04-23) <span class="ex">--</span> <span class="st">&quot;Joy in Playing&quot;</span></span>
+<span id="cb9-4"><a href="prepare.html#cb9-4"></a><span class="ex">Copyright</span> (C) <span class="ex">2018</span> The R Foundation for Statistical Computing</span>
+<span id="cb9-5"><a href="prepare.html#cb9-5"></a><span class="ex">Platform</span>: x86_64-pc-linux-gnu (64-bit)</span>
+<span id="cb9-6"><a href="prepare.html#cb9-6"></a></span>
+<span id="cb9-7"><a href="prepare.html#cb9-7"></a><span class="ex">R</span> is free software and comes with ABSOLUTELY NO WARRANTY.</span>
+<span id="cb9-8"><a href="prepare.html#cb9-8"></a><span class="ex">You</span> are welcome to redistribute it under certain conditions.</span>
+<span id="cb9-9"><a href="prepare.html#cb9-9"></a><span class="ex">Type</span> <span class="st">&#39;license()&#39;</span> or <span class="st">&#39;licence()&#39;</span> for distribution details.</span>
+<span id="cb9-10"><a href="prepare.html#cb9-10"></a></span>
+<span id="cb9-11"><a href="prepare.html#cb9-11"></a>  <span class="ex">Natural</span> language support but running in an English locale</span>
+<span id="cb9-12"><a href="prepare.html#cb9-12"></a></span>
+<span id="cb9-13"><a href="prepare.html#cb9-13"></a><span class="ex">R</span> is a collaborative project with many contributors.</span>
+<span id="cb9-14"><a href="prepare.html#cb9-14"></a><span class="ex">Type</span> <span class="st">&#39;contributors()&#39;</span> for more information and</span>
+<span id="cb9-15"><a href="prepare.html#cb9-15"></a><span class="st">&#39;citation()&#39;</span> <span class="ex">on</span> how to cite R or R packages in publications.</span>
+<span id="cb9-16"><a href="prepare.html#cb9-16"></a></span>
+<span id="cb9-17"><a href="prepare.html#cb9-17"></a><span class="ex">Type</span> <span class="st">&#39;demo()&#39;</span> for some demos, <span class="st">&#39;help()&#39;</span> for on-line help, or</span>
+<span id="cb9-18"><a href="prepare.html#cb9-18"></a><span class="st">&#39;help.start()&#39;</span> <span class="kw">for</span> <span class="ex">an</span> HTML browser interface to help.</span>
+<span id="cb9-19"><a href="prepare.html#cb9-19"></a><span class="ex">Type</span> <span class="st">&#39;q()&#39;</span> to quit R.</span>
+<span id="cb9-20"><a href="prepare.html#cb9-20"></a></span>
+<span id="cb9-21"><a href="prepare.html#cb9-21"></a><span class="op">&gt;</span> </span></code></pre></div>
+<p>如果遇到编译问题和报错，读者可以参考下面两篇博文：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/wing1995/p/4635371.html">ubuntu 上安装 R 的时候遇到的问题总结</a></li>
+<li><a href="http://m.blog.itpub.net/9036/viewspace-2122686/">CentOS 下 R 的安装</a></li>
+</ul>
+</div>
+<div id="centos-从源安装-r" class="section level4">
+<h4><span class="header-section-number">1.4.1.2</span> CentOS 从源安装 R</h4>
+<p>下述操作基于在 CentOS 系统上安装 R 3.6 的实践。</p>
+<blockquote>
+<p><code>$</code> 前缀指明命令在 <code>shell</code> 终端中进行。</p>
+</blockquote>
+<p>首先切入 root 账户。</p>
+<p>安装 R 编译依赖：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="prepare.html#cb10-1"></a>$ <span class="ex">yum-builddep</span> R</span></code></pre></div>
+<p>消灭界面configure警告：<code>configure: WARNING: neither inconsolata.sty nor zi4.sty found: PDF vignettes and package manuals will not be rendered optimally</code></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="prepare.html#cb11-1"></a>$ <span class="fu">wget</span> http://mirrors.ctan.org/fonts/inconsolata.zip</span>
+<span id="cb11-2"><a href="prepare.html#cb11-2"></a>$ <span class="ex">Unzip</span> inconsolata.zip </span>
+<span id="cb11-3"><a href="prepare.html#cb11-3"></a>$ <span class="fu">cp</span> -Rfp inconsolata/* /usr/share/texmf/</span>
+<span id="cb11-4"><a href="prepare.html#cb11-4"></a>$ <span class="ex">mktexlsr</span></span></code></pre></div>
+<p>下载 R 并解压：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="prepare.html#cb12-1"></a>$ <span class="fu">wget</span> -c https://cran.r-project.org/src/base/R-3/R-3.6.0.tar.gz</span>
+<span id="cb12-2"><a href="prepare.html#cb12-2"></a>$ <span class="fu">tar</span> zxvf R-3.6.0.tar.gz </span></code></pre></div>
+<p>编译安装</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="prepare.html#cb13-1"></a>$ <span class="bu">cd</span> R-3.6.0/</span>
+<span id="cb13-2"><a href="prepare.html#cb13-2"></a>$ <span class="ex">./configure</span> --prefix=/home/public/R/R-base --enable-R-shlib --with-cairo=yes</span></code></pre></div>
+<p>这里 <code>prefix</code> 后面的路径可以自己指定。</p>
+<p>然后</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="prepare.html#cb14-1"></a>$ <span class="fu">make</span></span>
+<span id="cb14-2"><a href="prepare.html#cb14-2"></a>$ <span class="fu">make</span> install</span></code></pre></div>
+<p>最后可以把它链接到常用软件位置上去。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="prepare.html#cb15-1"></a>$ <span class="fu">sudo</span> ln -s /home/public/R/R-basebin/R /bin/R </span></code></pre></div>
+</div>
+</div>
+<div id="rtools-安装" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> Rtools 安装</h3>
+<div id="windows-系统-rtools" class="section level4">
+<h4><span class="header-section-number">1.4.2.1</span> Windows 系统 Rtools</h4>
+<p>点击链接 <a href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/" class="uri">https://mirrors.tuna.tsinghua.edu.cn/CRAN/</a> 进入 CRAN 页面，依次点击【Download R for Windows】、【Rtools】，然后选择推荐的版本下载和安装。</p>
+<div class="figure" style="text-align: center"><span id="fig:rtools-win"></span>
+<img src="fig/ch01-rtools-win.PNG" alt="Windows 下 Rtools 的下载"  />
+<p class="caption">
+图 1.5: Windows 下 Rtools 的下载
+</p>
+</div>
+<p>安装时一路点击向下，建议不要修改安装路径，因为 R 的很多编译环境变量设定都指向默认的安装路径，读者如果修改它后续很可能引起不必要的麻烦。</p>
+</div>
+<div id="macos-系统-rtools" class="section level4">
+<h4><span class="header-section-number">1.4.2.2</span> MacOS 系统 Rtools</h4>
+<p>点击链接 <a href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/" class="uri">https://mirrors.tuna.tsinghua.edu.cn/CRAN/</a> 进入 CRAN 页面，依次点击【Download R for Mac OS X】、【tools】，然后选择最新版的 <code>clang-x.x.x.pkg</code> 和 <code>gfortran-x.x.x.pkg</code> 下载和安装即可。</p>
+<blockquote>
+<p><code>x.x.x</code> 指代版本号，如 <code>8.0.0</code>。</p>
+</blockquote>
+<div class="figure" style="text-align: center"><span id="fig:rtools-mac"></span>
+<img src="fig/ch01-rtools-mac.PNG" alt="MacOS 下 Rtools 的下载"  />
+<p class="caption">
+图 1.6: MacOS 下 Rtools 的下载
+</p>
+</div>
+</div>
+</div>
+<div id="rstudio-server-安装" class="section level3">
+<h3><span class="header-section-number">1.4.3</span> RStudio Server 安装</h3>
+<p>RStudio Server 比较好用，适用于安装在小型服务器上以方便多人同时利用服务器的计算资源。需要注意，RStudio Server 的安装需要管理员（root）权限。</p>
+<p>点击链接 <a href="https://rstudio.com/products/rstudio/download-server/" class="uri">https://rstudio.com/products/rstudio/download-server/</a> 进入 RStudio Server 下载页面，针对不同的 Linux 发行版，RStudio 公司已经有良好的文档支持，所以我不再赘述。</p>
+<p>在使用 RStudio Server 时我有一个小小的建议，如我在前面的配置一节所说，读者可以自己创建一个专门的目录管理所有的 R 包。并且针对该目录，建议新建一个 Linux 群组以管理它的访问权限。</p>
+<p>这里简介一下安装后添加其他人，以增加用户 rotation 为例：</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="prepare.html#cb16-1"></a>$ <span class="fu">sudo</span> useradd rotation -d /home/rotation -m -g wsx   <span class="co"># 将新增用户添加到你所在群组</span></span>
+<span id="cb16-2"><a href="prepare.html#cb16-2"></a>$ <span class="fu">sudo</span> passwd rotation                                <span class="co"># 设定初始密码 </span></span>
+<span id="cb16-3"><a href="prepare.html#cb16-3"></a>$ <span class="fu">sudo</span> adduser rotation sudo                          <span class="co"># 给用户添加sudo权限，以方便一些操作</span></span></code></pre></div>
 
+</div>
 </div>
 </div>
             </section>
