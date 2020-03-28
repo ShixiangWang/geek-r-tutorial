@@ -152,17 +152,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="base.html"><a href="base.html"><i class="fa fa-check"></i><b>2</b> 基础语法</a>
 <ul>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#基本数据结构"><i class="fa fa-check"></i>基本数据结构</a>
+<li class="chapter" data-level="2.1" data-path="base.html"><a href="base.html#基本数据结构"><i class="fa fa-check"></i><b>2.1</b> 基本数据结构</a>
 <ul>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#向量"><i class="fa fa-check"></i>向量</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#矩阵"><i class="fa fa-check"></i>矩阵</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#数据框"><i class="fa fa-check"></i>数据框</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#列表"><i class="fa fa-check"></i>列表</a></li>
+<li class="chapter" data-level="2.1.1" data-path="base.html"><a href="base.html#向量"><i class="fa fa-check"></i><b>2.1.1</b> 向量</a></li>
+<li class="chapter" data-level="2.1.2" data-path="base.html"><a href="base.html#矩阵"><i class="fa fa-check"></i><b>2.1.2</b> 矩阵</a></li>
+<li class="chapter" data-level="2.1.3" data-path="base.html"><a href="base.html#数据框"><i class="fa fa-check"></i><b>2.1.3</b> 数据框</a></li>
+<li class="chapter" data-level="2.1.4" data-path="base.html"><a href="base.html#列表"><i class="fa fa-check"></i><b>2.1.4</b> 列表</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#控制结构与循环"><i class="fa fa-check"></i>控制结构与循环</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#函数与函数式编程"><i class="fa fa-check"></i>函数与函数式编程</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#拓展包安装与使用"><i class="fa fa-check"></i>拓展包安装与使用</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i>常见问题与方案</a></li>
+<li class="chapter" data-level="2.2" data-path="base.html"><a href="base.html#控制结构与循环"><i class="fa fa-check"></i><b>2.2</b> 控制结构与循环</a></li>
+<li class="chapter" data-level="2.3" data-path="base.html"><a href="base.html#函数与函数式编程"><i class="fa fa-check"></i><b>2.3</b> 函数与函数式编程</a></li>
+<li class="chapter" data-level="2.4" data-path="base.html"><a href="base.html#拓展包安装与使用"><i class="fa fa-check"></i><b>2.4</b> 拓展包安装与使用</a></li>
+<li class="chapter" data-level="2.5" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i><b>2.5</b> 常见问题与方案</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> 数据导入</a>
 <ul>
@@ -227,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="prepare" class="section level1">
 <h1><span class="header-section-number">第 1 章</span> 准备工作</h1>
-<p>想要在本地计算机上运行 R 语言代码，读者需要安装 R。为了方便 R 语言环境的使用和代码编写，我推荐读者使用 RStudio 开发的 R 集成开发环境（IDE）RStudio。</p>
+<p>想要在本地计算机上运行 R 语言代码，读者需要安装 R。为了方便 R 语言环境的使用和代码编写，我推荐读者使用 RStudio 公司开发的 R 集成开发环境（IDE）RStudio。</p>
 <p>如果读者已经在计算机上安装好 R 和 RStudio，可以跳过本节内容。</p>
 <p>如果读者倾向于使用像 VS Code 和 Idea 这样的流行编辑器，请自行安装对应的 R 语言拓展插件。</p>
 <div id="r-的下载和安装" class="section level2">
@@ -546,6 +546,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

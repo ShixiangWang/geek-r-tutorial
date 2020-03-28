@@ -152,17 +152,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="base.html"><a href="base.html"><i class="fa fa-check"></i><b>2</b> 基础语法</a>
 <ul>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#基本数据结构"><i class="fa fa-check"></i>基本数据结构</a>
+<li class="chapter" data-level="2.1" data-path="base.html"><a href="base.html#基本数据结构"><i class="fa fa-check"></i><b>2.1</b> 基本数据结构</a>
 <ul>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#向量"><i class="fa fa-check"></i>向量</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#矩阵"><i class="fa fa-check"></i>矩阵</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#数据框"><i class="fa fa-check"></i>数据框</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#列表"><i class="fa fa-check"></i>列表</a></li>
+<li class="chapter" data-level="2.1.1" data-path="base.html"><a href="base.html#向量"><i class="fa fa-check"></i><b>2.1.1</b> 向量</a></li>
+<li class="chapter" data-level="2.1.2" data-path="base.html"><a href="base.html#矩阵"><i class="fa fa-check"></i><b>2.1.2</b> 矩阵</a></li>
+<li class="chapter" data-level="2.1.3" data-path="base.html"><a href="base.html#数据框"><i class="fa fa-check"></i><b>2.1.3</b> 数据框</a></li>
+<li class="chapter" data-level="2.1.4" data-path="base.html"><a href="base.html#列表"><i class="fa fa-check"></i><b>2.1.4</b> 列表</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#控制结构与循环"><i class="fa fa-check"></i>控制结构与循环</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#函数与函数式编程"><i class="fa fa-check"></i>函数与函数式编程</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#拓展包安装与使用"><i class="fa fa-check"></i>拓展包安装与使用</a></li>
-<li class="chapter" data-level="" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i>常见问题与方案</a></li>
+<li class="chapter" data-level="2.2" data-path="base.html"><a href="base.html#控制结构与循环"><i class="fa fa-check"></i><b>2.2</b> 控制结构与循环</a></li>
+<li class="chapter" data-level="2.3" data-path="base.html"><a href="base.html#函数与函数式编程"><i class="fa fa-check"></i><b>2.3</b> 函数与函数式编程</a></li>
+<li class="chapter" data-level="2.4" data-path="base.html"><a href="base.html#拓展包安装与使用"><i class="fa fa-check"></i><b>2.4</b> 拓展包安装与使用</a></li>
+<li class="chapter" data-level="2.5" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i><b>2.5</b> 常见问题与方案</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> 数据导入</a>
 <ul>
@@ -227,42 +227,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="base" class="section level1">
 <h1><span class="header-section-number">第 2 章</span> 基础语法</h1>
-<p>“程序 = 算法 + 数据结构”</p>
+<p>“程序 = 算法 + 数据结构”，<strong>数据结构</strong>是信息的载体，而<strong>算法</strong>是完成任务所需要的步骤。两者的构造和使用方法形成了编程语言独特的语法。本章先介绍 R 的基本数据结构，然后介绍条件和循环控制，最后介绍函数的创建与拓展包的使用。</p>
 <div id="基本数据结构" class="section level2">
-<h2>基本数据结构</h2>
+<h2><span class="header-section-number">2.1</span> 基本数据结构</h2>
+<p>为了表示现实世界的信息，各类编程语言常包含 3 种基本的数据类型：<strong>数值型</strong>，包括整数和浮点数；<strong>字符型</strong>，表示文本信息；<strong>逻辑型</strong>，也常称为布尔值，表示是非判断，如对与错，是与否。在 R 中，除了这些基本数据类型的实现，为了方便计算工作，R 本身还包含了矩阵、数据框和列表等复杂的数据类型，以支持表示各类常用的数据。</p>
 <div id="向量" class="section level3">
-<h3>向量</h3>
+<h3><span class="header-section-number">2.1.1</span> 向量</h3>
+<p>在 R 中，数据运算常通过向量的形式进行。<strong>向量</strong>是一组同质的信息，如 20 个数字、30 个字符串（与数学术语中的向量类似，但不等同）。单一的信息在此被称为<strong>元素</strong>。<strong>标量</strong>可以看作元素数量为 1 的向量。</p>
+<p>接下来我们通过向量元素的数据类型来实际地了解和操作它。</p>
 <div id="数值" class="section level4">
-<h4>数值</h4>
+<h4><span class="header-section-number">2.1.1.1</span> 数值</h4>
+<p>数值应该可以说是最常用的信息表现形式，如人的身高、年龄。在 R 中使用小学学到的阿拉伯表示法即可创建数值，如圆周率 <span class="math inline">\(\pi\)</span>：</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="base.html#cb17-1"></a><span class="fl">3.14</span></span>
+<span id="cb17-2"><a href="base.html#cb17-2"></a><span class="co">#&gt; [1] 3.14</span></span></code></pre></div>
+<blockquote>
+<p>此处 <code>#&gt;</code> 后显示 R 运行代码后的返回结果，<code>[1]</code> 是结果的索引，以辅助用户观测，这里表示结果的第 1 个值是 3.14。</p>
+</blockquote>
+<p><code>typeof()</code> 与 <code>class()</code> 是两个对于初学者非常有用的函数，它们可以返回数据的类型信息。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="base.html#cb18-1"></a><span class="kw">typeof</span>(<span class="fl">3.14</span>)</span>
+<span id="cb18-2"><a href="base.html#cb18-2"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb18-3"><a href="base.html#cb18-3"></a><span class="kw">class</span>(<span class="fl">3.14</span>)</span>
+<span id="cb18-4"><a href="base.html#cb18-4"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
+<p>在 R 中不需要像其他语言一样区分数值的精度信息，<code>typeof()</code> 返回结果为 <code>double</code> 提示该值是一个浮点数。</p>
+<p>在 R 中，任何所见的事物皆为<strong>对象</strong>，<code>class()</code> 返回对象的类信息，此处是 <code>numeric</code>（数值）。</p>
+<p>我们再来看看如何在 R 中表示整数。借助上述两个工具函数，我们不难发现下面的代码与想象不同。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="base.html#cb19-1"></a><span class="dv">3</span></span>
+<span id="cb19-2"><a href="base.html#cb19-2"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb19-3"><a href="base.html#cb19-3"></a></span>
+<span id="cb19-4"><a href="base.html#cb19-4"></a><span class="kw">typeof</span>(<span class="dv">3</span>)</span>
+<span id="cb19-5"><a href="base.html#cb19-5"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb19-6"><a href="base.html#cb19-6"></a><span class="kw">class</span>(<span class="dv">3</span>)</span>
+<span id="cb19-7"><a href="base.html#cb19-7"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
+<p><code>typeof()</code> 与 <code>class()</code> 对于 3 的返回结果与 3.14 完全相同！这是因为即便只输入 3，R 也将其作为浮点数对待。</p>
+<p>我们可以利用 <code>identical()</code> 函数或 <code>is.integer()</code> 函数进行检查：</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="base.html#cb20-1"></a><span class="kw">identical</span>(<span class="dv">3</span>, <span class="fl">3.0</span>)</span>
+<span id="cb20-2"><a href="base.html#cb20-2"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb20-3"><a href="base.html#cb20-3"></a></span>
+<span id="cb20-4"><a href="base.html#cb20-4"></a><span class="kw">is.integer</span>(<span class="dv">3</span>)</span>
+<span id="cb20-5"><a href="base.html#cb20-5"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>返回的结果是后面将介绍的逻辑值，<code>TRUE</code> 表示对、<code>FALSE</code> 表示错。因此可以判断 <code>3</code> 并不是整数。</p>
+<p>正确的整数表示方法需要在数字后加 <code>L</code> 后缀，如 <code>3L</code>。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="base.html#cb21-1"></a><span class="kw">is.integer</span>(3L)</span>
+<span id="cb21-2"><a href="base.html#cb21-2"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb21-3"><a href="base.html#cb21-3"></a></span>
+<span id="cb21-4"><a href="base.html#cb21-4"></a><span class="kw">identical</span>(3L, <span class="dv">3</span>)</span>
+<span id="cb21-5"><a href="base.html#cb21-5"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p><code>is.integer()</code> 函数隶属于 <code>is.xxx()</code> 家族，该函数家族用于辅助判断对象是否属于某一类型。读者在 RStudio 中输入 <code>is.</code> 后 RStudio 将智能提示有哪些函数的名字以 <code>is.</code> 开头。</p>
+<p>浮点数和整数都是数值，所以下面的代码都会返回 <code>TRUE</code>：</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="base.html#cb22-1"></a><span class="kw">is.numeric</span>(<span class="fl">3.14</span>)</span>
+<span id="cb22-2"><a href="base.html#cb22-2"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb22-3"><a href="base.html#cb22-3"></a><span class="kw">is.numeric</span>(3L)</span>
+<span id="cb22-4"><a href="base.html#cb22-4"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>现实中的数据常成组出现，例如，一组学生的身高。R 使用 <code>c()</code> 函数（<code>c</code> 为 <code>combine</code> 的缩写）对数据进行组合：</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="base.html#cb23-1"></a><span class="kw">c</span>(<span class="fl">1.70</span>, <span class="fl">1.72</span>, <span class="fl">1.80</span>, <span class="fl">1.66</span>, <span class="fl">1.65</span>, <span class="fl">1.88</span>)</span>
+<span id="cb23-2"><a href="base.html#cb23-2"></a><span class="co">#&gt; [1] 1.70 1.72 1.80 1.66 1.65 1.88</span></span></code></pre></div>
+<p>这样我们就有了一组身高数据。</p>
 </div>
 <div id="字符串" class="section level4">
-<h4>字符串</h4>
+<h4><span class="header-section-number">2.1.1.2</span> 字符串</h4>
+</div>
+<div id="因子" class="section level4">
+<h4><span class="header-section-number">2.1.1.3</span> 因子</h4>
 </div>
 <div id="逻辑值" class="section level4">
-<h4>逻辑值</h4>
+<h4><span class="header-section-number">2.1.1.4</span> 逻辑值</h4>
 </div>
 </div>
 <div id="矩阵" class="section level3">
-<h3>矩阵</h3>
+<h3><span class="header-section-number">2.1.2</span> 矩阵</h3>
 </div>
 <div id="数据框" class="section level3">
-<h3>数据框</h3>
+<h3><span class="header-section-number">2.1.3</span> 数据框</h3>
 </div>
 <div id="列表" class="section level3">
-<h3>列表</h3>
+<h3><span class="header-section-number">2.1.4</span> 列表</h3>
 </div>
 </div>
 <div id="控制结构与循环" class="section level2">
-<h2>控制结构与循环</h2>
+<h2><span class="header-section-number">2.2</span> 控制结构与循环</h2>
 </div>
 <div id="函数与函数式编程" class="section level2">
-<h2>函数与函数式编程</h2>
+<h2><span class="header-section-number">2.3</span> 函数与函数式编程</h2>
 </div>
 <div id="拓展包安装与使用" class="section level2">
-<h2>拓展包安装与使用</h2>
+<h2><span class="header-section-number">2.4</span> 拓展包安装与使用</h2>
 </div>
 <div id="常见问题与方案-1" class="section level2">
-<h2>常见问题与方案</h2>
+<h2><span class="header-section-number">2.5</span> 常见问题与方案</h2>
 <p>除了本节目前罗列的问题，读者在学习本章内容时遇到的其他问题都可以通过 <a href="https://github.com/ShixiangWang/geek-r-tutorial/issues">GitHub Issue</a> 提出和进行讨论。如果读者提出的是通性问题，将增补到该节。</p>
 
 </div>
@@ -323,6 +374,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
