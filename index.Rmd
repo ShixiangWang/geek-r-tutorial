@@ -10,10 +10,10 @@ colorlinks: yes
 lot: yes
 lof: yes
 geometry: [b5paper, tmargin=2.5cm, bmargin=2.5cm, lmargin=3.5cm, rmargin=2.5cm]
+cover-image: cover.png
 site: bookdown::bookdown_site
 description: "一本极简 R 入门图书"
 github-repo: ShixiangWang/geek-r-tutorial
-#cover-image: images/cover.jpg
 ---
 
 ```{r setup, include=FALSE}
@@ -28,6 +28,8 @@ lapply(c("tidyverse"), function(pkg) {
 ```
 
 # 前言 {-}
+
+<img src="cover.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" />
 
 这是一本 R 语言入门的教程书。它旨在为生物信息学相关方向的研究人员（包括学生）以及相关从业者提供 R 语言基础知识的学习指导。当然，由于本书内容的普适性，我相信对数据科学感兴趣的读者都能够从阅读中受益。如果读者已经掌握了一些 R 的编程知识，可以翻看目录挑选感兴趣的内容阅读；如果读者已经掌握的 R 编程基础知识，我推荐翻看本书的附录部分查找感兴趣的内容进一步深入学习。
 
