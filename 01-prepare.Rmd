@@ -22,9 +22,9 @@
 
 对于 Windows 系统用户，根据笔者几年的安装和使用经验，安装时有一些额外的注意事项：
 
-1. Windows 一般包含多个盘符，请读者尽量不要将 R 安装在 `Program files` 这样有空格的目录或中文目录下。读者可以自行创建一个专门的工具用于安装 R 以及放置 R 的三方包，如 `C:/Tools`，见图 1.1。
+1. Windows 一般包含多个盘符，请读者尽量不要将 R 安装在 `Program files` 这样有空格的目录或中文目录下。读者可以自行创建一个专门的工具用于安装 R 以及放置 R 的三方包，如 `C:/Tools`，见图 \@ref(fig:set-install-path)。
 2. 读者的电脑如果有 SSD 固态硬盘，最好将 R 安装到固态硬盘目录里，因为读写数据快。
-3. 一般现在电脑是 64 位的，如果你确定是这样，在安装时有关于 32 位的选项都可以不勾选，如图 1.2。
+3. 一般现在电脑是 64 位的，如果你确定是这样，在安装时有关于 32 位的选项都可以不勾选，如图 \@ref(fig:select-64bit)。
 4. 如果涉及到添加环境变量/路径之类的步骤，勾选添加即可。
 5. 以上没提到的，一路点下一步。
 
@@ -40,7 +40,7 @@ knitr::include_graphics("fig/ch01-select-64-bit.PNG")
 
 ## RStudio 的下载和安装
 
-点击链接 <https://rstudio.com/products/rstudio/download/> 进入 RStudio 下载界面，根据自己的操作系统选择适合的安装文件进行安装即可。
+点击链接 <https://rstudio.com/products/rstudio/download/> 进入 RStudio 下载界面，根据自己的操作系统选择适合的安装文件进行安装即可，如图 \@ref(fig:install-rstudio)。
 
 ```{r install-rstudio, fig.align="center", echo=FALSE, fig.cap="下载 RStudio"}
 knitr::include_graphics("fig/ch01-download-rstudio.PNG")
@@ -49,7 +49,7 @@ knitr::include_graphics("fig/ch01-download-rstudio.PNG")
 RStudio 的安装非常简单，没有特别的注意事项，读者可以直接一路点击向下。另外，读者可以自定义 RStudio 的安装路径，这不会影响 R 的使用。
 
 
-RStudio 安装完成后可以像普通软件一样搜索和双击打开。
+RStudio 安装完成后可以像普通软件一样搜索和双击打开，如图 \@ref(fig:rstudio-overview)。
 
 ```{r rstudio-overview, fig.align="center", echo=FALSE, fig.cap="RStudio 界面"}
 knitr::include_graphics("fig/ch01-rstudio-overview.PNG")
@@ -72,7 +72,7 @@ Windows 下的 R 默认使用用户文档目录作为家目录（等同于 Linux
 如果读者什么都选择默认的，
 
 * 当你一时安装包过多，或者装了电脑管家之类的管理软件时，系统的临时目录经常会把 RStudio 锁死，导致不能进行读写。
-* 当你想要更新 R 版本时，有时你不得不面临重装所有包的举动（如果你使用几个月，装了几百个包~~），或者想其他办法解决。
+* 当你想要更新 R 版本时，有时你不得不面临重装所有包的举动（如果你使用几个月，装了几百个包...），或者想其他办法解决。
 
 下面介绍如何创建自定义的临时目录与包目录，这样上面情况都不会发生了。
 
@@ -297,7 +297,7 @@ $ sudo ln -s /home/public/R/R-basebin/R /bin/R
 
 #### Windows 系统 Rtools
 
-点击链接 <https://mirrors.tuna.tsinghua.edu.cn/CRAN/> 进入 CRAN 页面，依次点击【Download R for Windows】、【Rtools】，然后选择推荐的版本下载和安装。
+点击链接 <https://mirrors.tuna.tsinghua.edu.cn/CRAN/> 进入 CRAN 页面，依次点击【Download R for Windows】、【Rtools】，然后选择推荐的版本下载和安装，如图 \@ref(fig:rtools-win)。
 
 
 ```{r rtools-win, fig.align="center", echo=FALSE, fig.cap="Windows 下 Rtools 的下载"}
@@ -308,7 +308,7 @@ knitr::include_graphics("fig/ch01-rtools-win.PNG")
 
 #### MacOS 系统 Rtools
 
-点击链接 <https://mirrors.tuna.tsinghua.edu.cn/CRAN/> 进入 CRAN 页面，依次点击【Download R for Mac OS X】、【tools】，然后选择最新版的 `clang-x.x.x.pkg` 和 `gfortran-x.x.x.pkg` 下载和安装即可。
+点击链接 <https://mirrors.tuna.tsinghua.edu.cn/CRAN/> 进入 CRAN 页面，依次点击【Download R for Mac OS X】、【tools】，然后选择最新版的 `clang-x.x.x.pkg` 和 `gfortran-x.x.x.pkg` 下载和安装即可，如图 \@ref(fig:rtools-mac)。
 
 > `x.x.x` 指代版本号，如 `8.0.0`。
 

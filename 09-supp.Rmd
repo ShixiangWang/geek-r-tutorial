@@ -36,6 +36,10 @@
 
 - [生物信息学生 R 入门教程](http://qiubio.com/new/book/)
 
+### R
+
+- [R 语言教程](http://www.math.pku.edu.cn/teachers/lidf/docs/Rbook/html/_Rbook/index.html)
+
 ## 视频
 
 - [生信技能树 B 站视频集](https://space.bilibili.com/338686099)
