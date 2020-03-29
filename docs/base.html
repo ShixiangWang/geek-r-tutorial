@@ -134,6 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#内容简介"><i class="fa fa-check"></i>内容简介</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#许可"><i class="fa fa-check"></i>许可</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#建议与反馈"><i class="fa fa-check"></i>建议与反馈</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#致谢"><i class="fa fa-check"></i>致谢</a></li>
 </ul></li>
@@ -282,6 +283,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="base.html#cb23-1"></a><span class="kw">c</span>(<span class="fl">1.70</span>, <span class="fl">1.72</span>, <span class="fl">1.80</span>, <span class="fl">1.66</span>, <span class="fl">1.65</span>, <span class="fl">1.88</span>)</span>
 <span id="cb23-2"><a href="base.html#cb23-2"></a><span class="co">#&gt; [1] 1.70 1.72 1.80 1.66 1.65 1.88</span></span></code></pre></div>
 <p>这样我们就有了一组身高数据。</p>
+<p>利用 R 自带的 <code>mean()</code> 和 <code>sd()</code> 还是我们可以轻易求取这组数据的均值和标准差：</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="base.html#cb24-1"></a><span class="co"># 均值</span></span>
+<span id="cb24-2"><a href="base.html#cb24-2"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="fl">1.70</span>, <span class="fl">1.72</span>, <span class="fl">1.80</span>, <span class="fl">1.66</span>, <span class="fl">1.65</span>, <span class="fl">1.88</span>))</span>
+<span id="cb24-3"><a href="base.html#cb24-3"></a><span class="co">#&gt; [1] 1.735</span></span>
+<span id="cb24-4"><a href="base.html#cb24-4"></a><span class="co"># 标准差</span></span>
+<span id="cb24-5"><a href="base.html#cb24-5"></a><span class="kw">sd</span>(<span class="kw">c</span>(<span class="fl">1.70</span>, <span class="fl">1.72</span>, <span class="fl">1.80</span>, <span class="fl">1.66</span>, <span class="fl">1.65</span>, <span class="fl">1.88</span>))</span>
+<span id="cb24-6"><a href="base.html#cb24-6"></a><span class="co">#&gt; [1] 0.08894</span></span></code></pre></div>
+<p>上面我们计算时我们重复输入了身高数据，如果在输入时发生了小小的意外，如计算标准差时将 <code>1.65</code> 写成了 <code>1.66</code>，那么我们分析得就不是同一组数据了！虽然说在上述的简单计算不太可能发生这种情况，但如果存在 100 甚至 1000 个数据的重复输入，依靠人眼判断几乎是必然出错的。</p>
+<p>一个解决办法是依赖系统自带的复制粘贴机制，但如果一组数据被上百次重复使用，这种办法也不实际。</p>
+<p>正确的解决办法是引入一个符号（Symbol），用该符号<strong>指代</strong>一组数据，然后每次需要使用该数据时，使用符号代替即可。符号在编程语言中也常被称为<strong>变量</strong>，后面我们统一使用该术语。</p>
+<p>上述代码块改写为：</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="base.html#cb25-1"></a>heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.70</span>, <span class="fl">1.72</span>, <span class="fl">1.80</span>, <span class="fl">1.66</span>, <span class="fl">1.65</span>, <span class="fl">1.88</span>)</span>
+<span id="cb25-2"><a href="base.html#cb25-2"></a><span class="kw">mean</span>(heights)</span>
+<span id="cb25-3"><a href="base.html#cb25-3"></a><span class="co">#&gt; [1] 1.735</span></span>
+<span id="cb25-4"><a href="base.html#cb25-4"></a><span class="kw">sd</span>(heights)</span>
+<span id="cb25-5"><a href="base.html#cb25-5"></a><span class="co">#&gt; [1] 0.08894</span></span></code></pre></div>
+<p>R 中变量的命名有一些限制，最重要的就是不要以数字开头：</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="base.html#cb26-1"></a>3ab =<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb26-2"><a href="base.html#cb26-2"></a><span class="co">#&gt; Error: &lt;text&gt;:1:2: unexpected symbol</span></span>
+<span id="cb26-3"><a href="base.html#cb26-3"></a><span class="co">#&gt; 1: 3ab</span></span>
+<span id="cb26-4"><a href="base.html#cb26-4"></a><span class="co">#&gt;      ^</span></span></code></pre></div>
+<p>变量命名有 2 点建议：</p>
+<ol style="list-style-type: decimal">
+<li>对于一些临时使用的变量，以简单为主，如 <code>i</code>、<code>j</code>、<code>k</code> 等。</li>
+<li>与数据相关的命名，建议与其信息一致，如上面的代码我使用了 <code>heights</code>，不然在没有注释的情况下，代码的阅读者无法快速理解你写的程序。</li>
+</ol>
+<p>另外，<strong>长变量</strong>的命名通常有 2 个推荐的规则：</p>
+<ol style="list-style-type: decimal">
+<li>骆驼法</li>
+</ol>
+<p>以学生身高数据为例，可以写为 <code>studentHeights</code>，它遵循 <code>aBcDeF</code> 这样的构造方式。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>蛇形</li>
+</ol>
+<p>以下划线作为分隔符，写为 <code>student_heights</code>。</p>
+<p>两种写法在 R 中都很常用，读者选择一种即可，<strong>重点在于一个 R 脚本中应当保持变量名命名风格的一致</strong>。</p>
 </div>
 <div id="字符串" class="section level4">
 <h4><span class="header-section-number">2.1.1.2</span> 字符串</h4>
