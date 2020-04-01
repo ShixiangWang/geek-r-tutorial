@@ -1,6 +1,6 @@
 # 基础语法 {#base}
 
-“程序 = 算法 + 数据结构”，**数据结构**是信息的载体，而**算法**是完成任务所需要的步骤。两者的构造和使用方法形成了编程语言独特的语法。本章先介绍 R 的基本数据结构，然后介绍条件和循环控制，最后介绍函数的创建与拓展包的使用。
+“程序 = 算法 + 数据结构”，**数据结构**是信息的载体，而**算法**是完成任务所需要的步骤。两者的构造和使用方法形成了编程语言独特的语法。本章先介绍 R 的基本数据结构，然后介绍条件和循环控制，接着介绍函数的创建与拓展包的使用，最后通过编程实战来实践和掌握本章涉及的知识点。
 
 ## 基本数据结构
 
@@ -963,11 +963,337 @@ repeat{
 
 ## 函数与函数式编程
 
-## 包的安装与使用
+**函数是代码模板**。
 
-### 标准安装
+前面我们使用符号（Symbol）来对数据抽象形成我们所谓的变量，变量名解释了所指向数据的内含但遮掩了底层的结构。类似地，我们也利用符号来对代码块所运行的操作集合进行抽象，并将其称为**函数**。
 
-### Pacman
+- 变量 <- 数据。
+- 函数 <- 操作。
+
+这样，函数就使得一组操作可以像使用变量那样重复使用了。
+
+### 创建和使用函数
+
+我们通过自定义一个计算均值的函数来查看函数是如何创建的：
+
+```{r}
+customMean <- function(x) {  # x 是输入参数
+  
+  # 以下是操作集合，即代码块
+  s <- i <- 0
+  for (j in x) {
+    s <- s + j
+    i <- i + 1
+  }
+  
+  return(s / i)  # s / i 是返回值
+}
+```
+
+一个函数包含输入参数、代码块和返回值 3 部分。当函数中没有使用 `return()` 时，函数默认会返回最后一个表达式的结果，因此上述代码中将 `return(s / i)` 改为 `s / i` 是完全一样的，但后者代码逻辑没有前者清楚。
+
+接下来我们看如何使用这个函数。在创建函数时其实我们已经默认假设输入的是一个数值向量，先试试看：
+
+```{r}
+customMean(x = c(1, 2, 3))
+```
+
+结果是对的。
+
+假设我们不仅仅想返回结果，还想要打印计算信息，实现如下新的函数版本：
+
+```{r, message=TRUE}
+customMean_v2 <- function(x) {  
+  
+  s <- i <- 0
+  for (j in x) {
+    s <- s + j
+    i <- i + 1
+  }
+  
+  mu <- s / i
+  
+  message(
+    "Mean of sequence ",
+    paste(x, collapse = ","),
+    " is ",
+    mu
+  )
+  
+  return(mu)  
+}
+```
+
+再来看下结果：
+
+```{r, message=TRUE}
+customMean_v2(x = c(1:3))
+```
+
+这样结果看起来更加人性化了。但仔细思考一下，更新后的函数引入了新的问题：如果有 10000 个数字相加，这样打印信息还是一件好事吗？
+
+我们不妨再引入一个新的函数版本，这个版本处理打印以及如何打印的问题：
+
+```{r}
+customMean_v3 <- function(x, verbose = TRUE) {  
+  
+  s <- i <- 0
+  for (j in x) {
+    s <- s + j
+    i <- i + 1
+  }
+  
+  mu <- s / i
+  
+  if (verbose) {
+    l <- length(x)
+    if (l > 10) {
+      message(
+        "Mean of sequence ",
+        paste(c(x[1:5], "...", x[(l-4):l]), collapse = ","),
+        " is ",
+        mu
+      )
+    } else {
+      message(
+        "Mean of sequence ",
+        paste(x, collapse = ","),
+        " is ",
+        mu
+      )
+    }
+  }
+  
+  return(mu)  
+}
+```
+
+我们用这个函数试一下输入少或多的情况。
+
+```{r, message=TRUE}
+customMean_v3(x = 1:10)
+customMean_v3(x = 1:100)
+```
+
+除此之外，我们在新的版本中引入了一个默认参数 `verbose`，我们可以选择不打印信息：
+
+```{r, message=TRUE}
+customMean_v3(x = 1:100, verbose = FALSE)
+```
+
+当按顺序输入函数参数时，参数的名称是可以不输入的，下面的结果一致：
+
+```{r, message=TRUE}
+customMean_v3(1:100, FALSE)
+```
+
+以上的输入都是基于函数使用者很清楚的知道输入是一个数值型向量，有时候这一点很难做到。例如，你将代码发送给一位不懂编程的人员使用。此时，添加参数检查和注释是有必要的，我们由此创建一个新的函数版本：
+
+```{r}
+# @title 计算均值
+# @param x 输入数据，一个数值向量
+# @param verbose 逻辑值，控制是否打印
+customMean_v4 <- function(x, verbose = TRUE) {  
+  
+  if (!is.numeric(x)) {
+    stop("输入数据必须是一个数值型向量！")
+  }
+  
+  s <- i <- 0
+  for (j in x) {
+    s <- s + j
+    i <- i + 1
+  }
+  
+  mu <- s / i
+  
+  if (verbose) {
+    l <- length(x)
+    if (l > 10) {
+      message(
+        "Mean of sequence ",
+        paste(c(x[1:5], "...", x[(l-4):l]), collapse = ","),
+        " is ",
+        mu
+      )
+    } else {
+      message(
+        "Mean of sequence ",
+        paste(x, collapse = ","),
+        " is ",
+        mu
+      )
+    }
+  }
+  
+  return(mu)  
+}
+```
+
+以`#` 开始的文本被 R 认为是一个代码注释，后续 `@title` 和 `@param` 是注释标签，这些是**非必需**的，它只是用来更好地描述注释的内容。
+
+> 代码标签符合 **roxygen2** 包的定义，有兴趣的读者可以看一看这个包文档。
+
+
+```{r, message=TRUE, error=TRUE}
+customMean_v4(c("1", "2", "3"))
+```
+
+最后，我们来了解一下函数的计算效率。这里我们将创建的 `customMean()` 函数与 R 内置的 `mean()` 函数进行对比。`system.time()` 函数用来判断函数执行消耗的时间。
+
+```{r}
+system.time(customMean(1:1e7))
+system.time(mean(1:1e7))
+```
+
+`elapsed` 项给出了计算机执行函数消耗的总时间（以秒为单位），可以看出，内置的函数还是要快很多的。当然，这并不是一个严格的性能测评，但它已经能清楚地表明两者的差距。
+
+### 函数式编程
+
+函数不仅仅可以被调用，**它还可以被当作函数的参数和返回值**，这是函数式编程的特点。
+
+#### 传入和返回函数
+
+例如，我们创建一个略显奇怪的函数：
+
+```{r}
+f <- function(x, fun) {
+  fun(x)
+}
+```
+
+它可以将常见的数值计算函数作为参数计算相应的结果，在讲解之前我们先看看效果：
+
+```{r}
+f(1:10, sum)
+f(1:10, mean)
+f(1:10, quantile)
+```
+
+不难理解，上述代码中发挥计算功效的是函数的第 2 个参数。在我们创建的函数 `f()` 中，我们可以理解为对传入函数的 `mean()`、`sum()` 等函数重命名成 `fun()` 并进行调用。
+
+我们还可以构建一个函数作为返回值的例子：
+
+```{r}
+f2 <- function(type) {
+  switch(type,
+         mean = mean,
+         sum = sum,
+         quantile = quantile)
+}
+```
+
+`f()` 函数使用了 switch 语句，如果使用 if-else 语句实现该函数也是可以的（读者不妨一试），但此处 switch 让代码更加简明。
+
+下面看看效果：
+
+```{r}
+f2("mean")
+f2("sum")
+f2("quantile")
+```
+
+返回的全部都是函数，那么我们是不是可以直接调用它呢？
+
+```{r}
+f2("mean")(1:10)
+```
+
+事实证明是可以的。
+
+虽然上面只是通过 2 段简单的代码展示函数式编程的特性，但不难想象到它给 R 语言编程赋予了更多的灵活性。
+
+#### apply 家族
+
+
+
+## 三方包的安装与加载
+
+R 内置了基础计算、统计分析和绘图包，但依旧无法满足众多 R 用户的个性化需求。目前有超过 10,000 个三方包分布在 CRAN、Bioconductor、GitHub 等平台上，它们得安装方式都不尽相同。
+
+### CRAN
+
+CRAN 是由 R 核心团队维护的存档库，大多数的 R 包都发布在 CRAN 上。R 内置了安装命令 `install.packages()`。
+
+下面是安装著名绘图包 **ggplot2** 的示例：
+
+```{r, eval=FALSE}
+install.packages("ggplot2")
+```
+
+本地的源码包也可以通过该命令安装，如安装我本地存有的 **sigminer** 包：
+
+```{r, eval=FALSE}
+install.packages("../sigminer_1.0.0.tar.gz", repos = NULL)
+```
+
+CRAN 默认使用国外镜像，国内的 R 用户下载包速度可能比较慢，推荐使用 [CRAN 清华源](https://mirrors.tuna.tsinghua.edu.cn/help/CRAN/)。
+
+先使用命令打开配置文件：
+
+```{r, eval=FALSE}
+file.edit("~/.Rprofile")
+```
+
+然后在该文档内追加内容：
+
+```{r, eval=FALSE}
+options("repos" = c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+```
+
+保存后重启 R。
+
+### Bioconductor
+
+Bioconductor 是一个生物信息学项目，存储了上千个生物信息学领域相关的软件包、数据包和实验包等。安装 Bioconductor 上的包需要先安装 **BiocManager** 包：
+
+```{r, eval=FALSE}
+install.packages("BiocManager")
+```
+
+然后就可以使用 `install()` 函数安装 Bioconductor 上的包了，如 **maftools** ：
+
+```{r, eval=FALSE}
+BiocManager::install("maftools")
+```
+
+值得一提的是，该命令也可以安装 CRAN 上的包。
+
+读者需要注意 Bioconductor 是有不同的版本的，这可以通过下面命令检查：
+
+```{r}
+BiocManager::version()
+```
+
+尽量保持版本处于最新状态可以获取相关包的最新特性和错误修复。
+
+Bioconductor 默认使用国外镜像，国内的 R 用户下载包速度可能非常慢，推荐使用 [Bioconductor 清华源](https://mirrors.tuna.tsinghua.edu.cn/help/bioconductor/)。
+
+先使用命令打开配置文件：
+
+```{r, eval=FALSE}
+file.edit("~/.Rprofile")
+```
+
+然后在该文档内追加内容：
+
+```{r, eval=FALSE}
+options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
+```
+
+保存后重启 R。
+
+### GitHub 等 Git 库
+
+GitHub 是知名的开源软件库，上面存储了很多 R 包的源代码，包括 CRAN/Bioconductor 包、未发布包以及玩具包。只要有源代码有正确的 R 包框架，就可以通过 **remotes** 包安装。
+
+例如，安装开发版本的 **ggplot2** 包：
+
+```{r, eval=FALSE}
+remotes::install_github("tidyverse/ggplot2")
+```
+
+也有其他对应函数安装其他的 Git 库包，如果 git 库还没有被支持（如中国的 gitee），可以使用 `remotes::install_git()` 安装。
 
 ### 包使用
 
@@ -985,7 +1311,7 @@ print(.packages())
 sessionInfo()
 ```
 
-## 实战：ROC 曲线计算与绘制
+## 编程实战：ROC 曲线计算与绘制
 
 本节我们通过一个计算实例来整合上述所有的知识点。
 
@@ -1023,4 +1349,3 @@ str(sex)
 sex <- factor(c(as.character(sex), "M", "M"))
 sex
 ```
-
