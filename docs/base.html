@@ -160,13 +160,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.3" data-path="base.html"><a href="base.html#数据框"><i class="fa fa-check"></i><b>2.1.3</b> 数据框</a></li>
 <li class="chapter" data-level="2.1.4" data-path="base.html"><a href="base.html#列表"><i class="fa fa-check"></i><b>2.1.4</b> 列表</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="base.html"><a href="base.html#控制结构与循环"><i class="fa fa-check"></i><b>2.2</b> 控制结构与循环</a></li>
-<li class="chapter" data-level="2.3" data-path="base.html"><a href="base.html#函数与函数式编程"><i class="fa fa-check"></i><b>2.3</b> 函数与函数式编程</a></li>
-<li class="chapter" data-level="2.4" data-path="base.html"><a href="base.html#拓展包安装与使用"><i class="fa fa-check"></i><b>2.4</b> 拓展包安装与使用</a></li>
-<li class="chapter" data-level="2.5" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i><b>2.5</b> 常见问题与方案</a>
+<li class="chapter" data-level="2.2" data-path="base.html"><a href="base.html#控制结构"><i class="fa fa-check"></i><b>2.2</b> 控制结构</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="base.html"><a href="base.html#与---的区别"><i class="fa fa-check"></i><b>2.5.1</b> <code>=</code> 与 <code>&lt;-</code> 的区别</a></li>
-<li class="chapter" data-level="2.5.2" data-path="base.html"><a href="base.html#因子重构"><i class="fa fa-check"></i><b>2.5.2</b> 因子重构</a></li>
+<li class="chapter" data-level="2.2.1" data-path="base.html"><a href="base.html#条件控制"><i class="fa fa-check"></i><b>2.2.1</b> 条件控制</a></li>
+<li class="chapter" data-level="2.2.2" data-path="base.html"><a href="base.html#循环控制"><i class="fa fa-check"></i><b>2.2.2</b> 循环控制</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="base.html"><a href="base.html#函数与函数式编程"><i class="fa fa-check"></i><b>2.3</b> 函数与函数式编程</a></li>
+<li class="chapter" data-level="2.4" data-path="base.html"><a href="base.html#包的安装与使用"><i class="fa fa-check"></i><b>2.4</b> 包的安装与使用</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="base.html"><a href="base.html#标准安装"><i class="fa fa-check"></i><b>2.4.1</b> 标准安装</a></li>
+<li class="chapter" data-level="2.4.2" data-path="base.html"><a href="base.html#pacman"><i class="fa fa-check"></i><b>2.4.2</b> Pacman</a></li>
+<li class="chapter" data-level="2.4.3" data-path="base.html"><a href="base.html#包使用"><i class="fa fa-check"></i><b>2.4.3</b> 包使用</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="base.html"><a href="base.html#实战roc-曲线计算与绘制"><i class="fa fa-check"></i><b>2.5</b> 实战：ROC 曲线计算与绘制</a></li>
+<li class="chapter" data-level="2.6" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i><b>2.6</b> 常见问题与方案</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="base.html"><a href="base.html#与---的区别"><i class="fa fa-check"></i><b>2.6.1</b> = 与 &lt;- 的区别</a></li>
+<li class="chapter" data-level="2.6.2" data-path="base.html"><a href="base.html#因子重构"><i class="fa fa-check"></i><b>2.6.2</b> 因子重构</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> 数据导入</a>
@@ -879,43 +889,350 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <span id="cb85-21"><a href="base.html#cb85-21"></a><span class="co">#&gt; [1] 1.66 1.84 1.83 1.56</span></span></code></pre></div>
 </div>
 </div>
-<div id="控制结构与循环" class="section level2">
-<h2><span class="header-section-number">2.2</span> 控制结构与循环</h2>
-<p>直接通过一个简单计算实例讲解后续几节的知识点。</p>
+<div id="控制结构" class="section level2">
+<h2><span class="header-section-number">2.2</span> 控制结构</h2>
+<p>在处理数据分析任务时，我们很少能够简单依赖命令的顺序执行就完成任务。为了处理程序的复杂逻辑以及减少代码量，我们需要学习条件与循环控制的使用。</p>
+<div id="条件控制" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> 条件控制</h3>
+<div id="if-语句" class="section level4">
+<h4><span class="header-section-number">2.2.1.1</span> if 语句</h4>
+<p>if 语句是最常用的条件结构，它由 if 关键字、条件判断语句和代码块组成：</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="base.html#cb86-1"></a>age &lt;-<span class="st">  </span><span class="dv">20</span></span>
+<span id="cb86-2"><a href="base.html#cb86-2"></a><span class="cf">if</span> (age <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>) {</span>
+<span id="cb86-3"><a href="base.html#cb86-3"></a>  <span class="co"># 如果条件判断结果为 TRUE</span></span>
+<span id="cb86-4"><a href="base.html#cb86-4"></a>  <span class="co"># 该代码块中的语句会执行</span></span>
+<span id="cb86-5"><a href="base.html#cb86-5"></a>  <span class="kw">message</span>(<span class="st">&quot;你是个成年人啦！&quot;</span>)</span>
+<span id="cb86-6"><a href="base.html#cb86-6"></a>}</span>
+<span id="cb86-7"><a href="base.html#cb86-7"></a><span class="co">#&gt; 你是个成年人啦！</span></span></code></pre></div>
+<p>条件判断语句结果必须返回一个逻辑值，即 <code>TRUE</code> 或 <code>FALSE</code>。如果返回为 <code>TRUE</code>，随后以 <code>{}</code> 包裹的代码块会被执行。如果我们要处理为 <code>FALSE</code> 的情况，增加一个可选的 else 语句块。</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="base.html#cb87-1"></a>age &lt;-<span class="st"> </span><span class="dv">16</span></span>
+<span id="cb87-2"><a href="base.html#cb87-2"></a><span class="cf">if</span> (age <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>) {</span>
+<span id="cb87-3"><a href="base.html#cb87-3"></a>  <span class="co"># 为 TRUE 时执行</span></span>
+<span id="cb87-4"><a href="base.html#cb87-4"></a>  <span class="kw">message</span>(<span class="st">&quot;你是个成年人啦！&quot;</span>)</span>
+<span id="cb87-5"><a href="base.html#cb87-5"></a>} <span class="cf">else</span> {</span>
+<span id="cb87-6"><a href="base.html#cb87-6"></a>  <span class="co"># 为 FALSE 时执行</span></span>
+<span id="cb87-7"><a href="base.html#cb87-7"></a>  <span class="kw">message</span>(<span class="st">&quot;你还是个小孩子哟！&quot;</span>)</span>
+<span id="cb87-8"><a href="base.html#cb87-8"></a>}</span>
+<span id="cb87-9"><a href="base.html#cb87-9"></a><span class="co">#&gt; 你还是个小孩子哟！</span></span></code></pre></div>
+<p>代码块中可以包含任意代码，所以 if-else 语句是支持内部嵌套的，结构如下：</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="base.html#cb88-1"></a><span class="cf">if</span> () {</span>
+<span id="cb88-2"><a href="base.html#cb88-2"></a>  <span class="cf">if</span> () {</span>
+<span id="cb88-3"><a href="base.html#cb88-3"></a>    </span>
+<span id="cb88-4"><a href="base.html#cb88-4"></a>  } <span class="cf">else</span> {</span>
+<span id="cb88-5"><a href="base.html#cb88-5"></a>    </span>
+<span id="cb88-6"><a href="base.html#cb88-6"></a>  }</span>
+<span id="cb88-7"><a href="base.html#cb88-7"></a>} <span class="cf">else</span> {</span>
+<span id="cb88-8"><a href="base.html#cb88-8"></a>  </span>
+<span id="cb88-9"><a href="base.html#cb88-9"></a>}</span></code></pre></div>
+<p>如果需要处理的情况是多种，if-else 语句可以连用。例如：</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="base.html#cb89-1"></a>age &lt;-<span class="st"> </span><span class="dv">17</span></span>
+<span id="cb89-2"><a href="base.html#cb89-2"></a><span class="cf">if</span> (age <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>) {</span>
+<span id="cb89-3"><a href="base.html#cb89-3"></a>  <span class="kw">message</span>(<span class="st">&quot;你是个成年人啦！&quot;</span>)</span>
+<span id="cb89-4"><a href="base.html#cb89-4"></a>} <span class="cf">else</span> <span class="cf">if</span> (age <span class="op">&lt;</span><span class="st"> </span><span class="dv">17</span>) {</span>
+<span id="cb89-5"><a href="base.html#cb89-5"></a>  <span class="kw">message</span>(<span class="st">&quot;你还是个小孩子哟！&quot;</span>)</span>
+<span id="cb89-6"><a href="base.html#cb89-6"></a>} <span class="cf">else</span> {</span>
+<span id="cb89-7"><a href="base.html#cb89-7"></a>  <span class="kw">message</span>(<span class="st">&quot;恭喜你，快要成年了！&quot;</span>)</span>
+<span id="cb89-8"><a href="base.html#cb89-8"></a>}</span>
+<span id="cb89-9"><a href="base.html#cb89-9"></a><span class="co">#&gt; 恭喜你，快要成年了！</span></span></code></pre></div>
+</div>
+<div id="switch-语句" class="section level4">
+<h4><span class="header-section-number">2.2.1.2</span> switch 语句</h4>
+<p>swtich 语句在 R 中存在，但读者会极少见到和使用它。结构如下：</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="base.html#cb90-1"></a><span class="cf">switch</span>(EXPR, ...)</span></code></pre></div>
+<p>这里 <code>EXPR</code> 指代表达式，而 <code>...</code> 说明可以输入命名参数。</p>
+<p>这里只举一个简单的例子：</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="base.html#cb91-1"></a>ch &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;b&quot;</span>)</span>
+<span id="cb91-2"><a href="base.html#cb91-2"></a><span class="kw">cat</span>(ch,<span class="st">&quot;:&quot;</span>, <span class="cf">switch</span>(<span class="dt">EXPR =</span> ch, <span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb91-3"><a href="base.html#cb91-3"></a><span class="co">#&gt; b : 2 3</span></span></code></pre></div>
+<p>switch 与函数式编程结合更具不凡的威力，其他场景下我极少见到该语句被使用。因此，我建议初学者了解即可，不必掌握。当然，读者如果遇到非常适合的场景也不妨试一试它，应该是可以让代码更为精炼有效的。</p>
+</div>
+<div id="提示信息" class="section level4">
+<h4><span class="header-section-number">2.2.1.3</span> 提示信息</h4>
+<p>编写程序时，通过输出一些提示信息可以更好地显示程序的运行状态是否如我们所预期，这是一个初学者需要掌握的一个技巧，能有效避免错误和帮助调试错误。</p>
+<p>R 可以通过 <code>print()</code>、<code>message()</code>、<code>cat()</code>、<code>warning()</code> 和 <code>stop()</code> 输出提示信息，只有 <code>stop()</code> 会让程序终止。</p>
+<p>读者通过下面的输出比较前几者的差别：</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="base.html#cb92-1"></a><span class="kw">print</span>(<span class="st">&quot;Running...&quot;</span>)</span>
+<span id="cb92-2"><a href="base.html#cb92-2"></a><span class="co">#&gt; [1] &quot;Running...&quot;</span></span>
+<span id="cb92-3"><a href="base.html#cb92-3"></a><span class="kw">message</span>(<span class="st">&quot;Running...&quot;</span>)</span>
+<span id="cb92-4"><a href="base.html#cb92-4"></a><span class="co">#&gt; Running...</span></span>
+<span id="cb92-5"><a href="base.html#cb92-5"></a><span class="kw">cat</span>(<span class="st">&quot;Running...</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb92-6"><a href="base.html#cb92-6"></a><span class="co">#&gt; Running...</span></span>
+<span id="cb92-7"><a href="base.html#cb92-7"></a><span class="kw">warning</span>(<span class="st">&quot;Running...&quot;</span>)</span>
+<span id="cb92-8"><a href="base.html#cb92-8"></a><span class="co">#&gt; Warning: Running...</span></span></code></pre></div>
+<p><code>cat()</code> 与 <code>message()</code> 看起来差别不大，但 <code>cat()</code> 无法被禁止输出，默认没有换行。另外 <code>message()</code> 和 <code>warning()</code> 的信息是可以被抑制掉的，如下：</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="base.html#cb93-1"></a><span class="kw">message</span>(<span class="st">&quot;Running...&quot;</span>)</span>
+<span id="cb93-2"><a href="base.html#cb93-2"></a><span class="co">#&gt; Running...</span></span>
+<span id="cb93-3"><a href="base.html#cb93-3"></a><span class="kw">suppressMessages</span>(<span class="kw">message</span>(<span class="st">&quot;Running...&quot;</span>))</span>
+<span id="cb93-4"><a href="base.html#cb93-4"></a></span>
+<span id="cb93-5"><a href="base.html#cb93-5"></a><span class="kw">warning</span>(<span class="st">&quot;Running...&quot;</span>)</span>
+<span id="cb93-6"><a href="base.html#cb93-6"></a><span class="co">#&gt; Warning: Running...</span></span>
+<span id="cb93-7"><a href="base.html#cb93-7"></a><span class="kw">suppressWarnings</span>(<span class="kw">warning</span>(<span class="st">&quot;Running...&quot;</span>))</span></code></pre></div>
+<p>我们再来了解下 <code>stop()</code>，它会直接让程序终止掉，这可以有效避免正确的代码跑错误的数据。</p>
+<p>例如，计算均值需要一个数值型数据，但我们却传递了一个字符串：</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="base.html#cb94-1"></a>heights_str &lt;-<span class="st"> </span><span class="kw">as.character</span>(heights)</span>
+<span id="cb94-2"><a href="base.html#cb94-2"></a></span>
+<span id="cb94-3"><a href="base.html#cb94-3"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(heights_str)) {</span>
+<span id="cb94-4"><a href="base.html#cb94-4"></a>  <span class="kw">stop</span>(<span class="st">&quot;无法对字符串计算！&quot;</span>)</span>
+<span id="cb94-5"><a href="base.html#cb94-5"></a>} <span class="cf">else</span> {</span>
+<span id="cb94-6"><a href="base.html#cb94-6"></a>  <span class="co"># 下面的代码不会被运行</span></span>
+<span id="cb94-7"><a href="base.html#cb94-7"></a>  mu &lt;-<span class="st"> </span><span class="kw">mean</span>(heights_str)</span>
+<span id="cb94-8"><a href="base.html#cb94-8"></a>}</span>
+<span id="cb94-9"><a href="base.html#cb94-9"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): 无法对字符串计算！</span></span></code></pre></div>
+<p>一般情况下，我推荐读者按需使用 <code>message()</code>/<code>print()</code>、<code>warning()</code> 和 <code>stop()</code> 这几个函数，它们体现信息的 3 个不同级别：</p>
+<ul>
+<li><code>message()</code>/<code>print()</code> 提供普通的输出信息。</li>
+<li><code>warning()</code> 提供需要注意的警告信息。</li>
+<li><code>stop()</code> 提供令程序停止运行的信息。</li>
+</ul>
+</div>
+</div>
+<div id="循环控制" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> 循环控制</h3>
+<p>当我们需要重复某一个（堆）操作时，就需要用到循环的力量了。R 中的循环语句效率历来被人诟病，但实际上已经大有改进。循环语句相比后面提到的 <code>apply</code> 家族函数具有更高的可读性，且容易理解和调试，因此我个人推荐初学者使用。如果本小节提到的几个循环控制语句确实影响到读者程序的效率，再找其他办法也不迟。</p>
+<blockquote>
+<p>在此强调一下，无论是程序的编写还是科研分析工作，<strong>完成</strong>永远比<strong>高效</strong>重要。</p>
+</blockquote>
+<div id="for-语句" class="section level4">
+<h4><span class="header-section-number">2.2.2.1</span> for 语句</h4>
+<p>for 语句需要配合迭代变量、in 关键字一起使用，结构如下：</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="base.html#cb95-1"></a><span class="cf">for</span> (i <span class="cf">in</span> obj) {</span>
+<span id="cb95-2"><a href="base.html#cb95-2"></a>  <span class="co"># 这里输入任意条语句</span></span>
+<span id="cb95-3"><a href="base.html#cb95-3"></a>}</span></code></pre></div>
+<p>这里 <code>i</code> 指代迭代变量，它可以是索引，也可以是子数据集。<code>obj</code> 指代一个可迭代对象。</p>
+<p>针对循环打印变量 <code>heights</code> 的信息，可以有以下 2 种方式：</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="base.html#cb96-1"></a><span class="co"># 第一种方式</span></span>
+<span id="cb96-2"><a href="base.html#cb96-2"></a><span class="co"># 直接循环迭代对象本身</span></span>
+<span id="cb96-3"><a href="base.html#cb96-3"></a><span class="cf">for</span> (i <span class="cf">in</span> heights) {</span>
+<span id="cb96-4"><a href="base.html#cb96-4"></a>  <span class="kw">print</span>(i)</span>
+<span id="cb96-5"><a href="base.html#cb96-5"></a>}</span>
+<span id="cb96-6"><a href="base.html#cb96-6"></a><span class="co">#&gt; [1] 1.7</span></span>
+<span id="cb96-7"><a href="base.html#cb96-7"></a><span class="co">#&gt; [1] 1.72</span></span>
+<span id="cb96-8"><a href="base.html#cb96-8"></a><span class="co">#&gt; [1] 1.8</span></span>
+<span id="cb96-9"><a href="base.html#cb96-9"></a><span class="co">#&gt; [1] 1.66</span></span>
+<span id="cb96-10"><a href="base.html#cb96-10"></a><span class="co">#&gt; [1] 1.65</span></span>
+<span id="cb96-11"><a href="base.html#cb96-11"></a><span class="co">#&gt; [1] 1.88</span></span>
+<span id="cb96-12"><a href="base.html#cb96-12"></a></span>
+<span id="cb96-13"><a href="base.html#cb96-13"></a><span class="co"># 第二种方式</span></span>
+<span id="cb96-14"><a href="base.html#cb96-14"></a><span class="co"># 通过索引进行迭代</span></span>
+<span id="cb96-15"><a href="base.html#cb96-15"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(heights)) {</span>
+<span id="cb96-16"><a href="base.html#cb96-16"></a>  <span class="kw">print</span>(heights[i])</span>
+<span id="cb96-17"><a href="base.html#cb96-17"></a>}</span>
+<span id="cb96-18"><a href="base.html#cb96-18"></a><span class="co">#&gt; Student: 1 </span></span>
+<span id="cb96-19"><a href="base.html#cb96-19"></a><span class="co">#&gt;        1.7 </span></span>
+<span id="cb96-20"><a href="base.html#cb96-20"></a><span class="co">#&gt; Student: 2 </span></span>
+<span id="cb96-21"><a href="base.html#cb96-21"></a><span class="co">#&gt;       1.72 </span></span>
+<span id="cb96-22"><a href="base.html#cb96-22"></a><span class="co">#&gt; Student: 3 </span></span>
+<span id="cb96-23"><a href="base.html#cb96-23"></a><span class="co">#&gt;        1.8 </span></span>
+<span id="cb96-24"><a href="base.html#cb96-24"></a><span class="co">#&gt; Student: 4 </span></span>
+<span id="cb96-25"><a href="base.html#cb96-25"></a><span class="co">#&gt;       1.66 </span></span>
+<span id="cb96-26"><a href="base.html#cb96-26"></a><span class="co">#&gt; Student: 5 </span></span>
+<span id="cb96-27"><a href="base.html#cb96-27"></a><span class="co">#&gt;       1.65 </span></span>
+<span id="cb96-28"><a href="base.html#cb96-28"></a><span class="co">#&gt; Student: 6 </span></span>
+<span id="cb96-29"><a href="base.html#cb96-29"></a><span class="co">#&gt;       1.88</span></span></code></pre></div>
+<p>第二种方式写法看起来更为复杂，但如果针对一些复杂的程序，它则显得更加逻辑分明。</p>
+<p>初学者容易犯的一个错误是将 in 后面的可迭代对象写成一个标量，如下：</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="base.html#cb97-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">length</span>(heights)) {</span>
+<span id="cb97-2"><a href="base.html#cb97-2"></a>  <span class="kw">print</span>(heights[i])</span>
+<span id="cb97-3"><a href="base.html#cb97-3"></a>}</span>
+<span id="cb97-4"><a href="base.html#cb97-4"></a><span class="co">#&gt; Student: 6 </span></span>
+<span id="cb97-5"><a href="base.html#cb97-5"></a><span class="co">#&gt;       1.88</span></span></code></pre></div>
+<p>需要注意下面两者的区别：</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="base.html#cb98-1"></a><span class="kw">length</span>(heights)</span>
+<span id="cb98-2"><a href="base.html#cb98-2"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb98-3"><a href="base.html#cb98-3"></a></span>
+<span id="cb98-4"><a href="base.html#cb98-4"></a><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(heights)</span>
+<span id="cb98-5"><a href="base.html#cb98-5"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span></code></pre></div>
+<p>一种更好的写法是使用 <code>seq_along(heights)</code> 替代 <code>1:length(heights)</code>：</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="base.html#cb99-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(heights)) {</span>
+<span id="cb99-2"><a href="base.html#cb99-2"></a>  <span class="kw">print</span>(heights[i])</span>
+<span id="cb99-3"><a href="base.html#cb99-3"></a>}</span>
+<span id="cb99-4"><a href="base.html#cb99-4"></a><span class="co">#&gt; Student: 1 </span></span>
+<span id="cb99-5"><a href="base.html#cb99-5"></a><span class="co">#&gt;        1.7 </span></span>
+<span id="cb99-6"><a href="base.html#cb99-6"></a><span class="co">#&gt; Student: 2 </span></span>
+<span id="cb99-7"><a href="base.html#cb99-7"></a><span class="co">#&gt;       1.72 </span></span>
+<span id="cb99-8"><a href="base.html#cb99-8"></a><span class="co">#&gt; Student: 3 </span></span>
+<span id="cb99-9"><a href="base.html#cb99-9"></a><span class="co">#&gt;        1.8 </span></span>
+<span id="cb99-10"><a href="base.html#cb99-10"></a><span class="co">#&gt; Student: 4 </span></span>
+<span id="cb99-11"><a href="base.html#cb99-11"></a><span class="co">#&gt;       1.66 </span></span>
+<span id="cb99-12"><a href="base.html#cb99-12"></a><span class="co">#&gt; Student: 5 </span></span>
+<span id="cb99-13"><a href="base.html#cb99-13"></a><span class="co">#&gt;       1.65 </span></span>
+<span id="cb99-14"><a href="base.html#cb99-14"></a><span class="co">#&gt; Student: 6 </span></span>
+<span id="cb99-15"><a href="base.html#cb99-15"></a><span class="co">#&gt;       1.88</span></span></code></pre></div>
+<p><code>seq_along()</code> 会自动返回可迭代对象的索引序列：</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="base.html#cb100-1"></a><span class="kw">seq_along</span>(heights)</span>
+<span id="cb100-2"><a href="base.html#cb100-2"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span></code></pre></div>
+</div>
+<div id="while-语句" class="section level4">
+<h4><span class="header-section-number">2.2.2.2</span> while 语句</h4>
+<p>for 语句已经能满足一般场景的使用，while 语句则特别适合于算法的设计中：</p>
+<ul>
+<li>不知道要运行多少次循环。</li>
+<li>知道要退出循环的条件。</li>
+</ul>
+<p>下面举一个简单的例子：</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="base.html#cb101-1"></a>v &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb101-2"><a href="base.html#cb101-2"></a><span class="cf">while</span>(v <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>) {</span>
+<span id="cb101-3"><a href="base.html#cb101-3"></a>  <span class="kw">print</span>(v)</span>
+<span id="cb101-4"><a href="base.html#cb101-4"></a>  v &lt;-<span class="st"> </span>v <span class="op">-</span><span class="st"> </span><span class="fl">1.1</span></span>
+<span id="cb101-5"><a href="base.html#cb101-5"></a>}</span>
+<span id="cb101-6"><a href="base.html#cb101-6"></a><span class="co">#&gt; [1] 10</span></span>
+<span id="cb101-7"><a href="base.html#cb101-7"></a><span class="co">#&gt; [1] 8.9</span></span>
+<span id="cb101-8"><a href="base.html#cb101-8"></a><span class="co">#&gt; [1] 7.8</span></span>
+<span id="cb101-9"><a href="base.html#cb101-9"></a><span class="co">#&gt; [1] 6.7</span></span>
+<span id="cb101-10"><a href="base.html#cb101-10"></a><span class="co">#&gt; [1] 5.6</span></span>
+<span id="cb101-11"><a href="base.html#cb101-11"></a><span class="co">#&gt; [1] 4.5</span></span>
+<span id="cb101-12"><a href="base.html#cb101-12"></a><span class="co">#&gt; [1] 3.4</span></span>
+<span id="cb101-13"><a href="base.html#cb101-13"></a><span class="co">#&gt; [1] 2.3</span></span></code></pre></div>
+</div>
+<div id="repeat-语句与循环退出" class="section level4">
+<h4><span class="header-section-number">2.2.2.3</span> repeat 语句与循环退出</h4>
+<p>repeat 语句我从来没有使用过，它类似与 C 语言中的 do-while 语句，即先运行一段程序，然后看一看是否需要退出去。</p>
+<p>它的结构如下：</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="base.html#cb102-1"></a><span class="cf">repeat</span> EXPR</span></code></pre></div>
+<p>EXPR 指代一个语句块。为了退出 repeat 循环，我们需要借助 break 语句的力量。</p>
+<p>下面是一个简单例子：</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="base.html#cb103-1"></a>i &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb103-2"><a href="base.html#cb103-2"></a></span>
+<span id="cb103-3"><a href="base.html#cb103-3"></a><span class="cf">repeat</span>{</span>
+<span id="cb103-4"><a href="base.html#cb103-4"></a>  <span class="kw">print</span>(i)</span>
+<span id="cb103-5"><a href="base.html#cb103-5"></a>  i &lt;-<span class="st"> </span>i<span class="op">*</span><span class="dv">2</span></span>
+<span id="cb103-6"><a href="base.html#cb103-6"></a>  <span class="cf">if</span> (i <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>) <span class="cf">break</span></span>
+<span id="cb103-7"><a href="base.html#cb103-7"></a>}</span>
+<span id="cb103-8"><a href="base.html#cb103-8"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb103-9"><a href="base.html#cb103-9"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb103-10"><a href="base.html#cb103-10"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb103-11"><a href="base.html#cb103-11"></a><span class="co">#&gt; [1] 8</span></span>
+<span id="cb103-12"><a href="base.html#cb103-12"></a><span class="co">#&gt; [1] 16</span></span>
+<span id="cb103-13"><a href="base.html#cb103-13"></a><span class="co">#&gt; [1] 32</span></span>
+<span id="cb103-14"><a href="base.html#cb103-14"></a><span class="co">#&gt; [1] 64</span></span></code></pre></div>
+<p>break 语句执行后将跳出当前的循环，另有 next 语句，它可以跳过后续代码的运行进入下一次循环。</p>
+<p>基于上面的例子我们再构造一个示例：</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="base.html#cb104-1"></a>i &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb104-2"><a href="base.html#cb104-2"></a></span>
+<span id="cb104-3"><a href="base.html#cb104-3"></a><span class="cf">repeat</span>{</span>
+<span id="cb104-4"><a href="base.html#cb104-4"></a>  <span class="kw">print</span>(i)</span>
+<span id="cb104-5"><a href="base.html#cb104-5"></a>  i &lt;-<span class="st"> </span>i<span class="op">*</span><span class="dv">2</span></span>
+<span id="cb104-6"><a href="base.html#cb104-6"></a>  <span class="cf">if</span> (i <span class="op">&gt;</span><span class="st"> </span><span class="dv">200</span>) <span class="cf">break</span>()</span>
+<span id="cb104-7"><a href="base.html#cb104-7"></a>  <span class="cf">if</span> (i <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>) <span class="cf">next</span>()</span>
+<span id="cb104-8"><a href="base.html#cb104-8"></a>  <span class="kw">print</span>(<span class="st">&quot;Can you see me?&quot;</span>)</span>
+<span id="cb104-9"><a href="base.html#cb104-9"></a>}</span>
+<span id="cb104-10"><a href="base.html#cb104-10"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb104-11"><a href="base.html#cb104-11"></a><span class="co">#&gt; [1] &quot;Can you see me?&quot;</span></span>
+<span id="cb104-12"><a href="base.html#cb104-12"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb104-13"><a href="base.html#cb104-13"></a><span class="co">#&gt; [1] &quot;Can you see me?&quot;</span></span>
+<span id="cb104-14"><a href="base.html#cb104-14"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb104-15"><a href="base.html#cb104-15"></a><span class="co">#&gt; [1] &quot;Can you see me?&quot;</span></span>
+<span id="cb104-16"><a href="base.html#cb104-16"></a><span class="co">#&gt; [1] 8</span></span>
+<span id="cb104-17"><a href="base.html#cb104-17"></a><span class="co">#&gt; [1] &quot;Can you see me?&quot;</span></span>
+<span id="cb104-18"><a href="base.html#cb104-18"></a><span class="co">#&gt; [1] 16</span></span>
+<span id="cb104-19"><a href="base.html#cb104-19"></a><span class="co">#&gt; [1] &quot;Can you see me?&quot;</span></span>
+<span id="cb104-20"><a href="base.html#cb104-20"></a><span class="co">#&gt; [1] 32</span></span>
+<span id="cb104-21"><a href="base.html#cb104-21"></a><span class="co">#&gt; [1] &quot;Can you see me?&quot;</span></span>
+<span id="cb104-22"><a href="base.html#cb104-22"></a><span class="co">#&gt; [1] 64</span></span>
+<span id="cb104-23"><a href="base.html#cb104-23"></a><span class="co">#&gt; [1] 128</span></span></code></pre></div>
+<p>当 <code>i &gt; 100</code> 后，最后一条输出语句就不再运行。</p>
+</div>
+</div>
 </div>
 <div id="函数与函数式编程" class="section level2">
 <h2><span class="header-section-number">2.3</span> 函数与函数式编程</h2>
 </div>
-<div id="拓展包安装与使用" class="section level2">
-<h2><span class="header-section-number">2.4</span> 拓展包安装与使用</h2>
+<div id="包的安装与使用" class="section level2">
+<h2><span class="header-section-number">2.4</span> 包的安装与使用</h2>
+<div id="标准安装" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> 标准安装</h3>
+</div>
+<div id="pacman" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Pacman</h3>
+</div>
+<div id="包使用" class="section level3">
+<h3><span class="header-section-number">2.4.3</span> 包使用</h3>
+<p>R 启动时默认加载的包可以通过 <code>.packages()</code> 命令获取：</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="base.html#cb105-1"></a><span class="kw">print</span>(<span class="kw">.packages</span>())</span>
+<span id="cb105-2"><a href="base.html#cb105-2"></a><span class="co">#&gt; [1] &quot;stats&quot;     &quot;graphics&quot;  &quot;grDevices&quot; &quot;utils&quot;    </span></span>
+<span id="cb105-3"><a href="base.html#cb105-3"></a><span class="co">#&gt; [5] &quot;datasets&quot;  &quot;pacman&quot;    &quot;methods&quot;   &quot;base&quot;</span></span></code></pre></div>
+<p>由于在第 <a href="prepare.html#prepare">1</a> 章的配置一节中我有介绍使用 <strong>pacman</strong> 包作为第三方的包管理器，在 <code>~/.Rprofile</code> 中进行了设置，所以该包随着 R 的启动也被加载了。</p>
+<p>整个 R 会话当前的所有信息都可以通过 <code>sessionInfo()</code> 获取，在向他人提问时提交该命令结果是一个良好的习惯。</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="base.html#cb106-1"></a><span class="kw">sessionInfo</span>()</span>
+<span id="cb106-2"><a href="base.html#cb106-2"></a><span class="co">#&gt; R version 3.6.3 (2020-02-29)</span></span>
+<span id="cb106-3"><a href="base.html#cb106-3"></a><span class="co">#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)</span></span>
+<span id="cb106-4"><a href="base.html#cb106-4"></a><span class="co">#&gt; Running under: Windows 10 x64 (build 18362)</span></span>
+<span id="cb106-5"><a href="base.html#cb106-5"></a><span class="co">#&gt; </span></span>
+<span id="cb106-6"><a href="base.html#cb106-6"></a><span class="co">#&gt; Matrix products: default</span></span>
+<span id="cb106-7"><a href="base.html#cb106-7"></a><span class="co">#&gt; </span></span>
+<span id="cb106-8"><a href="base.html#cb106-8"></a><span class="co">#&gt; locale:</span></span>
+<span id="cb106-9"><a href="base.html#cb106-9"></a><span class="co">#&gt; [1] LC_COLLATE=Chinese (Simplified)_China.936 </span></span>
+<span id="cb106-10"><a href="base.html#cb106-10"></a><span class="co">#&gt; [2] LC_CTYPE=Chinese (Simplified)_China.936   </span></span>
+<span id="cb106-11"><a href="base.html#cb106-11"></a><span class="co">#&gt; [3] LC_MONETARY=Chinese (Simplified)_China.936</span></span>
+<span id="cb106-12"><a href="base.html#cb106-12"></a><span class="co">#&gt; [4] LC_NUMERIC=C                              </span></span>
+<span id="cb106-13"><a href="base.html#cb106-13"></a><span class="co">#&gt; [5] LC_TIME=Chinese (Simplified)_China.936    </span></span>
+<span id="cb106-14"><a href="base.html#cb106-14"></a><span class="co">#&gt; </span></span>
+<span id="cb106-15"><a href="base.html#cb106-15"></a><span class="co">#&gt; attached base packages:</span></span>
+<span id="cb106-16"><a href="base.html#cb106-16"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets </span></span>
+<span id="cb106-17"><a href="base.html#cb106-17"></a><span class="co">#&gt; [6] methods   base     </span></span>
+<span id="cb106-18"><a href="base.html#cb106-18"></a><span class="co">#&gt; </span></span>
+<span id="cb106-19"><a href="base.html#cb106-19"></a><span class="co">#&gt; other attached packages:</span></span>
+<span id="cb106-20"><a href="base.html#cb106-20"></a><span class="co">#&gt; [1] pacman_0.5.1</span></span>
+<span id="cb106-21"><a href="base.html#cb106-21"></a><span class="co">#&gt; </span></span>
+<span id="cb106-22"><a href="base.html#cb106-22"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
+<span id="cb106-23"><a href="base.html#cb106-23"></a><span class="co">#&gt;  [1] Rcpp_1.0.4           pillar_1.4.3        </span></span>
+<span id="cb106-24"><a href="base.html#cb106-24"></a><span class="co">#&gt;  [3] compiler_3.6.3       highr_0.8           </span></span>
+<span id="cb106-25"><a href="base.html#cb106-25"></a><span class="co">#&gt;  [5] prettyunits_1.1.1    tools_3.6.3         </span></span>
+<span id="cb106-26"><a href="base.html#cb106-26"></a><span class="co">#&gt;  [7] digest_0.6.25        pkgbuild_1.0.6      </span></span>
+<span id="cb106-27"><a href="base.html#cb106-27"></a><span class="co">#&gt;  [9] tibble_2.1.3         evaluate_0.14       </span></span>
+<span id="cb106-28"><a href="base.html#cb106-28"></a><span class="co">#&gt; [11] lifecycle_0.2.0      gtable_0.3.0        </span></span>
+<span id="cb106-29"><a href="base.html#cb106-29"></a><span class="co">#&gt; [13] pkgconfig_2.0.3      rlang_0.4.5         </span></span>
+<span id="cb106-30"><a href="base.html#cb106-30"></a><span class="co">#&gt; [15] cli_2.0.2            rstudioapi_0.11     </span></span>
+<span id="cb106-31"><a href="base.html#cb106-31"></a><span class="co">#&gt; [17] parallel_3.6.3       yaml_2.2.1          </span></span>
+<span id="cb106-32"><a href="base.html#cb106-32"></a><span class="co">#&gt; [19] xfun_0.12            loo_2.2.0           </span></span>
+<span id="cb106-33"><a href="base.html#cb106-33"></a><span class="co">#&gt; [21] gridExtra_2.3        dplyr_0.8.5         </span></span>
+<span id="cb106-34"><a href="base.html#cb106-34"></a><span class="co">#&gt; [23] stringr_1.4.0        knitr_1.28          </span></span>
+<span id="cb106-35"><a href="base.html#cb106-35"></a><span class="co">#&gt; [25] tidyselect_1.0.0     stats4_3.6.3        </span></span>
+<span id="cb106-36"><a href="base.html#cb106-36"></a><span class="co">#&gt; [27] grid_3.6.3           inline_0.3.15       </span></span>
+<span id="cb106-37"><a href="base.html#cb106-37"></a><span class="co">#&gt; [29] glue_1.3.2           R6_2.4.1            </span></span>
+<span id="cb106-38"><a href="base.html#cb106-38"></a><span class="co">#&gt; [31] processx_3.4.2       fansi_0.4.1         </span></span>
+<span id="cb106-39"><a href="base.html#cb106-39"></a><span class="co">#&gt; [33] rmarkdown_2.1        bookdown_0.18       </span></span>
+<span id="cb106-40"><a href="base.html#cb106-40"></a><span class="co">#&gt; [35] rstan_2.19.3         purrr_0.3.3         </span></span>
+<span id="cb106-41"><a href="base.html#cb106-41"></a><span class="co">#&gt; [37] callr_3.4.2          ggplot2_3.3.0       </span></span>
+<span id="cb106-42"><a href="base.html#cb106-42"></a><span class="co">#&gt; [39] magrittr_1.5         matrixStats_0.56.0  </span></span>
+<span id="cb106-43"><a href="base.html#cb106-43"></a><span class="co">#&gt; [41] scales_1.1.0         ps_1.3.2            </span></span>
+<span id="cb106-44"><a href="base.html#cb106-44"></a><span class="co">#&gt; [43] htmltools_0.4.0      StanHeaders_2.21.0-1</span></span>
+<span id="cb106-45"><a href="base.html#cb106-45"></a><span class="co">#&gt; [45] assertthat_0.2.1     colorspace_1.4-1    </span></span>
+<span id="cb106-46"><a href="base.html#cb106-46"></a><span class="co">#&gt; [47] stringi_1.4.6        munsell_0.5.0       </span></span>
+<span id="cb106-47"><a href="base.html#cb106-47"></a><span class="co">#&gt; [49] crayon_1.3.4</span></span></code></pre></div>
+</div>
+</div>
+<div id="实战roc-曲线计算与绘制" class="section level2">
+<h2><span class="header-section-number">2.5</span> 实战：ROC 曲线计算与绘制</h2>
+<p>本节我们通过一个计算实例来整合上述所有的知识点。</p>
 </div>
 <div id="常见问题与方案-1" class="section level2">
-<h2><span class="header-section-number">2.5</span> 常见问题与方案</h2>
+<h2><span class="header-section-number">2.6</span> 常见问题与方案</h2>
 <p>除了本节目前罗列的问题，读者在学习本章内容时遇到的其他问题都可以通过 <a href="https://github.com/ShixiangWang/geek-r-tutorial/issues">GitHub Issue</a> 提出和进行讨论。如果读者提出的是通性问题，将增补到该节。</p>
 <div id="与---的区别" class="section level3">
-<h3><span class="header-section-number">2.5.1</span> <code>=</code> 与 <code>&lt;-</code> 的区别</h3>
+<h3><span class="header-section-number">2.6.1</span> = 与 &lt;- 的区别</h3>
 </div>
 <div id="因子重构" class="section level3">
-<h3><span class="header-section-number">2.5.2</span> 因子重构</h3>
+<h3><span class="header-section-number">2.6.2</span> 因子重构</h3>
 <p>如果我们向变量 <code>sex</code> 扩充两个 <code>M</code>，可能会遇到不能理解的结果：</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="base.html#cb86-1"></a>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>))</span>
-<span id="cb86-2"><a href="base.html#cb86-2"></a>sex &lt;-<span class="st"> </span><span class="kw">c</span>(sex, <span class="kw">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>))</span>
-<span id="cb86-3"><a href="base.html#cb86-3"></a>sex</span>
-<span id="cb86-4"><a href="base.html#cb86-4"></a><span class="co">#&gt; [1] &quot;2&quot; &quot;1&quot; &quot;1&quot; &quot;2&quot; &quot;2&quot; &quot;M&quot; &quot;M&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="base.html#cb107-1"></a>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>))</span>
+<span id="cb107-2"><a href="base.html#cb107-2"></a>sex &lt;-<span class="st"> </span><span class="kw">c</span>(sex, <span class="kw">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>))</span>
+<span id="cb107-3"><a href="base.html#cb107-3"></a>sex</span>
+<span id="cb107-4"><a href="base.html#cb107-4"></a><span class="co">#&gt; [1] &quot;2&quot; &quot;1&quot; &quot;1&quot; &quot;2&quot; &quot;2&quot; &quot;M&quot; &quot;M&quot;</span></span></code></pre></div>
 <p>根本原因在于，当我们创建因子后，因子本身存储的实际内容已经被替换为了正整数，分类信息被存储到了水平中，正整数与分类产生的映射对依旧可以保存原本的信息。</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="base.html#cb87-1"></a>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>))</span>
-<span id="cb87-2"><a href="base.html#cb87-2"></a><span class="kw">str</span>(sex)</span>
-<span id="cb87-3"><a href="base.html#cb87-3"></a><span class="co">#&gt;  Factor w/ 2 levels &quot;Female&quot;,&quot;Male&quot;: 2 1 1 2 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="base.html#cb108-1"></a>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>))</span>
+<span id="cb108-2"><a href="base.html#cb108-2"></a><span class="kw">str</span>(sex)</span>
+<span id="cb108-3"><a href="base.html#cb108-3"></a><span class="co">#&gt;  Factor w/ 2 levels &quot;Female&quot;,&quot;Male&quot;: 2 1 1 2 2</span></span></code></pre></div>
 <p>这样做的好处是节省内存开销，并有利于模型计算：</p>
 <ul>
 <li>当存在大量字符串时，R 依然只有少量的正整数即可表示。</li>
 <li>数学模型并不支持字符串，当将因子纳入统计模型中时，实际上参与计算的是对应的正整数。</li>
 </ul>
 <p>解决上述问题的一个办法是先将 <code>sex</code> 转换回字符串，然后再创建因子。</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="base.html#cb88-1"></a>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">as.character</span>(sex), <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>))</span>
-<span id="cb88-2"><a href="base.html#cb88-2"></a>sex</span>
-<span id="cb88-3"><a href="base.html#cb88-3"></a><span class="co">#&gt; [1] Male   Female Female Male   Male   M      M     </span></span>
-<span id="cb88-4"><a href="base.html#cb88-4"></a><span class="co">#&gt; Levels: Female M Male</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="base.html#cb109-1"></a>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">as.character</span>(sex), <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>))</span>
+<span id="cb109-2"><a href="base.html#cb109-2"></a>sex</span>
+<span id="cb109-3"><a href="base.html#cb109-3"></a><span class="co">#&gt; [1] Male   Female Female Male   Male   M      M     </span></span>
+<span id="cb109-4"><a href="base.html#cb109-4"></a><span class="co">#&gt; Levels: Female M Male</span></span></code></pre></div>
 
 </div>
 </div>
