@@ -1296,7 +1296,7 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <p>最后，我们来了解一下函数的计算效率。这里我们将创建的 <code>customMean()</code> 函数与 R 内置的 <code>mean()</code> 函数进行对比。<code>system.time()</code> 函数用来判断函数执行消耗的时间。</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="base.html#cb115-1"></a><span class="kw">system.time</span>(<span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e7</span>))</span>
 <span id="cb115-2"><a href="base.html#cb115-2"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb115-3"><a href="base.html#cb115-3"></a><span class="co">#&gt;    0.41    0.00    0.42</span></span>
+<span id="cb115-3"><a href="base.html#cb115-3"></a><span class="co">#&gt;    0.37    0.00    0.39</span></span>
 <span id="cb115-4"><a href="base.html#cb115-4"></a><span class="kw">system.time</span>(<span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e7</span>))</span>
 <span id="cb115-5"><a href="base.html#cb115-5"></a><span class="co">#&gt;    user  system elapsed </span></span>
 <span id="cb115-6"><a href="base.html#cb115-6"></a><span class="co">#&gt;    0.03    0.00    0.03</span></span></code></pre></div>
@@ -1443,13 +1443,13 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <span id="cb129-2"><a href="base.html#cb129-2"></a>  rm &lt;-<span class="st"> </span><span class="kw">calcRowMeans</span>(mat)</span>
 <span id="cb129-3"><a href="base.html#cb129-3"></a>)</span>
 <span id="cb129-4"><a href="base.html#cb129-4"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb129-5"><a href="base.html#cb129-5"></a><span class="co">#&gt;    0.43    0.00    0.43</span></span></code></pre></div>
+<span id="cb129-5"><a href="base.html#cb129-5"></a><span class="co">#&gt;    0.44    0.00    0.44</span></span></code></pre></div>
 <p>10 万行的过程花了不到 1 秒的时间，计算效率着实不低。如果是 <code>apply()</code> 该怎么写呢？效率又如何？</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="base.html#cb130-1"></a><span class="kw">system.time</span>(</span>
 <span id="cb130-2"><a href="base.html#cb130-2"></a>  rm &lt;-<span class="st"> </span><span class="kw">apply</span>(mat, <span class="dv">1</span>, mean)</span>
 <span id="cb130-3"><a href="base.html#cb130-3"></a>)</span>
 <span id="cb130-4"><a href="base.html#cb130-4"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb130-5"><a href="base.html#cb130-5"></a><span class="co">#&gt;    0.51    0.00    0.52</span></span></code></pre></div>
+<span id="cb130-5"><a href="base.html#cb130-5"></a><span class="co">#&gt;    0.48    0.00    0.48</span></span></code></pre></div>
 <p>在 apply 写法中，我们没有新建函数，而是直接利用 R 内置的 <code>mean()</code> 函数直接进行计算，相比 for 循环此处的计算效率虽然未见明显提升，但代码却被极度精简了。</p>
 <p>让我们来看一下 <code>apply()</code> 是如何完成计算的，其结构如下：</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="base.html#cb131-1"></a><span class="kw">apply</span>(X, MARGIN, FUN, ...)</span></code></pre></div>
@@ -1725,7 +1725,7 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <p>例如，计算程序运行时间：</p>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="base.html#cb161-1"></a><span class="kw">system.time</span>(m &lt;-<span class="st"> </span><span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e6</span>))</span>
 <span id="cb161-2"><a href="base.html#cb161-2"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb161-3"><a href="base.html#cb161-3"></a><span class="co">#&gt;    0.04    0.00    0.09</span></span></code></pre></div>
+<span id="cb161-3"><a href="base.html#cb161-3"></a><span class="co">#&gt;    0.03    0.00    0.08</span></span></code></pre></div>
 <p>下面的写法是错误的，因为 <code>system.time()</code> 把输入作为参数而不是一个表达式，而该函数并没有 <code>m</code> 这个参数。</p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="base.html#cb162-1"></a><span class="kw">system.time</span>(<span class="dt">m =</span> <span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e6</span>))</span>
 <span id="cb162-2"><a href="base.html#cb162-2"></a><span class="co">#&gt; Error in system.time(m = customMean(1:1e+06)): unused argument (m = customMean(1:1e+06))</span></span></code></pre></div>
