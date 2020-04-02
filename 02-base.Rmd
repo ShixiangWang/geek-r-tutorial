@@ -1148,6 +1148,88 @@ system.time(mean(1:1e7))
 
 `elapsed` 项给出了计算机执行函数消耗的总时间（以秒为单位），可以看出，内置的函数还是要快很多的。当然，这并不是一个严格的性能测评，但它已经能清楚地表明两者的差距。
 
+### 作用域
+
+每个函数都有它的领地，更专业地说，当一个函数被创建后，R 中存在一个让这个函数发挥作用的环境。举一个比较形象的例子，冬天我们在购物商场外常常感到寒冷，而进去之后会感到暖和，这是因为商场空调的作用范围只是整个商场。
+
+R 中所有的对象都处于各自的环境之中，我们可以把环境想象成城市里各种不同房子，而对象是处于其中的物品。当然这只是一些形象的比喻，实际上 R 的工作原理可能远不仅如此，但它已经能够很好地帮助理解我们这个概念了。
+
+在启动 R 之后，我们就进去了一个全局环境之中（Global Environment），我们创建的各自变量、函数都会处于其中。这一点我们可以轻易地从 RStudio 右上角的环境窗口中观察到，如图 \@ref(fig:rstudio-env-panel) 所示：
+
+
+```{r rstudio-env-panel, echo=FALSE, fig.cap="RStudio 的环境窗口"}
+knitr::include_graphics("fig/ch02-rstudio-env-panel.PNG")
+```
+
+一个函数（如 `customMean()`）与全局环境的关系可以简单用下面两个嵌套的矩形表示：
+
+```{r fun-env, echo=FALSE, fig.cap="全局环境与在其中创建的一个函数"}
+knitr::include_graphics("fig/ch02-fun-env.png")
+```
+
+我使用了蓝色箭头来表示两者的从属关系，先有全局环境，再有函数环境。我使用绿色箭头表示函数查询变量的方向，先从自己内部查找，如果找不到，再从外部查找。
+
+前面我们创建的函数内部都是自给自足的，下面我们创建一个不一样的。
+
+```{r}
+a <- 3
+Sum <- function(b) {
+  a + b
+}
+```
+
+我在函数 `Sum()` 之外创建了一个变量 `a`，而函数内部并没有创建相同名字的变量，这样的函数能够成功调用吗？
+
+我们试试。
+
+```{r}
+Sum(10)
+```
+
+结果显示是当然可行的。也就是说，**当函数在自身内部无法查询到变量 `a` 的值时，它会向外面一层寻找**。事实上，如果在外层还找不到，而且外层环境如果也处于另一个环境之中，它会再次往外面一层查找。如果按照这个规则真的都找不到，R 就会抛出错误。
+
+```{r, error=TRUE}
+zzzz
+```
+
+如果函数内部存在一个同名变量会怎么样呢？如果读者理解了上面我介绍的规则，那么应该不难猜到下面变量 `result` 保存的值。
+
+```{r}
+a <- 3
+Sum <- function(b) {
+  a <- 1
+  a + b
+}
+
+result <- Sum(10)
+```
+
+
+下面揭晓答案：
+
+```{r}
+result
+```
+
+在某些情景下，我们可能需要在函数内部修改函数外部变量的值。此时我们可以引入新的操作符 `<<-`，我们简单修改上面的代码看看 全局变量 `a` 变成了什么。
+
+```{r}
+a <- 3
+# 运行函数之前
+a
+
+Sum <- function(b) {
+  a <<- 1
+  a + b
+}
+
+result <- Sum(10)
+# 运行函数之后
+a
+```
+
+
+
 ### 函数式编程
 
 函数不仅仅可以被调用，**它还可以被当作函数的参数和返回值**，这是函数式编程的特点。
@@ -1205,7 +1287,147 @@ f2("mean")(1:10)
 
 #### apply 家族
 
+apply 函数家族包括 `apply()`、`lapply()`、`sapply()` 和 `vapply()` 等成员，其中前三者比较常用。apply 函数家族正是以函数作为输入来进行批量计算，因此它可以取代我们之前学习的循环控制。
 
+##### apply
+
+`apply()` 最常用，针对的也是最常见的表格型数据，在 R 中为矩阵或数据框。
+
+为了展示它的用法和效率，这里我先构造一个 100 列 100,000 行的服从正态分布的数据矩阵：
+
+```{r}
+# 设置随机种子数
+set.seed(1234)
+mat <- matrix(rnorm(1e7), ncol = 100, byrow = TRUE)
+# 展示数据维度
+dim(mat)
+# 查看少量数据
+mat[1:5, 1:5]
+```
+
+现在如果我们想要计算每一行的均值，该怎么实现呢（不使用 `rowMeans()` 函数）？
+
+先试试使用之前学习的 for 循环构建一个计算函数：
+
+```{r}
+calcRowMeans <- function(mat) {
+  # 先初始化一个结果向量
+  # 这样更有效率
+  res <- vector("numeric", nrow(mat))
+  for (i in 1:nrow(mat)) {
+    res[i] <- mean(mat[i, ])
+  }
+  
+  return(res)
+} 
+```
+
+看一下该函数的用时：
+
+```{r}
+system.time(
+  rm <- calcRowMeans(mat)
+)
+```
+
+10 万行的过程花了不到 1 秒的时间，计算效率着实不低。如果是 `apply()` 该怎么写呢？效率又如何？
+
+```{r}
+system.time(
+  rm <- apply(mat, 1, mean)
+)
+```
+
+在 apply 写法中，我们没有新建函数，而是直接利用 R 内置的 `mean()` 函数直接进行计算，相比 for 循环此处的计算效率虽然未见明显提升，但代码却被极度精简了。
+
+让我们来看一下 `apply()` 是如何完成计算的，其结构如下：
+
+```r
+apply(X, MARGIN, FUN, ...)
+```
+
+第 1 个参数是数组（可以是矩阵和数据框），第 2 个参数是设置按行（设为 `1`）或列（设为 `2`）逐行取子集，第 3 个参数是对子集调用的函数，接下来是传入函数 `FUN` 中的可选参数列表。前 3 个参数最关键。
+
+因此，在 `rm <- apply(mat, 1, mean)` 中 `apply()` 所做的是**逐行提取矩阵 `mat` 的值并传入函数 `mean()`进行 计算，然后返回结果**。
+
+利用 `apply()` 我们可以抛弃 for 循环对矩阵按行按列各种运算：
+
+```{r}
+# 行和
+r <- apply(mat, 1, sum)
+# 行最大值
+r <- apply(mat, 1, max)
+# 行最小值
+r <- apply(mat, 1, min)
+
+# 列和
+r <- apply(mat, 2, sum)
+# 列最大值
+r <- apply(mat, 2, max)
+# 列最小值
+r <- apply(mat, 2, min)
+```
+
+上面第 3 个参数传入的函数都是 R 内置的，我们完全可以传入自定义函数，这没有区别。
+
+整体上看，`apply()` 非常得精简灵活。
+
+##### lapply、sapply 和 vapply
+
+`lapply()`、`sapply()` 和 `vapply()` 针对的都是列表结构的数据，`sapply()` 是简化版本的 `lapply()`，而 `vapply()` 则在 `sapply()` 的基础上加了结果验证，以保证可靠性。
+
+我们假设有 4 组温度数据：
+
+```{r}
+set.seed(1234)
+
+temp <- list(
+  35 + rnorm(10, mean = 1, sd = 10),
+  20 + rnorm(5, mean = 1, sd = 3),
+  25 + rnorm(22, mean = 2, sd = 6),
+  33 + rnorm(14, mean = 4, sd = 20)
+)
+```
+
+现在要求取每一组的温度最小、最大、平均值与中位数。我们针对列表的子集创建处理函数：
+
+```{r}
+basic <- function(x) {
+  c(min = min(x), mean = mean(x), median = median(x), max = max(x))
+}
+```
+
+直接将列表数据、处理函数依次传入 `lapply()` 函数：
+
+```{r}
+lapply(temp, basic)
+```
+
+虽然传入的列表子集不是等长的，但处理的结果却是等长的，因此上述输出看起来略显冗余。
+
+因此我们使用 `sapply()` 进行简化，它的用法与 `lapply()` 相同，函数名中的 `s` 是简化（simplified）的首字母缩写。
+
+```{r}
+sapply(temp, basic)
+```
+
+是不是更加紧凑？
+
+我们再看一下 `vapply()`：
+
+```{r}
+vapply(temp, basic, numeric(4))
+```
+
+结果与 `sapply()` 完全一致。`vapply()` 第 3 个参数传入对每一个子集调用函数后结果的预期，上述设定为包含 4 个元素的数值型向量。
+
+如果与预期不一致，R 会抛出错误信息：
+
+```{r, error=TRUE}
+vapply(temp, basic, numeric(3))
+```
+
+apply 函数家族还有其他成员，如 `tapply()`，由于使用频率较低，这里就不再过多介绍。如果有需要，读者也能够基于上述知识轻松地通过 R 提供的代码示例进行快速学习和掌握。
 
 ## 三方包的安装与加载
 
@@ -1213,7 +1435,7 @@ R 内置了基础计算、统计分析和绘图包，但依旧无法满足众多
 
 ### CRAN
 
-CRAN 是由 R 核心团队维护的存档库，大多数的 R 包都发布在 CRAN 上。R 内置了安装命令 `install.packages()`。
+[CRAN](https://cran.r-project.org/) 是由 R 核心团队维护的存档库，大多数的 R 包都发布在 CRAN 上。R 内置了安装命令 `install.packages()`。
 
 下面是安装著名绘图包 **ggplot2** 的示例：
 
@@ -1245,7 +1467,7 @@ options("repos" = c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 
 ### Bioconductor
 
-Bioconductor 是一个生物信息学项目，存储了上千个生物信息学领域相关的软件包、数据包和实验包等。安装 Bioconductor 上的包需要先安装 **BiocManager** 包：
+[Bioconductor](https://www.bioconductor.org/) 是一个生物信息学项目，存储了上千个生物信息学领域相关的软件包、数据包和实验包等。安装 Bioconductor 上的包需要先安装 **BiocManager** 包：
 
 ```{r, eval=FALSE}
 install.packages("BiocManager")
@@ -1285,7 +1507,7 @@ options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
 
 ### GitHub 等 Git 库
 
-GitHub 是知名的开源软件库，上面存储了很多 R 包的源代码，包括 CRAN/Bioconductor 包、未发布包以及玩具包。只要有源代码有正确的 R 包框架，就可以通过 **remotes** 包安装。
+[GitHub](https://github.com/) 是知名的开源软件库，上面存储了很多 R 包的源代码，包括 CRAN/Bioconductor 包、未发布包以及玩具包。只要有源代码有正确的 R 包框架，就可以通过 **remotes** 包安装。
 
 例如，安装开发版本的 **ggplot2** 包：
 
@@ -1311,6 +1533,98 @@ print(.packages())
 sessionInfo()
 ```
 
+#### 导入包
+
+当我们需要导入（加载）一个包时，我们可以使用 `library()` 或 `require()` 函数。
+
+```{r, eval=FALSE}
+library(ggplot2)
+# 或
+require(ggplot2)
+```
+
+两个函数的区别在于当 `library()` 导入一个本地不存在的 R 包时会报错，而 `require()` 会（隐式）返回为 `FALSE`，并抛出警告信息。
+
+```{r, error=TRUE}
+library(zzzz)
+```
+
+```{r}
+isFALSE(require(zzzz))
+```
+
+#### 更新包
+
+简单地更新包可以直接通过安装命令进行重装就可以了。
+
+如果是更新所有的包，一个一个安装就未免太麻烦了，如果 R 不提示你，你也不知道有多少包可以更新。
+
+R 默认有函数可以完成这项工作：
+
+```{r, eval=FALSE}
+update.packages()
+```
+
+但这个函数需要读者不断点击确认，挺麻烦的。
+
+下面推荐几个 3 方包提供的更新命令。
+
+```{r, eval=FALSE}
+pacman::p_up() # 或 pacman::p_update()
+BiocManager::install()
+rvcheck::update_all()
+remotes::update_packages()
+```
+
+其中 **rvcheck** 是国内大名鼎鼎的 [Y 叔](https://github.com/GuangchuangYu) 开发的，他有不少文章介绍该包，解决 R 包更新的一些痛点。
+
+#### 使用包函数
+
+R 包下载安装后其中函数的使用方法有两种，前面的例子都有涉及到，这里作一个简单介绍。
+
+1. 加载后使用
+
+这种方式适合读者需要用到一个包很多的函数，或者有的包需要利用加载过程同时载入它的依赖包，这时也必须加载后才能成功使用。加载后直接调用函数即可，下面是一个 **ggplot2** 包绘制散点图的例子：
+
+```{r, fig.cap="一个 ggplot2 绘制的简单散点图"}
+library(ggplot2)
+qplot(1:10, 1:10)
+```
+
+2. 直接使用
+
+这种方式适合只少量调用 R 包的函数，或者通过这种方式解决不同包存在同名函数问题。
+
+```{r, message=TRUE, warning=TRUE}
+library(dplyr)
+```
+
+上面我们载入 **dplyr** 包后，它屏蔽了 **base** 和 **stats** 包的一些同名函数。有的同名函数可能功能是一样的，不过做了一些拓展，所以使用起来没有问题。
+
+下面是来自 **base** 包 `union()` 函数的示例代码：
+
+```{r}
+(x <- c(sort(sample(1:20, 9)), NA))
+(y <- c(sort(sample(3:23, 7)), NA))
+union(x, y)
+```
+
+但有的函数就不一样了，如 `filter()` 函数。下面是来自 **stats** 包 `filter()` 函数的示例代码：
+
+```{r, error=TRUE}
+x <- 1:100
+filter(x, rep(1, 3))
+```
+
+`filter()` 是一个数据分析过程中经常由于同名屏蔽出现问题的函数（因为 **stats** 包被 R 默认加载，而 **dplyr** 又是 R 用户常用的工具包，所以两者经常同时都被加载）。我们可以显式地调用 **stats** 包里的函数解决该问题：
+
+```{r}
+x <- 1:100
+stats::filter(x, rep(1, 3))
+```
+
+语法是 `包名::函数名`。
+
 ## 编程实战：ROC 曲线计算与绘制
 
 本节我们通过一个计算实例来整合上述所有的知识点。
@@ -1320,6 +1634,53 @@ sessionInfo()
 除了本节目前罗列的问题，读者在学习本章内容时遇到的其他问题都可以通过 [GitHub Issue](https://github.com/ShixiangWang/geek-r-tutorial/issues) 提出和进行讨论。如果读者提出的是通性问题，将增补到该节。
 
 ### = 与 <- 的区别
+
+就我个人的使用而言，它的区别在调用函数时比较明显。
+
+例如，计算程序运行时间：
+
+```{r}
+system.time(m <- customMean(1:1e6))
+```
+
+下面的写法是错误的，因为 `system.time()` 把输入作为参数而不是一个表达式，而该函数并没有 `m` 这个参数。
+
+```{r, error=TRUE}
+system.time(m = customMean(1:1e6))
+```
+
+
+例如，调用一个简单的函数时利用 `<-` 传入参数：
+
+```{r}
+x <- NULL
+customMean(x <- 1:100)
+x
+```
+
+这里先进行了赋值操作，然后才进行函数调用，所以 `x` 值被更改了。实际对函数传入参数时这种写法是不可取的。
+
+### 显式使用包函数时 :: 与 ::: 的区别
+
+R 包创建者可以选择哪些函数导出提出给用户使用，哪些是内部计算使用的或是处于开发试验阶段不提供外用。
+
+`::` 符号可以获取 R 包导出的函数，也是 R 包加载后可以使用的函数，如 **ggplot2** 包的 `qplot()` 函数。
+
+而没有导出的函数则可以通过 `:::` 符号获取、调用。
+
+例如 **xfun** 包的 `base_pkgs()` 函数。
+
+```{r}
+xfun:::base_pkgs()
+```
+
+下面的方式是错误的：
+
+```{r, error=TRUE}
+xfun::base_pkgs()
+```
+
+一般而言，除非你确信你知道这个函数对你有用，且知道如何使用它，否则不建议通过 `:::` 调用 R 包的不开放函数。
 
 ### 因子重构 
 
