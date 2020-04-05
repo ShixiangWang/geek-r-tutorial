@@ -179,7 +179,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.3" data-path="base.html"><a href="base.html#github-等-git-库"><i class="fa fa-check"></i><b>2.4.3</b> GitHub 等 Git 库</a></li>
 <li class="chapter" data-level="2.4.4" data-path="base.html"><a href="base.html#包使用"><i class="fa fa-check"></i><b>2.4.4</b> 包使用</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="base.html"><a href="base.html#编程实战roc-曲线计算与绘制"><i class="fa fa-check"></i><b>2.5</b> 编程实战：ROC 曲线计算与绘制</a></li>
+<li class="chapter" data-level="2.5" data-path="base.html"><a href="base.html#编程实战roc-曲线计算与绘制"><i class="fa fa-check"></i><b>2.5</b> 编程实战：ROC 曲线计算与绘制</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="base.html"><a href="base.html#背景与目标"><i class="fa fa-check"></i><b>2.5.1</b> 背景与目标</a></li>
+<li class="chapter" data-level="2.5.2" data-path="base.html"><a href="base.html#代码实现"><i class="fa fa-check"></i><b>2.5.2</b> 代码实现</a></li>
+<li class="chapter" data-level="2.5.3" data-path="base.html"><a href="base.html#代码讲解"><i class="fa fa-check"></i><b>2.5.3</b> 代码讲解</a></li>
+</ul></li>
 <li class="chapter" data-level="2.6" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i><b>2.6</b> 常见问题与方案</a>
 <ul>
 <li class="chapter" data-level="2.6.1" data-path="base.html"><a href="base.html#与---的区别"><i class="fa fa-check"></i><b>2.6.1</b> = 与 &lt;- 的区别</a></li>
@@ -189,9 +194,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> 数据导入</a>
 <ul>
-<li class="chapter" data-level="" data-path="import.html"><a href="import.html#csv"><i class="fa fa-check"></i>CSV</a></li>
-<li class="chapter" data-level="" data-path="import.html"><a href="import.html#excel"><i class="fa fa-check"></i>Excel</a></li>
-<li class="chapter" data-level="" data-path="import.html"><a href="import.html#常见问题与方案-2"><i class="fa fa-check"></i>常见问题与方案</a></li>
+<li class="chapter" data-level="3.1" data-path="import.html"><a href="import.html#文本文件与二进制文件"><i class="fa fa-check"></i><b>3.1</b> 文本文件与二进制文件</a></li>
+<li class="chapter" data-level="3.2" data-path="import.html"><a href="import.html#符号分隔文件"><i class="fa fa-check"></i><b>3.2</b> 符号分隔文件</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="import.html"><a href="import.html#csv"><i class="fa fa-check"></i><b>3.2.1</b> CSV</a></li>
+<li class="chapter" data-level="3.2.2" data-path="import.html"><a href="import.html#tsv"><i class="fa fa-check"></i><b>3.2.2</b> TSV</a></li>
+<li class="chapter" data-level="3.2.3" data-path="import.html"><a href="import.html#其他"><i class="fa fa-check"></i><b>3.2.3</b> 其他</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="import.html"><a href="import.html#excel"><i class="fa fa-check"></i><b>3.3</b> Excel</a></li>
+<li class="chapter" data-level="3.4" data-path="import.html"><a href="import.html#常见问题与方案-2"><i class="fa fa-check"></i><b>3.4</b> 常见问题与方案</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> 数据清洗</a>
 <ul>
@@ -1297,10 +1308,10 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <p>最后，我们来了解一下函数的计算效率。这里我们将创建的 <code>customMean()</code> 函数与 R 内置的 <code>mean()</code> 函数进行对比。<code>system.time()</code> 函数用来判断函数执行消耗的时间。</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="base.html#cb115-1"></a><span class="kw">system.time</span>(<span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e7</span>))</span>
 <span id="cb115-2"><a href="base.html#cb115-2"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb115-3"><a href="base.html#cb115-3"></a><span class="co">#&gt;    0.51    0.00    0.53</span></span>
+<span id="cb115-3"><a href="base.html#cb115-3"></a><span class="co">#&gt;    0.42    0.00    0.44</span></span>
 <span id="cb115-4"><a href="base.html#cb115-4"></a><span class="kw">system.time</span>(<span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e7</span>))</span>
 <span id="cb115-5"><a href="base.html#cb115-5"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb115-6"><a href="base.html#cb115-6"></a><span class="co">#&gt;    0.05    0.00    0.04</span></span></code></pre></div>
+<span id="cb115-6"><a href="base.html#cb115-6"></a><span class="co">#&gt;    0.03    0.00    0.03</span></span></code></pre></div>
 <p><code>elapsed</code> 项给出了计算机执行函数消耗的总时间（以秒为单位），可以看出，内置的函数还是要快很多的。当然，这并不是一个严格的性能测评，但它已经能清楚地表明两者的差距。</p>
 </div>
 <div id="作用域" class="section level3">
@@ -1409,14 +1420,14 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="base.html#cb127-1"></a><span class="kw">f2</span>(<span class="st">&quot;mean&quot;</span>)</span>
 <span id="cb127-2"><a href="base.html#cb127-2"></a><span class="co">#&gt; function (x, ...) </span></span>
 <span id="cb127-3"><a href="base.html#cb127-3"></a><span class="co">#&gt; UseMethod(&quot;mean&quot;)</span></span>
-<span id="cb127-4"><a href="base.html#cb127-4"></a><span class="co">#&gt; &lt;bytecode: 0x00000199c8e761f8&gt;</span></span>
+<span id="cb127-4"><a href="base.html#cb127-4"></a><span class="co">#&gt; &lt;bytecode: 0x0000027730d31588&gt;</span></span>
 <span id="cb127-5"><a href="base.html#cb127-5"></a><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span>
 <span id="cb127-6"><a href="base.html#cb127-6"></a><span class="kw">f2</span>(<span class="st">&quot;sum&quot;</span>)</span>
 <span id="cb127-7"><a href="base.html#cb127-7"></a><span class="co">#&gt; function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)</span></span>
 <span id="cb127-8"><a href="base.html#cb127-8"></a><span class="kw">f2</span>(<span class="st">&quot;quantile&quot;</span>)</span>
 <span id="cb127-9"><a href="base.html#cb127-9"></a><span class="co">#&gt; function (x, ...) </span></span>
 <span id="cb127-10"><a href="base.html#cb127-10"></a><span class="co">#&gt; UseMethod(&quot;quantile&quot;)</span></span>
-<span id="cb127-11"><a href="base.html#cb127-11"></a><span class="co">#&gt; &lt;bytecode: 0x00000199c7ca7b58&gt;</span></span>
+<span id="cb127-11"><a href="base.html#cb127-11"></a><span class="co">#&gt; &lt;bytecode: 0x000002772f3c7ba0&gt;</span></span>
 <span id="cb127-12"><a href="base.html#cb127-12"></a><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>返回的全部都是函数，那么我们是不是可以直接调用它呢？</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="base.html#cb128-1"></a><span class="kw">f2</span>(<span class="st">&quot;mean&quot;</span>)(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
@@ -1462,13 +1473,13 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <span id="cb131-2"><a href="base.html#cb131-2"></a>  rm &lt;-<span class="st"> </span><span class="kw">calcRowMeans</span>(mat)</span>
 <span id="cb131-3"><a href="base.html#cb131-3"></a>)</span>
 <span id="cb131-4"><a href="base.html#cb131-4"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb131-5"><a href="base.html#cb131-5"></a><span class="co">#&gt;    0.67    0.00    0.72</span></span></code></pre></div>
+<span id="cb131-5"><a href="base.html#cb131-5"></a><span class="co">#&gt;    0.59    0.00    0.59</span></span></code></pre></div>
 <p>10 万行的过程花了不到 1 秒的时间，计算效率着实不低。如果是 <code>apply()</code> 该怎么写呢？效率又如何？</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="base.html#cb132-1"></a><span class="kw">system.time</span>(</span>
 <span id="cb132-2"><a href="base.html#cb132-2"></a>  rm &lt;-<span class="st"> </span><span class="kw">apply</span>(mat, <span class="dv">1</span>, mean)</span>
 <span id="cb132-3"><a href="base.html#cb132-3"></a>)</span>
 <span id="cb132-4"><a href="base.html#cb132-4"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb132-5"><a href="base.html#cb132-5"></a><span class="co">#&gt;    0.72    0.00    0.75</span></span></code></pre></div>
+<span id="cb132-5"><a href="base.html#cb132-5"></a><span class="co">#&gt;    0.71    0.00    0.74</span></span></code></pre></div>
 <p>在 apply 写法中，我们没有新建函数，而是直接利用 R 内置的 <code>mean()</code> 函数直接进行计算，相比 for 循环此处的计算效率虽然未见明显提升，但代码却被极度精简了。</p>
 <p>让我们来看一下 <code>apply()</code> 是如何完成计算的，其结构如下：</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="base.html#cb133-1"></a><span class="kw">apply</span>(X, MARGIN, FUN, ...)</span></code></pre></div>
@@ -1669,8 +1680,8 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <p>这种方式适合读者需要用到一个包很多的函数，或者有的包需要利用加载过程同时载入它的依赖包，这时也必须加载后才能成功使用。加载后直接调用函数即可，下面是一个 <strong>ggplot2</strong> 包绘制散点图的例子：</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="base.html#cb158-1"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb158-2"><a href="base.html#cb158-2"></a><span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-148"></span>
-<img src="bookdown_files/figure-html/unnamed-chunk-148-1.png" alt="一个 ggplot2 绘制的简单散点图" width="384" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-146"></span>
+<img src="bookdown_files/figure-html/unnamed-chunk-146-1.png" alt="一个 ggplot2 绘制的简单散点图" width="384" />
 <p class="caption">
 图 2.6: 一个 ggplot2 绘制的简单散点图
 </p>
@@ -1722,7 +1733,19 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 </div>
 <div id="编程实战roc-曲线计算与绘制" class="section level2">
 <h2><span class="header-section-number">2.5</span> 编程实战：ROC 曲线计算与绘制</h2>
-<p>本节我们通过一个计算实例来整合上述所有的知识点。</p>
+<p>本章的前几节内容涵盖了 R 初学者需要了解和掌握的基础编程知识，包括 R 内置数据结构的创建和使用、R 程序逻辑的控制。 读者在掌握这些内容后已经完全有能力去编写程序完成一些基本事务的处理。为了更好地帮助读者，本节我们通过一个实战项目来整合上述所有的知识点。</p>
+<p>本节以数据科学中一个常见的二分类性能评估手段“ROC 曲线”作为目标，编写函数处理连续变量作为预测器时的 ROC 曲线定量和 AUC 计算。</p>
+<p>我首先会简单介绍下相应的背景知识，然后呈现整个分析的实现代码，最后对整个过程进行讲解。</p>
+<p>我建议读者在了解背景后独立思考如何实现，然后参考我提供的代码<strong>动手</strong>完成整个实现过程，接着浏览我对代码的讲解，重点深入阅读存疑的部分，反复思考，最后把整个项目从原理到实现完全掌握。</p>
+<div id="背景与目标" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> 背景与目标</h3>
+</div>
+<div id="代码实现" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> 代码实现</h3>
+</div>
+<div id="代码讲解" class="section level3">
+<h3><span class="header-section-number">2.5.3</span> 代码讲解</h3>
+</div>
 </div>
 <div id="常见问题与方案-1" class="section level2">
 <h2><span class="header-section-number">2.6</span> 常见问题与方案</h2>
@@ -1733,7 +1756,7 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <p>例如，计算程序运行时间：</p>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="base.html#cb163-1"></a><span class="kw">system.time</span>(m &lt;-<span class="st"> </span><span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e6</span>))</span>
 <span id="cb163-2"><a href="base.html#cb163-2"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb163-3"><a href="base.html#cb163-3"></a><span class="co">#&gt;    0.07    0.00    0.06</span></span></code></pre></div>
+<span id="cb163-3"><a href="base.html#cb163-3"></a><span class="co">#&gt;    0.08    0.00    0.13</span></span></code></pre></div>
 <p>下面的写法是错误的，因为 <code>system.time()</code> 把输入作为参数而不是一个表达式，而该函数并没有 <code>m</code> 这个参数。</p>
 <div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="base.html#cb164-1"></a><span class="kw">system.time</span>(<span class="dt">m =</span> <span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e6</span>))</span>
 <span id="cb164-2"><a href="base.html#cb164-2"></a><span class="co">#&gt; Error in system.time(m = customMean(1:1e+06)): unused argument (m = customMean(1:1e+06))</span></span></code></pre></div>
