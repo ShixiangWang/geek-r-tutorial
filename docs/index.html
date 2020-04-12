@@ -52,25 +52,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +80,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -114,7 +115,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css\style.css" type="text/css" />
 </head>
 
 <body>
@@ -130,80 +131,102 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">数据分析之道</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#内容简介"><i class="fa fa-check"></i>内容简介</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#许可"><i class="fa fa-check"></i>许可</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#建议与反馈"><i class="fa fa-check"></i>建议与反馈</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#致谢"><i class="fa fa-check"></i>致谢</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
-<li class="chapter" data-level="1" data-path="prepare.html"><a href="prepare.html"><i class="fa fa-check"></i><b>1</b> 准备工作</a><ul>
+<li class="chapter" data-level="1" data-path="prepare.html"><a href="prepare.html"><i class="fa fa-check"></i><b>1</b> 准备工作</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="prepare.html"><a href="prepare.html#r-的下载和安装"><i class="fa fa-check"></i><b>1.1</b> R 的下载和安装</a></li>
 <li class="chapter" data-level="1.2" data-path="prepare.html"><a href="prepare.html#rstudio-的下载和安装"><i class="fa fa-check"></i><b>1.2</b> RStudio 的下载和安装</a></li>
 <li class="chapter" data-level="1.3" data-path="prepare.html"><a href="prepare.html#配置可选"><i class="fa fa-check"></i><b>1.3</b> 配置（可选）</a></li>
-<li class="chapter" data-level="1.4" data-path="prepare.html"><a href="prepare.html#常见问题与方案"><i class="fa fa-check"></i><b>1.4</b> 常见问题与方案</a><ul>
+<li class="chapter" data-level="1.4" data-path="prepare.html"><a href="prepare.html#常见问题与方案"><i class="fa fa-check"></i><b>1.4</b> 常见问题与方案</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="prepare.html"><a href="prepare.html#r-在-linux-系统下的安装"><i class="fa fa-check"></i><b>1.4.1</b> R 在 Linux 系统下的安装</a></li>
 <li class="chapter" data-level="1.4.2" data-path="prepare.html"><a href="prepare.html#rtools-安装"><i class="fa fa-check"></i><b>1.4.2</b> Rtools 安装</a></li>
 <li class="chapter" data-level="1.4.3" data-path="prepare.html"><a href="prepare.html#rstudio-server-安装"><i class="fa fa-check"></i><b>1.4.3</b> RStudio Server 安装</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="base.html"><a href="base.html"><i class="fa fa-check"></i><b>2</b> 基础语法</a><ul>
-<li class="chapter" data-level="2.1" data-path="base.html"><a href="base.html#基本数据结构"><i class="fa fa-check"></i><b>2.1</b> 基本数据结构</a><ul>
+<li class="chapter" data-level="2" data-path="base.html"><a href="base.html"><i class="fa fa-check"></i><b>2</b> 基础语法</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="base.html"><a href="base.html#基本数据结构"><i class="fa fa-check"></i><b>2.1</b> 基本数据结构</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="base.html"><a href="base.html#向量"><i class="fa fa-check"></i><b>2.1.1</b> 向量</a></li>
 <li class="chapter" data-level="2.1.2" data-path="base.html"><a href="base.html#数组与矩阵"><i class="fa fa-check"></i><b>2.1.2</b> 数组与矩阵</a></li>
 <li class="chapter" data-level="2.1.3" data-path="base.html"><a href="base.html#数据框"><i class="fa fa-check"></i><b>2.1.3</b> 数据框</a></li>
 <li class="chapter" data-level="2.1.4" data-path="base.html"><a href="base.html#列表"><i class="fa fa-check"></i><b>2.1.4</b> 列表</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="base.html"><a href="base.html#控制结构"><i class="fa fa-check"></i><b>2.2</b> 控制结构</a><ul>
+<li class="chapter" data-level="2.2" data-path="base.html"><a href="base.html#控制结构"><i class="fa fa-check"></i><b>2.2</b> 控制结构</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="base.html"><a href="base.html#条件控制"><i class="fa fa-check"></i><b>2.2.1</b> 条件控制</a></li>
 <li class="chapter" data-level="2.2.2" data-path="base.html"><a href="base.html#循环控制"><i class="fa fa-check"></i><b>2.2.2</b> 循环控制</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="base.html"><a href="base.html#函数与函数式编程"><i class="fa fa-check"></i><b>2.3</b> 函数与函数式编程</a><ul>
+<li class="chapter" data-level="2.3" data-path="base.html"><a href="base.html#函数与函数式编程"><i class="fa fa-check"></i><b>2.3</b> 函数与函数式编程</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="base.html"><a href="base.html#创建和使用函数"><i class="fa fa-check"></i><b>2.3.1</b> 创建和使用函数</a></li>
 <li class="chapter" data-level="2.3.2" data-path="base.html"><a href="base.html#作用域"><i class="fa fa-check"></i><b>2.3.2</b> 作用域</a></li>
 <li class="chapter" data-level="2.3.3" data-path="base.html"><a href="base.html#任意参数"><i class="fa fa-check"></i><b>2.3.3</b> 任意参数</a></li>
 <li class="chapter" data-level="2.3.4" data-path="base.html"><a href="base.html#函数式编程"><i class="fa fa-check"></i><b>2.3.4</b> 函数式编程</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="base.html"><a href="base.html#三方包的安装与加载"><i class="fa fa-check"></i><b>2.4</b> 三方包的安装与加载</a><ul>
+<li class="chapter" data-level="2.4" data-path="base.html"><a href="base.html#三方包的安装与加载"><i class="fa fa-check"></i><b>2.4</b> 三方包的安装与加载</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="base.html"><a href="base.html#cran"><i class="fa fa-check"></i><b>2.4.1</b> CRAN</a></li>
 <li class="chapter" data-level="2.4.2" data-path="base.html"><a href="base.html#bioconductor"><i class="fa fa-check"></i><b>2.4.2</b> Bioconductor</a></li>
 <li class="chapter" data-level="2.4.3" data-path="base.html"><a href="base.html#github-等-git-库"><i class="fa fa-check"></i><b>2.4.3</b> GitHub 等 Git 库</a></li>
 <li class="chapter" data-level="2.4.4" data-path="base.html"><a href="base.html#包使用"><i class="fa fa-check"></i><b>2.4.4</b> 包使用</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="base.html"><a href="base.html#编程实战roc-曲线计算与绘制"><i class="fa fa-check"></i><b>2.5</b> 编程实战：ROC 曲线计算与绘制</a><ul>
+<li class="chapter" data-level="2.5" data-path="base.html"><a href="base.html#编程实战roc-曲线计算与绘制"><i class="fa fa-check"></i><b>2.5</b> 编程实战：ROC 曲线计算与绘制</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="base.html"><a href="base.html#背景与目标"><i class="fa fa-check"></i><b>2.5.1</b> 背景与目标</a></li>
 <li class="chapter" data-level="2.5.2" data-path="base.html"><a href="base.html#代码实现"><i class="fa fa-check"></i><b>2.5.2</b> 代码实现</a></li>
 <li class="chapter" data-level="2.5.3" data-path="base.html"><a href="base.html#代码讲解"><i class="fa fa-check"></i><b>2.5.3</b> 代码讲解</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i><b>2.6</b> 常见问题与方案</a><ul>
+<li class="chapter" data-level="2.6" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i><b>2.6</b> 常见问题与方案</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="base.html"><a href="base.html#复数表示"><i class="fa fa-check"></i><b>2.6.1</b> 复数表示</a></li>
 <li class="chapter" data-level="2.6.2" data-path="base.html"><a href="base.html#与---的区别"><i class="fa fa-check"></i><b>2.6.2</b> = 与 &lt;- 的区别</a></li>
 <li class="chapter" data-level="2.6.3" data-path="base.html"><a href="base.html#显式使用包函数时-与-的区别"><i class="fa fa-check"></i><b>2.6.3</b> 显式使用包函数时 :: 与 ::: 的区别</a></li>
 <li class="chapter" data-level="2.6.4" data-path="base.html"><a href="base.html#因子重构"><i class="fa fa-check"></i><b>2.6.4</b> 因子重构</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> 数据导入</a><ul>
-<li class="chapter" data-level="3.1" data-path="import.html"><a href="import.html#符号分隔文件"><i class="fa fa-check"></i><b>3.1</b> 符号分隔文件</a><ul>
+<li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> 数据导入</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="import.html"><a href="import.html#符号分隔文件"><i class="fa fa-check"></i><b>3.1</b> 符号分隔文件</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="import.html"><a href="import.html#csv"><i class="fa fa-check"></i><b>3.1.1</b> CSV</a></li>
 <li class="chapter" data-level="3.1.2" data-path="import.html"><a href="import.html#tsv"><i class="fa fa-check"></i><b>3.1.2</b> TSV</a></li>
 <li class="chapter" data-level="3.1.3" data-path="import.html"><a href="import.html#其他变体"><i class="fa fa-check"></i><b>3.1.3</b> 其他变体</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="import.html"><a href="import.html#excel"><i class="fa fa-check"></i><b>3.2</b> Excel</a></li>
-<li class="chapter" data-level="3.3" data-path="import.html"><a href="import.html#常见问题与方案-2"><i class="fa fa-check"></i><b>3.3</b> 常见问题与方案</a></li>
+<li class="chapter" data-level="3.3" data-path="import.html"><a href="import.html#json"><i class="fa fa-check"></i><b>3.3</b> JSON</a></li>
+<li class="chapter" data-level="3.4" data-path="import.html"><a href="import.html#r-数据文件"><i class="fa fa-check"></i><b>3.4</b> R 数据文件</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="import.html"><a href="import.html#rdata"><i class="fa fa-check"></i><b>3.4.1</b> RData</a></li>
+<li class="chapter" data-level="3.4.2" data-path="import.html"><a href="import.html#rds"><i class="fa fa-check"></i><b>3.4.2</b> RDS</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> 数据清洗</a><ul>
+<li class="chapter" data-level="3.5" data-path="import.html"><a href="import.html#常见问题与方案-2"><i class="fa fa-check"></i><b>3.5</b> 常见问题与方案</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> 数据清洗</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#单个数据集"><i class="fa fa-check"></i><b>4.1</b> 单个数据集</a></li>
 <li class="chapter" data-level="4.2" data-path="clean.html"><a href="clean.html#两个数据集"><i class="fa fa-check"></i><b>4.2</b> 两个数据集</a></li>
 <li class="chapter" data-level="4.3" data-path="clean.html"><a href="clean.html#多个数据集"><i class="fa fa-check"></i><b>4.3</b> 多个数据集</a></li>
 <li class="chapter" data-level="4.4" data-path="clean.html"><a href="clean.html#常见问题与方案-3"><i class="fa fa-check"></i><b>4.4</b> 常见问题与方案</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> 数据可视化</a><ul>
+<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> 数据可视化</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualization.html"><a href="visualization.html#常见问题与方案-4"><i class="fa fa-check"></i>常见问题与方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>6</b> 统计建模</a><ul>
+<li class="chapter" data-level="6" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>6</b> 统计建模</a>
+<ul>
 <li class="chapter" data-level="" data-path="model.html"><a href="model.html#常见问题与方案-5"><i class="fa fa-check"></i>常见问题与方案</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="report.html"><a href="report.html"><i class="fa fa-check"></i><b>7</b> 结果展示</a><ul>
+<li class="chapter" data-level="7" data-path="report.html"><a href="report.html"><i class="fa fa-check"></i><b>7</b> 结果展示</a>
+<ul>
 <li class="chapter" data-level="" data-path="report.html"><a href="report.html#图形"><i class="fa fa-check"></i>图形</a></li>
 <li class="chapter" data-level="" data-path="report.html"><a href="report.html#表格"><i class="fa fa-check"></i>表格</a></li>
 <li class="chapter" data-level="" data-path="report.html"><a href="report.html#rmarkdown"><i class="fa fa-check"></i>RMarkdown</a></li>
@@ -212,14 +235,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="bioapp.html"><a href="bioapp.html"><i class="fa fa-check"></i><b>8</b> 生物信息学应用</a></li>
 <li class="appendix"><span><b>附录</b></span></li>
-<li class="chapter" data-level="A" data-path="search-table.html"><a href="search-table.html"><i class="fa fa-check"></i><b>A</b> 速查表</a><ul>
+<li class="chapter" data-level="A" data-path="search-table.html"><a href="search-table.html"><i class="fa fa-check"></i><b>A</b> 速查表</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="search-table.html"><a href="search-table.html#数值计算函数"><i class="fa fa-check"></i><b>A.1</b> 数值计算函数</a></li>
 <li class="chapter" data-level="A.2" data-path="search-table.html"><a href="search-table.html#模型符号与函数"><i class="fa fa-check"></i><b>A.2</b> 模型符号与函数</a></li>
 <li class="chapter" data-level="A.3" data-path="search-table.html"><a href="search-table.html#统计分析与检验"><i class="fa fa-check"></i><b>A.3</b> 统计分析与检验</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="expand-reading.html"><a href="expand-reading.html"><i class="fa fa-check"></i><b>B</b> 拓展阅读</a><ul>
+<li class="chapter" data-level="B" data-path="expand-reading.html"><a href="expand-reading.html"><i class="fa fa-check"></i><b>B</b> 拓展阅读</a>
+<ul>
 <li class="chapter" data-level="B.1" data-path="expand-reading.html"><a href="expand-reading.html#生信技能树语雀知识库"><i class="fa fa-check"></i><b>B.1</b> 生信技能树语雀知识库</a></li>
-<li class="chapter" data-level="B.2" data-path="expand-reading.html"><a href="expand-reading.html#图书"><i class="fa fa-check"></i><b>B.2</b> 图书</a><ul>
+<li class="chapter" data-level="B.2" data-path="expand-reading.html"><a href="expand-reading.html#图书"><i class="fa fa-check"></i><b>B.2</b> 图书</a>
+<ul>
 <li class="chapter" data-level="B.2.1" data-path="expand-reading.html"><a href="expand-reading.html#问题与方案"><i class="fa fa-check"></i><b>B.2.1</b> 问题与方案</a></li>
 <li class="chapter" data-level="B.2.2" data-path="expand-reading.html"><a href="expand-reading.html#统计建模"><i class="fa fa-check"></i><b>B.2.2</b> 统计建模</a></li>
 <li class="chapter" data-level="B.2.3" data-path="expand-reading.html"><a href="expand-reading.html#核心集合"><i class="fa fa-check"></i><b>B.2.3</b> 核心集合</a></li>
@@ -251,9 +277,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">极客R：数据分析之道</h1>
 <p class="author"><em>王诗翔, 生信技能树</em></p>
-<p class="date"><em>上次修改 2020-04-07</em></p>
+<p class="date"><em>上次修改 2020-04-12</em></p>
 </div>
-<div id="前言" class="section level1 unnumbered">
+<div id="前言" class="section level1">
 <h1>前言</h1>
 <p><img src="cover.png" width="250" height="375" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></p>
 <p>这是一本 R 语言入门的教程书。它旨在为生物信息学相关方向的研究人员（包括学生）以及相关从业者提供 R 语言基础知识的学习指导。当然，由于本书内容的普适性，我相信对数据科学感兴趣的读者都能够从阅读中受益。如果读者已经掌握了一些 R 的编程知识，可以翻看目录挑选感兴趣的内容阅读；如果读者已经掌握的 R 编程基础知识，我推荐翻看本书的附录部分查找感兴趣的内容进一步深入学习。</p>
@@ -263,11 +289,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>由于 <a href="https://www.bioconductor.org/">Bioconductor</a> 项目库和 <a href="https://cran.r-project.org/">CRAN</a> 库中保存了上千个生物信息学软件包，涉及生物信息学领域的各个方面，读者在实际的研究工作中很难完全离开 R 语言环境。</li>
 <li><a href="https://github.com/tidyverse/">tidyverse 系列工具包</a>的强力驱动让 R 在数据分析各个方面工作都非常强力。</li>
 </ul>
-<div id="内容简介" class="section level2 unnumbered">
+<div id="内容简介" class="section level2">
 <h2>内容简介</h2>
 <p>当前已经有不少 R 语言和数据分析相关的教程和书籍，本书无力像它们一样详尽地介绍 R 众多方面的内容，而是聚焦于指导读者学习和理解数据分析的核心要点，并能快速应用到自己实际的工作中。本书的创作哲学是结合必备基础知识的简要介绍与实际问题的讨论与方案。本书的核心内容包括 R 的基础语法和一系列数据分析编程知识，后者将根据 Hadley 在《R for Data Science》提供的数据分析流程概览图 <a href="index.html#fig:r4ds-overview">0.1</a> 中指出的核心要点分别按章节进行介绍。最后，我们将通过一些 R 包学习 R 在生物信息学方向的应用。</p>
 <div class="figure" style="text-align: center"><span id="fig:r4ds-overview"></span>
-<img src="fig/ch00-data-science.png" alt="数据分析概览 （图源：R for Data Science 第 1 章）" width="258" />
+<img src="fig/ch00-data-science.png" alt="数据分析概览 （图源：R for Data Science 第 1 章）"  />
 <p class="caption">
 图 0.1: 数据分析概览 （图源：R for Data Science 第 1 章）
 </p>
@@ -284,17 +310,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>第 <a href="bioapp.html#bioapp">8</a> 章通过一些包的使用示例介绍 R 在生物信息学方向的应用。</li>
 </ul>
 </div>
-<div id="许可" class="section level2 unnumbered">
+<div id="许可" class="section level2">
 <h2>许可</h2>
 <p>本网站（永久）免费阅读，以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">CC 署名-非商业性使用-禁止演绎 4.0 国际协议</a>发行。</p>
 <p>Copyright © 2020 王诗翔</p>
 <p><img src="https://licensebuttons.net/l/by-nc-nd/3.0/88x31.png" alt="" width="88" height="31" /></p>
 </div>
-<div id="建议与反馈" class="section level2 unnumbered">
+<div id="建议与反馈" class="section level2">
 <h2>建议与反馈</h2>
 <p>这是我第一次编写比较系统的 R 语言教程，由于个人能力有限，难免存在错误和不当，恳请读者批评指正。<strong>目前我在业余时间对本书内容进行积极的开发，如果读者有任何建议，欢迎到 <a href="https://github.com/ShixiangWang/geek-r-tutorial/issues">GitHub 仓库 Issue</a> 中进行讨论</strong>。</p>
 </div>
-<div id="致谢" class="section level2 unnumbered">
+<div id="致谢" class="section level2">
 <h2>致谢</h2>
 <p>非常感谢谁谁以及谁谁对我的帮助。</p>
 
@@ -302,7 +328,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 王诗翔<br />
 于 上海
 </p>
-
 
 </div>
 </div>

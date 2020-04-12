@@ -52,25 +52,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +80,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -114,7 +115,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css\style.css" type="text/css" />
 </head>
 
 <body>
@@ -130,80 +131,102 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">数据分析之道</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#内容简介"><i class="fa fa-check"></i>内容简介</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#许可"><i class="fa fa-check"></i>许可</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#建议与反馈"><i class="fa fa-check"></i>建议与反馈</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#致谢"><i class="fa fa-check"></i>致谢</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
-<li class="chapter" data-level="1" data-path="prepare.html"><a href="prepare.html"><i class="fa fa-check"></i><b>1</b> 准备工作</a><ul>
+<li class="chapter" data-level="1" data-path="prepare.html"><a href="prepare.html"><i class="fa fa-check"></i><b>1</b> 准备工作</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="prepare.html"><a href="prepare.html#r-的下载和安装"><i class="fa fa-check"></i><b>1.1</b> R 的下载和安装</a></li>
 <li class="chapter" data-level="1.2" data-path="prepare.html"><a href="prepare.html#rstudio-的下载和安装"><i class="fa fa-check"></i><b>1.2</b> RStudio 的下载和安装</a></li>
 <li class="chapter" data-level="1.3" data-path="prepare.html"><a href="prepare.html#配置可选"><i class="fa fa-check"></i><b>1.3</b> 配置（可选）</a></li>
-<li class="chapter" data-level="1.4" data-path="prepare.html"><a href="prepare.html#常见问题与方案"><i class="fa fa-check"></i><b>1.4</b> 常见问题与方案</a><ul>
+<li class="chapter" data-level="1.4" data-path="prepare.html"><a href="prepare.html#常见问题与方案"><i class="fa fa-check"></i><b>1.4</b> 常见问题与方案</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="prepare.html"><a href="prepare.html#r-在-linux-系统下的安装"><i class="fa fa-check"></i><b>1.4.1</b> R 在 Linux 系统下的安装</a></li>
 <li class="chapter" data-level="1.4.2" data-path="prepare.html"><a href="prepare.html#rtools-安装"><i class="fa fa-check"></i><b>1.4.2</b> Rtools 安装</a></li>
 <li class="chapter" data-level="1.4.3" data-path="prepare.html"><a href="prepare.html#rstudio-server-安装"><i class="fa fa-check"></i><b>1.4.3</b> RStudio Server 安装</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="base.html"><a href="base.html"><i class="fa fa-check"></i><b>2</b> 基础语法</a><ul>
-<li class="chapter" data-level="2.1" data-path="base.html"><a href="base.html#基本数据结构"><i class="fa fa-check"></i><b>2.1</b> 基本数据结构</a><ul>
+<li class="chapter" data-level="2" data-path="base.html"><a href="base.html"><i class="fa fa-check"></i><b>2</b> 基础语法</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="base.html"><a href="base.html#基本数据结构"><i class="fa fa-check"></i><b>2.1</b> 基本数据结构</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="base.html"><a href="base.html#向量"><i class="fa fa-check"></i><b>2.1.1</b> 向量</a></li>
 <li class="chapter" data-level="2.1.2" data-path="base.html"><a href="base.html#数组与矩阵"><i class="fa fa-check"></i><b>2.1.2</b> 数组与矩阵</a></li>
 <li class="chapter" data-level="2.1.3" data-path="base.html"><a href="base.html#数据框"><i class="fa fa-check"></i><b>2.1.3</b> 数据框</a></li>
 <li class="chapter" data-level="2.1.4" data-path="base.html"><a href="base.html#列表"><i class="fa fa-check"></i><b>2.1.4</b> 列表</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="base.html"><a href="base.html#控制结构"><i class="fa fa-check"></i><b>2.2</b> 控制结构</a><ul>
+<li class="chapter" data-level="2.2" data-path="base.html"><a href="base.html#控制结构"><i class="fa fa-check"></i><b>2.2</b> 控制结构</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="base.html"><a href="base.html#条件控制"><i class="fa fa-check"></i><b>2.2.1</b> 条件控制</a></li>
 <li class="chapter" data-level="2.2.2" data-path="base.html"><a href="base.html#循环控制"><i class="fa fa-check"></i><b>2.2.2</b> 循环控制</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="base.html"><a href="base.html#函数与函数式编程"><i class="fa fa-check"></i><b>2.3</b> 函数与函数式编程</a><ul>
+<li class="chapter" data-level="2.3" data-path="base.html"><a href="base.html#函数与函数式编程"><i class="fa fa-check"></i><b>2.3</b> 函数与函数式编程</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="base.html"><a href="base.html#创建和使用函数"><i class="fa fa-check"></i><b>2.3.1</b> 创建和使用函数</a></li>
 <li class="chapter" data-level="2.3.2" data-path="base.html"><a href="base.html#作用域"><i class="fa fa-check"></i><b>2.3.2</b> 作用域</a></li>
 <li class="chapter" data-level="2.3.3" data-path="base.html"><a href="base.html#任意参数"><i class="fa fa-check"></i><b>2.3.3</b> 任意参数</a></li>
 <li class="chapter" data-level="2.3.4" data-path="base.html"><a href="base.html#函数式编程"><i class="fa fa-check"></i><b>2.3.4</b> 函数式编程</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="base.html"><a href="base.html#三方包的安装与加载"><i class="fa fa-check"></i><b>2.4</b> 三方包的安装与加载</a><ul>
+<li class="chapter" data-level="2.4" data-path="base.html"><a href="base.html#三方包的安装与加载"><i class="fa fa-check"></i><b>2.4</b> 三方包的安装与加载</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="base.html"><a href="base.html#cran"><i class="fa fa-check"></i><b>2.4.1</b> CRAN</a></li>
 <li class="chapter" data-level="2.4.2" data-path="base.html"><a href="base.html#bioconductor"><i class="fa fa-check"></i><b>2.4.2</b> Bioconductor</a></li>
 <li class="chapter" data-level="2.4.3" data-path="base.html"><a href="base.html#github-等-git-库"><i class="fa fa-check"></i><b>2.4.3</b> GitHub 等 Git 库</a></li>
 <li class="chapter" data-level="2.4.4" data-path="base.html"><a href="base.html#包使用"><i class="fa fa-check"></i><b>2.4.4</b> 包使用</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="base.html"><a href="base.html#编程实战roc-曲线计算与绘制"><i class="fa fa-check"></i><b>2.5</b> 编程实战：ROC 曲线计算与绘制</a><ul>
+<li class="chapter" data-level="2.5" data-path="base.html"><a href="base.html#编程实战roc-曲线计算与绘制"><i class="fa fa-check"></i><b>2.5</b> 编程实战：ROC 曲线计算与绘制</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="base.html"><a href="base.html#背景与目标"><i class="fa fa-check"></i><b>2.5.1</b> 背景与目标</a></li>
 <li class="chapter" data-level="2.5.2" data-path="base.html"><a href="base.html#代码实现"><i class="fa fa-check"></i><b>2.5.2</b> 代码实现</a></li>
 <li class="chapter" data-level="2.5.3" data-path="base.html"><a href="base.html#代码讲解"><i class="fa fa-check"></i><b>2.5.3</b> 代码讲解</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i><b>2.6</b> 常见问题与方案</a><ul>
+<li class="chapter" data-level="2.6" data-path="base.html"><a href="base.html#常见问题与方案-1"><i class="fa fa-check"></i><b>2.6</b> 常见问题与方案</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="base.html"><a href="base.html#复数表示"><i class="fa fa-check"></i><b>2.6.1</b> 复数表示</a></li>
 <li class="chapter" data-level="2.6.2" data-path="base.html"><a href="base.html#与---的区别"><i class="fa fa-check"></i><b>2.6.2</b> = 与 &lt;- 的区别</a></li>
 <li class="chapter" data-level="2.6.3" data-path="base.html"><a href="base.html#显式使用包函数时-与-的区别"><i class="fa fa-check"></i><b>2.6.3</b> 显式使用包函数时 :: 与 ::: 的区别</a></li>
 <li class="chapter" data-level="2.6.4" data-path="base.html"><a href="base.html#因子重构"><i class="fa fa-check"></i><b>2.6.4</b> 因子重构</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> 数据导入</a><ul>
-<li class="chapter" data-level="3.1" data-path="import.html"><a href="import.html#符号分隔文件"><i class="fa fa-check"></i><b>3.1</b> 符号分隔文件</a><ul>
+<li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> 数据导入</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="import.html"><a href="import.html#符号分隔文件"><i class="fa fa-check"></i><b>3.1</b> 符号分隔文件</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="import.html"><a href="import.html#csv"><i class="fa fa-check"></i><b>3.1.1</b> CSV</a></li>
 <li class="chapter" data-level="3.1.2" data-path="import.html"><a href="import.html#tsv"><i class="fa fa-check"></i><b>3.1.2</b> TSV</a></li>
 <li class="chapter" data-level="3.1.3" data-path="import.html"><a href="import.html#其他变体"><i class="fa fa-check"></i><b>3.1.3</b> 其他变体</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="import.html"><a href="import.html#excel"><i class="fa fa-check"></i><b>3.2</b> Excel</a></li>
-<li class="chapter" data-level="3.3" data-path="import.html"><a href="import.html#常见问题与方案-2"><i class="fa fa-check"></i><b>3.3</b> 常见问题与方案</a></li>
+<li class="chapter" data-level="3.3" data-path="import.html"><a href="import.html#json"><i class="fa fa-check"></i><b>3.3</b> JSON</a></li>
+<li class="chapter" data-level="3.4" data-path="import.html"><a href="import.html#r-数据文件"><i class="fa fa-check"></i><b>3.4</b> R 数据文件</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="import.html"><a href="import.html#rdata"><i class="fa fa-check"></i><b>3.4.1</b> RData</a></li>
+<li class="chapter" data-level="3.4.2" data-path="import.html"><a href="import.html#rds"><i class="fa fa-check"></i><b>3.4.2</b> RDS</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> 数据清洗</a><ul>
+<li class="chapter" data-level="3.5" data-path="import.html"><a href="import.html#常见问题与方案-2"><i class="fa fa-check"></i><b>3.5</b> 常见问题与方案</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> 数据清洗</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#单个数据集"><i class="fa fa-check"></i><b>4.1</b> 单个数据集</a></li>
 <li class="chapter" data-level="4.2" data-path="clean.html"><a href="clean.html#两个数据集"><i class="fa fa-check"></i><b>4.2</b> 两个数据集</a></li>
 <li class="chapter" data-level="4.3" data-path="clean.html"><a href="clean.html#多个数据集"><i class="fa fa-check"></i><b>4.3</b> 多个数据集</a></li>
 <li class="chapter" data-level="4.4" data-path="clean.html"><a href="clean.html#常见问题与方案-3"><i class="fa fa-check"></i><b>4.4</b> 常见问题与方案</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> 数据可视化</a><ul>
+<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> 数据可视化</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualization.html"><a href="visualization.html#常见问题与方案-4"><i class="fa fa-check"></i>常见问题与方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>6</b> 统计建模</a><ul>
+<li class="chapter" data-level="6" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>6</b> 统计建模</a>
+<ul>
 <li class="chapter" data-level="" data-path="model.html"><a href="model.html#常见问题与方案-5"><i class="fa fa-check"></i>常见问题与方案</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="report.html"><a href="report.html"><i class="fa fa-check"></i><b>7</b> 结果展示</a><ul>
+<li class="chapter" data-level="7" data-path="report.html"><a href="report.html"><i class="fa fa-check"></i><b>7</b> 结果展示</a>
+<ul>
 <li class="chapter" data-level="" data-path="report.html"><a href="report.html#图形"><i class="fa fa-check"></i>图形</a></li>
 <li class="chapter" data-level="" data-path="report.html"><a href="report.html#表格"><i class="fa fa-check"></i>表格</a></li>
 <li class="chapter" data-level="" data-path="report.html"><a href="report.html#rmarkdown"><i class="fa fa-check"></i>RMarkdown</a></li>
@@ -212,14 +235,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="bioapp.html"><a href="bioapp.html"><i class="fa fa-check"></i><b>8</b> 生物信息学应用</a></li>
 <li class="appendix"><span><b>附录</b></span></li>
-<li class="chapter" data-level="A" data-path="search-table.html"><a href="search-table.html"><i class="fa fa-check"></i><b>A</b> 速查表</a><ul>
+<li class="chapter" data-level="A" data-path="search-table.html"><a href="search-table.html"><i class="fa fa-check"></i><b>A</b> 速查表</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="search-table.html"><a href="search-table.html#数值计算函数"><i class="fa fa-check"></i><b>A.1</b> 数值计算函数</a></li>
 <li class="chapter" data-level="A.2" data-path="search-table.html"><a href="search-table.html#模型符号与函数"><i class="fa fa-check"></i><b>A.2</b> 模型符号与函数</a></li>
 <li class="chapter" data-level="A.3" data-path="search-table.html"><a href="search-table.html#统计分析与检验"><i class="fa fa-check"></i><b>A.3</b> 统计分析与检验</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="expand-reading.html"><a href="expand-reading.html"><i class="fa fa-check"></i><b>B</b> 拓展阅读</a><ul>
+<li class="chapter" data-level="B" data-path="expand-reading.html"><a href="expand-reading.html"><i class="fa fa-check"></i><b>B</b> 拓展阅读</a>
+<ul>
 <li class="chapter" data-level="B.1" data-path="expand-reading.html"><a href="expand-reading.html#生信技能树语雀知识库"><i class="fa fa-check"></i><b>B.1</b> 生信技能树语雀知识库</a></li>
-<li class="chapter" data-level="B.2" data-path="expand-reading.html"><a href="expand-reading.html#图书"><i class="fa fa-check"></i><b>B.2</b> 图书</a><ul>
+<li class="chapter" data-level="B.2" data-path="expand-reading.html"><a href="expand-reading.html#图书"><i class="fa fa-check"></i><b>B.2</b> 图书</a>
+<ul>
 <li class="chapter" data-level="B.2.1" data-path="expand-reading.html"><a href="expand-reading.html#问题与方案"><i class="fa fa-check"></i><b>B.2.1</b> 问题与方案</a></li>
 <li class="chapter" data-level="B.2.2" data-path="expand-reading.html"><a href="expand-reading.html#统计建模"><i class="fa fa-check"></i><b>B.2.2</b> 统计建模</a></li>
 <li class="chapter" data-level="B.2.3" data-path="expand-reading.html"><a href="expand-reading.html#核心集合"><i class="fa fa-check"></i><b>B.2.3</b> 核心集合</a></li>
@@ -274,13 +300,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>以上没提到的，一路点下一步。</li>
 </ol>
 <div class="figure" style="text-align: center"><span id="fig:set-install-path"></span>
-<img src="fig/ch01-set-install-path-win.PNG" alt="设置安装路径" width="291" />
+<img src="fig/ch01-set-install-path-win.PNG" alt="设置安装路径"  />
 <p class="caption">
 图 1.1: 设置安装路径
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:select-64bit"></span>
-<img src="fig/ch01-select-64-bit.PNG" alt="只选择 64 位" width="291" />
+<img src="fig/ch01-select-64-bit.PNG" alt="只选择 64 位"  />
 <p class="caption">
 图 1.2: 只选择 64 位
 </p>
@@ -291,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.2</span> RStudio 的下载和安装</h2>
 <p>点击链接 <a href="https://rstudio.com/products/rstudio/download/" class="uri">https://rstudio.com/products/rstudio/download/</a> 进入 RStudio 下载界面，根据自己的操作系统选择适合的安装文件进行安装即可，如图 <a href="prepare.html#fig:install-rstudio">1.3</a>。</p>
 <div class="figure" style="text-align: center"><span id="fig:install-rstudio"></span>
-<img src="fig/ch01-download-rstudio.PNG" alt="下载 RStudio" width="366" />
+<img src="fig/ch01-download-rstudio.PNG" alt="下载 RStudio"  />
 <p class="caption">
 图 1.3: 下载 RStudio
 </p>
@@ -299,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>RStudio 的安装非常简单，没有特别的注意事项，读者可以直接一路点击向下。另外，读者可以自定义 RStudio 的安装路径，这不会影响 R 的使用。</p>
 <p>RStudio 安装完成后可以像普通软件一样搜索和双击打开，如图 <a href="prepare.html#fig:rstudio-overview">1.4</a>。</p>
 <div class="figure" style="text-align: center"><span id="fig:rstudio-overview"></span>
-<img src="fig/ch01-rstudio-overview.PNG" alt="RStudio 界面" width="960" />
+<img src="fig/ch01-rstudio-overview.PNG" alt="RStudio 界面"  />
 <p class="caption">
 图 1.4: RStudio 界面
 </p>
@@ -325,57 +351,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>下面介绍如何创建自定义的临时目录与包目录，这样上面情况都不会发生了。</p>
 <p>读者在安装好 R 和 RStudio 后，打开 RStudio，在 R 控制台键入：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">file.edit</span>(<span class="st">&quot;~/.Rprofile&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="prepare.html#cb1-1"></a><span class="kw">file.edit</span>(<span class="st">&quot;~/.Rprofile&quot;</span>)</span></code></pre></div>
 <p>在启动RStudio时，RStudio会首先执行里面的 R 代码，所以我们可以在这里用 R 代码进行配置。</p>
 <p>首先在该文档内添加内容：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">#--------------------------------------------</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># Set custom library and temp directory for R</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># </span><span class="al">NOTE</span><span class="co">: please only change following 2 paths</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#   Any Question, please email to </span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#       Shixiang Wang &lt;w_shixiang@163.com&gt;</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#--------------------------------------------</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">.CUSTOM_LIB =<span class="st"> &quot;C:/Tools/R/R_Library&quot;</span> <span class="co"># set your custom library location</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">.TMP =<span class="st"> &quot;C:/Tools/R/Rtmp&quot;</span>             <span class="co"># set a temp dir for R running</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">                                     <span class="co"># please do not add &#39;/&#39; at the end !!!</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="cf">if</span>(<span class="op">!</span><span class="kw">dir.exists</span>(.CUSTOM_LIB)){</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">    <span class="kw">dir.create</span>(.CUSTOM_LIB, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13">}</a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="kw">.libPaths</span>(<span class="kw">c</span>(.CUSTOM_LIB, <span class="kw">.libPaths</span>()))</a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="kw">message</span>(<span class="st">&quot;Using library: &quot;</span>, <span class="kw">.libPaths</span>()[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="cf">if</span>(<span class="kw">dirname</span>(<span class="kw">tempdir</span>()) <span class="op">!=</span><span class="st"> </span>.TMP){</a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">    <span class="cf">if</span>(<span class="op">!</span><span class="kw">dir.exists</span>(.TMP)) <span class="kw">dir.create</span>(.TMP, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">    <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;TMPDIR = &quot;</span>, .TMP), <span class="dt">file=</span><span class="st">&quot;~/.Renviron&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb2-22" data-line-number="22">}</a>
-<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="kw">message</span>(<span class="st">&quot;Using temp directory: &quot;</span>, .TMP)</a>
-<a class="sourceLine" id="cb2-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#---------------------------------------------------</span></a>
-<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co"># pacman is optional, you can delete following code</span></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co"># If you wanna use pacman, please read:</span></a>
-<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#   &lt;https://www.jianshu.com/p/cb16ded75672&gt;</span></a>
-<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co"># Basically, </span></a>
-<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co"># #1, you can use &#39;p_load&#39; to load multiple package into R</span></a>
-<a class="sourceLine" id="cb2-31" data-line-number="31"><span class="co">#       like p_load(data.table, dplyr)</span></a>
-<a class="sourceLine" id="cb2-32" data-line-number="32"><span class="co"># #2, you can use &#39;p_get&#39; just to install package</span></a>
-<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co"># #3, you can use &#39;p_update&#39; to update all packages</span></a>
-<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="co">#---------------------------------------------------</span></a>
-<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(pacman)){</a>
-<a class="sourceLine" id="cb2-36" data-line-number="36">    <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb2-37" data-line-number="37">}</a>
-<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="kw">library</span>(pacman)</a>
-<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">#----------------------------------------------------</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="prepare.html#cb2-1"></a><span class="co">#--------------------------------------------</span></span>
+<span id="cb2-2"><a href="prepare.html#cb2-2"></a><span class="co"># Set custom library and temp directory for R</span></span>
+<span id="cb2-3"><a href="prepare.html#cb2-3"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: please only change following 2 paths</span></span>
+<span id="cb2-4"><a href="prepare.html#cb2-4"></a><span class="co">#   Any Question, please email to </span></span>
+<span id="cb2-5"><a href="prepare.html#cb2-5"></a><span class="co">#       Shixiang Wang &lt;w_shixiang@163.com&gt;</span></span>
+<span id="cb2-6"><a href="prepare.html#cb2-6"></a><span class="co">#--------------------------------------------</span></span>
+<span id="cb2-7"><a href="prepare.html#cb2-7"></a>.CUSTOM_LIB =<span class="st"> &quot;C:/Tools/R/R_Library&quot;</span> <span class="co"># set your custom library location</span></span>
+<span id="cb2-8"><a href="prepare.html#cb2-8"></a>.TMP =<span class="st"> &quot;C:/Tools/R/Rtmp&quot;</span>             <span class="co"># set a temp dir for R running</span></span>
+<span id="cb2-9"><a href="prepare.html#cb2-9"></a>                                     <span class="co"># please do not add &#39;/&#39; at the end !!!</span></span>
+<span id="cb2-10"><a href="prepare.html#cb2-10"></a></span>
+<span id="cb2-11"><a href="prepare.html#cb2-11"></a><span class="cf">if</span>(<span class="op">!</span><span class="kw">dir.exists</span>(.CUSTOM_LIB)){</span>
+<span id="cb2-12"><a href="prepare.html#cb2-12"></a>    <span class="kw">dir.create</span>(.CUSTOM_LIB, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb2-13"><a href="prepare.html#cb2-13"></a>}</span>
+<span id="cb2-14"><a href="prepare.html#cb2-14"></a></span>
+<span id="cb2-15"><a href="prepare.html#cb2-15"></a><span class="kw">.libPaths</span>(<span class="kw">c</span>(.CUSTOM_LIB, <span class="kw">.libPaths</span>()))</span>
+<span id="cb2-16"><a href="prepare.html#cb2-16"></a><span class="kw">message</span>(<span class="st">&quot;Using library: &quot;</span>, <span class="kw">.libPaths</span>()[<span class="dv">1</span>])</span>
+<span id="cb2-17"><a href="prepare.html#cb2-17"></a></span>
+<span id="cb2-18"><a href="prepare.html#cb2-18"></a></span>
+<span id="cb2-19"><a href="prepare.html#cb2-19"></a><span class="cf">if</span>(<span class="kw">dirname</span>(<span class="kw">tempdir</span>()) <span class="op">!=</span><span class="st"> </span>.TMP){</span>
+<span id="cb2-20"><a href="prepare.html#cb2-20"></a>    <span class="cf">if</span>(<span class="op">!</span><span class="kw">dir.exists</span>(.TMP)) <span class="kw">dir.create</span>(.TMP, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb2-21"><a href="prepare.html#cb2-21"></a>    <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;TMPDIR = &quot;</span>, .TMP), <span class="dt">file=</span><span class="st">&quot;~/.Renviron&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb2-22"><a href="prepare.html#cb2-22"></a>}</span>
+<span id="cb2-23"><a href="prepare.html#cb2-23"></a><span class="kw">message</span>(<span class="st">&quot;Using temp directory: &quot;</span>, .TMP)</span>
+<span id="cb2-24"><a href="prepare.html#cb2-24"></a></span>
+<span id="cb2-25"><a href="prepare.html#cb2-25"></a><span class="co">#---------------------------------------------------</span></span>
+<span id="cb2-26"><a href="prepare.html#cb2-26"></a><span class="co"># pacman is optional, you can delete following code</span></span>
+<span id="cb2-27"><a href="prepare.html#cb2-27"></a><span class="co"># If you wanna use pacman, please read:</span></span>
+<span id="cb2-28"><a href="prepare.html#cb2-28"></a><span class="co">#   &lt;https://www.jianshu.com/p/cb16ded75672&gt;</span></span>
+<span id="cb2-29"><a href="prepare.html#cb2-29"></a><span class="co"># Basically, </span></span>
+<span id="cb2-30"><a href="prepare.html#cb2-30"></a><span class="co"># #1, you can use &#39;p_load&#39; to load multiple package into R</span></span>
+<span id="cb2-31"><a href="prepare.html#cb2-31"></a><span class="co">#       like p_load(data.table, dplyr)</span></span>
+<span id="cb2-32"><a href="prepare.html#cb2-32"></a><span class="co"># #2, you can use &#39;p_get&#39; just to install package</span></span>
+<span id="cb2-33"><a href="prepare.html#cb2-33"></a><span class="co"># #3, you can use &#39;p_update&#39; to update all packages</span></span>
+<span id="cb2-34"><a href="prepare.html#cb2-34"></a><span class="co">#---------------------------------------------------</span></span>
+<span id="cb2-35"><a href="prepare.html#cb2-35"></a><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(pacman)){</span>
+<span id="cb2-36"><a href="prepare.html#cb2-36"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb2-37"><a href="prepare.html#cb2-37"></a>}</span>
+<span id="cb2-38"><a href="prepare.html#cb2-38"></a><span class="kw">library</span>(pacman)</span>
+<span id="cb2-39"><a href="prepare.html#cb2-39"></a><span class="co">#----------------------------------------------------</span></span></code></pre></div>
 <p>然后根据情况对上述内容中的目录设定进行修改即可。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">.CUSTOM_LIB =<span class="st"> &quot;C:/Tools/R/R_Library&quot;</span> <span class="co"># set your custom library location</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">.TMP =<span class="st"> &quot;C:/Tools/R/Rtmp&quot;</span>             <span class="co"># set a temp dir for R running</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">                                     <span class="co"># please do not add &#39;/&#39; at the end !!!</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="prepare.html#cb3-1"></a>.CUSTOM_LIB =<span class="st"> &quot;C:/Tools/R/R_Library&quot;</span> <span class="co"># set your custom library location</span></span>
+<span id="cb3-2"><a href="prepare.html#cb3-2"></a>.TMP =<span class="st"> &quot;C:/Tools/R/Rtmp&quot;</span>             <span class="co"># set a temp dir for R running</span></span>
+<span id="cb3-3"><a href="prepare.html#cb3-3"></a>                                     <span class="co"># please do not add &#39;/&#39; at the end !!!</span></span></code></pre></div>
 <p><strong>pacman</strong> 那段代码是可选的，该包是 <code>library()</code> 函数的替代品，使用它安装和管理 R 包更简单。具体的使用方法可以<a href="https://www.jianshu.com/p/cb16ded75672">点击阅读</a>我之前的简书文章。</p>
 <p>这里为了方便大家使用，我添加了一些必要注释，如果上述配置存在问题，读者可以发邮件给我。</p>
 <p>保存后重启 RStudio 或者点击菜单栏 <strong>Session</strong> 下的 <strong>Restart R</strong>。</p>
 <p>以后 RStudio 每次启动后都会输出读者计算机中 R 包的存储路径和它使用的临时路径。读者如果以后升级 R，只要重装下 R 安装文件就可以了，R 包的目录并不会改动，键入下面的命令可以更新所有的 R 包：</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">p_update</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="prepare.html#cb4-1"></a><span class="kw">p_update</span>()</span></code></pre></div>
 </div>
 <div id="常见问题与方案" class="section level2">
 <h2><span class="header-section-number">1.4</span> 常见问题与方案</h2>
@@ -389,56 +415,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>$</code> 前缀指明命令在 <code>shell</code> 终端中进行。</p>
 </blockquote>
 <p>安装依赖：</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1">$ <span class="fu">sudo</span> apt-get install xorg-dev libreadline-dev</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">$ <span class="fu">sudo</span> apt-get install libcurl4-openssl-dev</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">$ <span class="fu">sudo</span> apt-get install libbz2-dev</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">$ <span class="fu">sudo</span> apt-get install libcairo2-dev libgtk2.0-dev</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">$ <span class="fu">sudo</span> apt-get install texinfo texlive</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">$ <span class="fu">wget</span> http://mirrors.ctan.org/fonts/inconsolata.zip</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">$ <span class="fu">sudo</span> cp -Rfp inconsolata/* /usr/share/texmf/</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">$ <span class="co"># 或者 sudo cp -r inconsolata/ /usr/share/texlive/texmf-dist/tex/latex/</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">$ <span class="fu">sudo</span> mktexlsr <span class="co"># 刷新</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co"># 如果没有java解释器，安装下</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">$ <span class="fu">sudo</span> apt-get install default-jdk</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="prepare.html#cb5-1"></a>$ <span class="fu">sudo</span> apt-get install xorg-dev libreadline-dev</span>
+<span id="cb5-2"><a href="prepare.html#cb5-2"></a>$ <span class="fu">sudo</span> apt-get install libcurl4-openssl-dev</span>
+<span id="cb5-3"><a href="prepare.html#cb5-3"></a>$ <span class="fu">sudo</span> apt-get install libbz2-dev</span>
+<span id="cb5-4"><a href="prepare.html#cb5-4"></a>$ <span class="fu">sudo</span> apt-get install libcairo2-dev libgtk2.0-dev</span>
+<span id="cb5-5"><a href="prepare.html#cb5-5"></a>$ <span class="fu">sudo</span> apt-get install texinfo texlive</span>
+<span id="cb5-6"><a href="prepare.html#cb5-6"></a>$ <span class="fu">wget</span> http://mirrors.ctan.org/fonts/inconsolata.zip</span>
+<span id="cb5-7"><a href="prepare.html#cb5-7"></a>$ <span class="fu">sudo</span> cp -Rfp inconsolata/* /usr/share/texmf/</span>
+<span id="cb5-8"><a href="prepare.html#cb5-8"></a>$ <span class="co"># 或者 sudo cp -r inconsolata/ /usr/share/texlive/texmf-dist/tex/latex/</span></span>
+<span id="cb5-9"><a href="prepare.html#cb5-9"></a>$ <span class="fu">sudo</span> mktexlsr <span class="co"># 刷新</span></span>
+<span id="cb5-10"><a href="prepare.html#cb5-10"></a></span>
+<span id="cb5-11"><a href="prepare.html#cb5-11"></a><span class="co"># 如果没有java解释器，安装下</span></span>
+<span id="cb5-12"><a href="prepare.html#cb5-12"></a>$ <span class="fu">sudo</span> apt-get install default-jdk</span></code></pre></div>
 <p>下载与安装 R：</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1">$ <span class="ex">curl</span> -O http://cran.utstat.utoronto.ca/src/base/R-3/R-3.5.0.tar.gz</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">$ <span class="fu">tar</span> -zxvf R-3.5.0.tar.gz</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">$ <span class="bu">cd</span> R-3.5.0/</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">$  <span class="ex">./configure</span> --prefix=<span class="va">$HOME</span>/local/R --enable-R-shlib --with-cairo=yes</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">$ <span class="co"># ./configure --with-cairo --with-libpng --with-libtiff --with-jpeglib --enable-R-shlib --prefix=$HOME/local/R</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">$ <span class="fu">make</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">$ <span class="fu">make</span> install</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="prepare.html#cb6-1"></a>$ <span class="ex">curl</span> -O http://cran.utstat.utoronto.ca/src/base/R-3/R-3.5.0.tar.gz</span>
+<span id="cb6-2"><a href="prepare.html#cb6-2"></a>$ <span class="fu">tar</span> -zxvf R-3.5.0.tar.gz</span>
+<span id="cb6-3"><a href="prepare.html#cb6-3"></a>$ <span class="bu">cd</span> R-3.5.0/</span>
+<span id="cb6-4"><a href="prepare.html#cb6-4"></a>$  <span class="ex">./configure</span> --prefix=<span class="va">$HOME</span>/local/R --enable-R-shlib --with-cairo=yes</span>
+<span id="cb6-5"><a href="prepare.html#cb6-5"></a>$ <span class="co"># ./configure --with-cairo --with-libpng --with-libtiff --with-jpeglib --enable-R-shlib --prefix=$HOME/local/R</span></span>
+<span id="cb6-6"><a href="prepare.html#cb6-6"></a>$ <span class="fu">make</span></span>
+<span id="cb6-7"><a href="prepare.html#cb6-7"></a>$ <span class="fu">make</span> install</span></code></pre></div>
 <p>创建符号链接：</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" data-line-number="1">$ <span class="bu">cd</span> /usr/bin/</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">$ <span class="fu">sudo</span> ln -s <span class="va">$HOME</span>/local/R/bin/Rscript Rscript</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">$ <span class="fu">sudo</span> ln -s <span class="va">$HOME</span>/local/R/bin/R R</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="prepare.html#cb7-1"></a>$ <span class="bu">cd</span> /usr/bin/</span>
+<span id="cb7-2"><a href="prepare.html#cb7-2"></a>$ <span class="fu">sudo</span> ln -s <span class="va">$HOME</span>/local/R/bin/Rscript Rscript</span>
+<span id="cb7-3"><a href="prepare.html#cb7-3"></a>$ <span class="fu">sudo</span> ln -s <span class="va">$HOME</span>/local/R/bin/R R</span></code></pre></div>
 <p>检查：</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" data-line-number="1">$ <span class="fu">ls</span> -l R*</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="ex">lrwxrwxrwx</span> 1 root root 23 6月  28 17:01 R -<span class="op">&gt;</span> /home/wsx/local/R/bin/R</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="ex">lrwxrwxrwx</span> 1 root root 29 6月  28 17:01 Rscript -<span class="op">&gt;</span> /home/wsx/local/R/bin/Rscript</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="prepare.html#cb8-1"></a>$ <span class="fu">ls</span> -l R*</span>
+<span id="cb8-2"><a href="prepare.html#cb8-2"></a><span class="ex">lrwxrwxrwx</span> 1 root root 23 6月  28 17:01 R -<span class="op">&gt;</span> /home/wsx/local/R/bin/R</span>
+<span id="cb8-3"><a href="prepare.html#cb8-3"></a><span class="ex">lrwxrwxrwx</span> 1 root root 29 6月  28 17:01 Rscript -<span class="op">&gt;</span> /home/wsx/local/R/bin/Rscript</span></code></pre></div>
 <p>使用：</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1">$ <span class="ex">R</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="ex">R</span> version 3.5.0 (2018-04-23) <span class="ex">--</span> <span class="st">&quot;Joy in Playing&quot;</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="ex">Copyright</span> (C) <span class="ex">2018</span> The R Foundation for Statistical Computing</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="ex">Platform</span>: x86_64-pc-linux-gnu (64-bit)</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="ex">R</span> is free software and comes with ABSOLUTELY NO WARRANTY.</a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="ex">You</span> are welcome to redistribute it under certain conditions.</a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="ex">Type</span> <span class="st">&#39;license()&#39;</span> or <span class="st">&#39;licence()&#39;</span> for distribution details.</a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11">  <span class="ex">Natural</span> language support but running in an English locale</a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="ex">R</span> is a collaborative project with many contributors.</a>
-<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="ex">Type</span> <span class="st">&#39;contributors()&#39;</span> for more information and</a>
-<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="st">&#39;citation()&#39;</span> <span class="ex">on</span> how to cite R or R packages in publications.</a>
-<a class="sourceLine" id="cb9-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="ex">Type</span> <span class="st">&#39;demo()&#39;</span> for some demos, <span class="st">&#39;help()&#39;</span> for on-line help, or</a>
-<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="st">&#39;help.start()&#39;</span> <span class="kw">for</span> <span class="ex">an</span> HTML browser interface to help.</a>
-<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="ex">Type</span> <span class="st">&#39;q()&#39;</span> to quit R.</a>
-<a class="sourceLine" id="cb9-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="op">&gt;</span> </a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="prepare.html#cb9-1"></a>$ <span class="ex">R</span></span>
+<span id="cb9-2"><a href="prepare.html#cb9-2"></a></span>
+<span id="cb9-3"><a href="prepare.html#cb9-3"></a><span class="ex">R</span> version 3.5.0 (2018-04-23) <span class="ex">--</span> <span class="st">&quot;Joy in Playing&quot;</span></span>
+<span id="cb9-4"><a href="prepare.html#cb9-4"></a><span class="ex">Copyright</span> (C) <span class="ex">2018</span> The R Foundation for Statistical Computing</span>
+<span id="cb9-5"><a href="prepare.html#cb9-5"></a><span class="ex">Platform</span>: x86_64-pc-linux-gnu (64-bit)</span>
+<span id="cb9-6"><a href="prepare.html#cb9-6"></a></span>
+<span id="cb9-7"><a href="prepare.html#cb9-7"></a><span class="ex">R</span> is free software and comes with ABSOLUTELY NO WARRANTY.</span>
+<span id="cb9-8"><a href="prepare.html#cb9-8"></a><span class="ex">You</span> are welcome to redistribute it under certain conditions.</span>
+<span id="cb9-9"><a href="prepare.html#cb9-9"></a><span class="ex">Type</span> <span class="st">&#39;license()&#39;</span> or <span class="st">&#39;licence()&#39;</span> for distribution details.</span>
+<span id="cb9-10"><a href="prepare.html#cb9-10"></a></span>
+<span id="cb9-11"><a href="prepare.html#cb9-11"></a>  <span class="ex">Natural</span> language support but running in an English locale</span>
+<span id="cb9-12"><a href="prepare.html#cb9-12"></a></span>
+<span id="cb9-13"><a href="prepare.html#cb9-13"></a><span class="ex">R</span> is a collaborative project with many contributors.</span>
+<span id="cb9-14"><a href="prepare.html#cb9-14"></a><span class="ex">Type</span> <span class="st">&#39;contributors()&#39;</span> for more information and</span>
+<span id="cb9-15"><a href="prepare.html#cb9-15"></a><span class="st">&#39;citation()&#39;</span> <span class="ex">on</span> how to cite R or R packages in publications.</span>
+<span id="cb9-16"><a href="prepare.html#cb9-16"></a></span>
+<span id="cb9-17"><a href="prepare.html#cb9-17"></a><span class="ex">Type</span> <span class="st">&#39;demo()&#39;</span> for some demos, <span class="st">&#39;help()&#39;</span> for on-line help, or</span>
+<span id="cb9-18"><a href="prepare.html#cb9-18"></a><span class="st">&#39;help.start()&#39;</span> <span class="kw">for</span> <span class="ex">an</span> HTML browser interface to help.</span>
+<span id="cb9-19"><a href="prepare.html#cb9-19"></a><span class="ex">Type</span> <span class="st">&#39;q()&#39;</span> to quit R.</span>
+<span id="cb9-20"><a href="prepare.html#cb9-20"></a></span>
+<span id="cb9-21"><a href="prepare.html#cb9-21"></a><span class="op">&gt;</span> </span></code></pre></div>
 <p>如果遇到编译问题和报错，读者可以参考下面两篇博文：</p>
 <ul>
 <li><a href="https://www.cnblogs.com/wing1995/p/4635371.html">ubuntu 上安装 R 的时候遇到的问题总结</a></li>
@@ -453,24 +479,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>首先切入 root 账户。</p>
 <p>安装 R 编译依赖：</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" data-line-number="1">$ <span class="ex">yum-builddep</span> R</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="prepare.html#cb10-1"></a>$ <span class="ex">yum-builddep</span> R</span></code></pre></div>
 <p>消灭界面configure警告：<code>configure: WARNING: neither inconsolata.sty nor zi4.sty found: PDF vignettes and package manuals will not be rendered optimally</code></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" data-line-number="1">$ <span class="fu">wget</span> http://mirrors.ctan.org/fonts/inconsolata.zip</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">$ <span class="ex">Unzip</span> inconsolata.zip </a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">$ <span class="fu">cp</span> -Rfp inconsolata/* /usr/share/texmf/</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">$ <span class="ex">mktexlsr</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="prepare.html#cb11-1"></a>$ <span class="fu">wget</span> http://mirrors.ctan.org/fonts/inconsolata.zip</span>
+<span id="cb11-2"><a href="prepare.html#cb11-2"></a>$ <span class="ex">Unzip</span> inconsolata.zip </span>
+<span id="cb11-3"><a href="prepare.html#cb11-3"></a>$ <span class="fu">cp</span> -Rfp inconsolata/* /usr/share/texmf/</span>
+<span id="cb11-4"><a href="prepare.html#cb11-4"></a>$ <span class="ex">mktexlsr</span></span></code></pre></div>
 <p>下载 R 并解压：</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" data-line-number="1">$ <span class="fu">wget</span> -c https://cran.r-project.org/src/base/R-3/R-3.6.0.tar.gz</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">$ <span class="fu">tar</span> zxvf R-3.6.0.tar.gz </a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="prepare.html#cb12-1"></a>$ <span class="fu">wget</span> -c https://cran.r-project.org/src/base/R-3/R-3.6.0.tar.gz</span>
+<span id="cb12-2"><a href="prepare.html#cb12-2"></a>$ <span class="fu">tar</span> zxvf R-3.6.0.tar.gz </span></code></pre></div>
 <p>编译安装</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb13-1" data-line-number="1">$ <span class="bu">cd</span> R-3.6.0/</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">$ <span class="ex">./configure</span> --prefix=/home/public/R/R-base --enable-R-shlib --with-cairo=yes</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="prepare.html#cb13-1"></a>$ <span class="bu">cd</span> R-3.6.0/</span>
+<span id="cb13-2"><a href="prepare.html#cb13-2"></a>$ <span class="ex">./configure</span> --prefix=/home/public/R/R-base --enable-R-shlib --with-cairo=yes</span></code></pre></div>
 <p>这里 <code>prefix</code> 后面的路径可以自己指定。</p>
 <p>然后</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb14-1" data-line-number="1">$ <span class="fu">make</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">$ <span class="fu">make</span> install</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="prepare.html#cb14-1"></a>$ <span class="fu">make</span></span>
+<span id="cb14-2"><a href="prepare.html#cb14-2"></a>$ <span class="fu">make</span> install</span></code></pre></div>
 <p>最后可以把它链接到常用软件位置上去。</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb15-1" data-line-number="1">$ <span class="fu">sudo</span> ln -s /home/public/R/R-basebin/R /bin/R </a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="prepare.html#cb15-1"></a>$ <span class="fu">sudo</span> ln -s /home/public/R/R-basebin/R /bin/R </span></code></pre></div>
 </div>
 </div>
 <div id="rtools-安装" class="section level3">
@@ -479,7 +505,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">1.4.2.1</span> Windows 系统 Rtools</h4>
 <p>点击链接 <a href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/" class="uri">https://mirrors.tuna.tsinghua.edu.cn/CRAN/</a> 进入 CRAN 页面，依次点击【Download R for Windows】、【Rtools】，然后选择推荐的版本下载和安装，如图 <a href="prepare.html#fig:rtools-win">1.5</a>。</p>
 <div class="figure" style="text-align: center"><span id="fig:rtools-win"></span>
-<img src="fig/ch01-rtools-win.PNG" alt="Windows 下 Rtools 的下载" width="546" />
+<img src="fig/ch01-rtools-win.PNG" alt="Windows 下 Rtools 的下载"  />
 <p class="caption">
 图 1.5: Windows 下 Rtools 的下载
 </p>
@@ -493,7 +519,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>x.x.x</code> 指代版本号，如 <code>8.0.0</code>。</p>
 </blockquote>
 <div class="figure" style="text-align: center"><span id="fig:rtools-mac"></span>
-<img src="fig/ch01-rtools-mac.PNG" alt="MacOS 下 Rtools 的下载" width="678" />
+<img src="fig/ch01-rtools-mac.PNG" alt="MacOS 下 Rtools 的下载"  />
 <p class="caption">
 图 1.6: MacOS 下 Rtools 的下载
 </p>
@@ -506,9 +532,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>点击链接 <a href="https://rstudio.com/products/rstudio/download-server/" class="uri">https://rstudio.com/products/rstudio/download-server/</a> 进入 RStudio Server 下载页面，针对不同的 Linux 发行版，RStudio 公司已经有良好的文档支持，所以我不再赘述。</p>
 <p>在使用 RStudio Server 时我有一个小小的建议，如我在前面的配置一节所说，读者可以自己创建一个专门的目录管理所有的 R 包。并且针对该目录，建议新建一个 Linux 群组以管理它的访问权限。</p>
 <p>这里简介一下安装后添加其他人，以增加用户 rotation 为例：</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb16-1" data-line-number="1">$ <span class="fu">sudo</span> useradd rotation -d /home/rotation -m -g wsx   # 将新增用户添加到你所在群组</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">$ <span class="fu">sudo</span> passwd rotation                                # 设定初始密码 </a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">$ <span class="fu">sudo</span> adduser rotation sudo                          # 给用户添加sudo权限，以方便一些操作</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="prepare.html#cb16-1"></a>$ <span class="fu">sudo</span> useradd rotation -d /home/rotation -m -g wsx   <span class="co"># 将新增用户添加到你所在群组</span></span>
+<span id="cb16-2"><a href="prepare.html#cb16-2"></a>$ <span class="fu">sudo</span> passwd rotation                                <span class="co"># 设定初始密码 </span></span>
+<span id="cb16-3"><a href="prepare.html#cb16-3"></a>$ <span class="fu">sudo</span> adduser rotation sudo                          <span class="co"># 给用户添加sudo权限，以方便一些操作</span></span></code></pre></div>
 
 </div>
 </div>
