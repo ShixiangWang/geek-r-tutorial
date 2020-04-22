@@ -19,3 +19,7 @@ https://github.com/ycphs/openxlsx
 ## 常见问题与方案
 
 除了本节目前罗列的问题，读者在学习本章内容时遇到的其他问题都可以通过 [GitHub Issue](https://github.com/ShixiangWang/geek-r-tutorial/issues) 提出和进行讨论。如果读者提出的是通性问题，将增补到该节。
+
+### export 包：集才华与一身
+
+https://github.com/tomwenseleers/export
