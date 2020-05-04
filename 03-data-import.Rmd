@@ -32,7 +32,75 @@ stu
 class(stu)
 ```
 
-实际上要处理的数据并不会这么的少。
+实际上要处理的数据并不会这么的少，一般会以文件的形式存储在计算机磁盘中。下面我们依旧使用 `read.table()` 函数完成 CSV 文件数据的导入。
+
+
+```{r}
+cars <- read.table(file = "data/data-import/mtcars.csv", header = TRUE, sep = ",")
+```
+
+操作完成了，我们检查下头几行：
+
+```{r}
+head(cars)
+```
+
+除了使用 `read.table()`，我们还可以使用内置的 `read.csv()` 函数完成 CSV 文件的读入。与 `read.table()` 不同的时，我们无需再指定分隔符，因为该函数本身就是为了 CSV 文件设计的。另外函数默认将 `header` 选项设定为 `TRUE`，即有列名，所以我们也无需指定它，因而读取操作就被简化了：
+
+```{r}
+cars2 <- read.csv(file = "data/data-import/mtcars.csv")
+head(cars2)
+```
+
+上述的读取操作基于 R 内置的函数实现，无需载入任何其他三方包就可以完成数据的读入，这在针对小型数据（集）或者计算机条件受限时（无法安装和使用三方包）非常有用。在这种常规以符号分隔的文件数据读取方面，我必须提及 2 个三方包：**readr** 和 **data.table**。它们都能以极快的速度读取大内存数据，推荐读者作为常规导入操作的解决方案。
+
+[**tidyverse**](https://github.com/tidyverse/) 是 R 语言大神 [Hadley](https://github.com/hadley)（以 **ggplot2** 作者闻名于世） 组织构建的一整套数据分析生态系统，包括读入、处理、建模与可视化等， [**readr**](https://github.com/tidyverse/readr) 包是 **tidyverse** 的一部分，用于完成数据的导入工作。
+
+[**data.table**](https://github.com/Rdatatable/data.table) 包以 R 社区最快的数据读取和处理操作而著名，它主要是提供了一个增强版的数据框 `data.table`。
+
+根据 **readr** 包官方文档介绍，**readr** 包通常比 **data.table** 包慢大概 1.2~2 倍左右。不过它们各有特点，**readr** 包被设计用于更为常规的数据读取操作，而 **data.table** 的目标则是尽量的快。
+
+为了体现上述两个包和内置函数的差别，这里我们构造一个较大的 CSV 文件进行简单的测试：
+
+```{r}
+huge_car <- cars[rep(1:32, 10000), ]
+```
+
+把这个数据先保存下来，然后再利用不同的工具进行导入。
+
+```{r}
+temp_csv <- tempfile(fileext = ".csv")
+readr::write_csv(huge_car, path = temp_csv)
+```
+
+现在我们分别使用 `system.time()` 测试下 R 内置的 `read.csv()` 函数与 **readr** 提供的 `read_csv()` 以及 **data.table** 提供的 `fread()` 的读取效率。
+
+```{r}
+time1 <- system.time(
+  z1 <- read.csv(temp_csv)
+)
+time1
+```
+
+```{r, message=FALSE}
+library(readr)
+
+time2 <- system.time(
+  z2 <-  read_csv(temp_csv)
+)
+time2
+```
+
+```{r, message=FALSE}
+library(data.table)
+
+time3 <- system.time(
+  z3 <- fread(temp_csv)
+)
+time3
+```
+
+上面我们使用了 `r nrow(huge_car)` 行数据进行测试，在我的计算机上，内置的函数 `read.csv()` 总共花费了 `r time1[3]`s，**readr** 的 `read_csv()` 花费了 `r time2[3]`s，而 **data.table** 的 `fread()` 仅用了 `r time3[3]`s 左右。
 
 ### TSV
 

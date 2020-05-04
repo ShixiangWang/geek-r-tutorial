@@ -283,7 +283,60 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb174-9" data-line-number="9"><span class="co">#&gt; 2    stu2      60   50      88</span></a>
 <a class="sourceLine" id="cb174-10" data-line-number="10"><span class="kw">class</span>(stu)</a>
 <a class="sourceLine" id="cb174-11" data-line-number="11"><span class="co">#&gt; [1] &quot;data.frame&quot;</span></a></code></pre></div>
-<p>实际上要处理的数据并不会这么的少。</p>
+<p>实际上要处理的数据并不会这么的少，一般会以文件的形式存储在计算机磁盘中。下面我们依旧使用 <code>read.table()</code> 函数完成 CSV 文件数据的导入。</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">cars &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;data/data-import/mtcars.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
+<p>操作完成了，我们检查下头几行：</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">head</span>(cars)</a>
+<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></a>
+<a class="sourceLine" id="cb176-3" data-line-number="3"><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></a>
+<a class="sourceLine" id="cb176-4" data-line-number="4"><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></a>
+<a class="sourceLine" id="cb176-5" data-line-number="5"><span class="co">#&gt; 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></a>
+<a class="sourceLine" id="cb176-6" data-line-number="6"><span class="co">#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></a>
+<a class="sourceLine" id="cb176-7" data-line-number="7"><span class="co">#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></a>
+<a class="sourceLine" id="cb176-8" data-line-number="8"><span class="co">#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></a></code></pre></div>
+<p>除了使用 <code>read.table()</code>，我们还可以使用内置的 <code>read.csv()</code> 函数完成 CSV 文件的读入。与 <code>read.table()</code> 不同的时，我们无需再指定分隔符，因为该函数本身就是为了 CSV 文件设计的。另外函数默认将 <code>header</code> 选项设定为 <code>TRUE</code>，即有列名，所以我们也无需指定它，因而读取操作就被简化了：</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1">cars2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/data-import/mtcars.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb177-2" data-line-number="2"><span class="kw">head</span>(cars2)</a>
+<a class="sourceLine" id="cb177-3" data-line-number="3"><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></a>
+<a class="sourceLine" id="cb177-4" data-line-number="4"><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></a>
+<a class="sourceLine" id="cb177-5" data-line-number="5"><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></a>
+<a class="sourceLine" id="cb177-6" data-line-number="6"><span class="co">#&gt; 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></a>
+<a class="sourceLine" id="cb177-7" data-line-number="7"><span class="co">#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></a>
+<a class="sourceLine" id="cb177-8" data-line-number="8"><span class="co">#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></a>
+<a class="sourceLine" id="cb177-9" data-line-number="9"><span class="co">#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></a></code></pre></div>
+<p>上述的读取操作基于 R 内置的函数实现，无需载入任何其他三方包就可以完成数据的读入，这在针对小型数据（集）或者计算机条件受限时（无法安装和使用三方包）非常有用。在这种常规以符号分隔的文件数据读取方面，我必须提及 2 个三方包：<strong>readr</strong> 和 <strong>data.table</strong>。它们都能以极快的速度读取大内存数据，推荐读者作为常规导入操作的解决方案。</p>
+<p><a href="https://github.com/tidyverse/"><strong>tidyverse</strong></a> 是 R 语言大神 <a href="https://github.com/hadley">Hadley</a>（以 <strong>ggplot2</strong> 作者闻名于世） 组织构建的一整套数据分析生态系统，包括读入、处理、建模与可视化等， <a href="https://github.com/tidyverse/readr"><strong>readr</strong></a> 包是 <strong>tidyverse</strong> 的一部分，用于完成数据的导入工作。</p>
+<p><a href="https://github.com/Rdatatable/data.table"><strong>data.table</strong></a> 包以 R 社区最快的数据读取和处理操作而著名，它主要是提供了一个增强版的数据框 <code>data.table</code>。</p>
+<p>根据 <strong>readr</strong> 包官方文档介绍，<strong>readr</strong> 包通常比 <strong>data.table</strong> 包慢大概 1.2~2 倍左右。不过它们各有特点，<strong>readr</strong> 包被设计用于更为常规的数据读取操作，而 <strong>data.table</strong> 的目标则是尽量的快。</p>
+<p>为了体现上述两个包和内置函数的差别，这里我们构造一个较大的 CSV 文件进行简单的测试：</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1">huge_car &lt;-<span class="st"> </span>cars[<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">32</span>, <span class="dv">10000</span>), ]</a></code></pre></div>
+<p>把这个数据先保存下来，然后再利用不同的工具进行导入。</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1">temp_csv &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb179-2" data-line-number="2">readr<span class="op">::</span><span class="kw">write_csv</span>(huge_car, <span class="dt">path =</span> temp_csv)</a></code></pre></div>
+<p>现在我们分别使用 <code>system.time()</code> 测试下 R 内置的 <code>read.csv()</code> 函数与 <strong>readr</strong> 提供的 <code>read_csv()</code> 以及 <strong>data.table</strong> 提供的 <code>fread()</code> 的读取效率。</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">time1 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
+<a class="sourceLine" id="cb180-2" data-line-number="2">  z1 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(temp_csv)</a>
+<a class="sourceLine" id="cb180-3" data-line-number="3">)</a>
+<a class="sourceLine" id="cb180-4" data-line-number="4">time1</a>
+<a class="sourceLine" id="cb180-5" data-line-number="5"><span class="co">#&gt;  用户  系统  流逝 </span></a>
+<a class="sourceLine" id="cb180-6" data-line-number="6"><span class="co">#&gt; 0.912 0.029 0.945</span></a></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb181-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb181-3" data-line-number="3">time2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
+<a class="sourceLine" id="cb181-4" data-line-number="4">  z2 &lt;-<span class="st">  </span><span class="kw">read_csv</span>(temp_csv)</a>
+<a class="sourceLine" id="cb181-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb181-6" data-line-number="6">time2</a>
+<a class="sourceLine" id="cb181-7" data-line-number="7"><span class="co">#&gt;  用户  系统  流逝 </span></a>
+<a class="sourceLine" id="cb181-8" data-line-number="8"><span class="co">#&gt; 0.295 0.010 0.306</span></a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb182-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb182-3" data-line-number="3">time3 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
+<a class="sourceLine" id="cb182-4" data-line-number="4">  z3 &lt;-<span class="st"> </span><span class="kw">fread</span>(temp_csv)</a>
+<a class="sourceLine" id="cb182-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb182-6" data-line-number="6">time3</a>
+<a class="sourceLine" id="cb182-7" data-line-number="7"><span class="co">#&gt;  用户  系统  流逝 </span></a>
+<a class="sourceLine" id="cb182-8" data-line-number="8"><span class="co">#&gt; 0.045 0.006 0.050</span></a></code></pre></div>
+<p>上面我们使用了 320000 行数据进行测试，在我的计算机上，内置的函数 <code>read.csv()</code> 总共花费了 0.945s，<strong>readr</strong> 的 <code>read_csv()</code> 花费了 0.306s，而 <strong>data.table</strong> 的 <code>fread()</code> 仅用了 0.05s 左右。</p>
 </div>
 <div id="tsv" class="section level3">
 <h3><span class="header-section-number">3.1.2</span> TSV</h3>
