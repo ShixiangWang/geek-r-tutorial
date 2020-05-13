@@ -100,17 +100,125 @@ time3 <- system.time(
 time3
 ```
 
-上面我们使用了 `r nrow(huge_car)` 行数据进行测试，在我的计算机上，内置的函数 `read.csv()` 总共花费了 `r time1[3]`s，**readr** 的 `read_csv()` 花费了 `r time2[3]`s，而 **data.table** 的 `fread()` 仅用了 `r time3[3]`s 左右。
+上面我们使用了 `r nrow(huge_car)` 行数据进行测试，在我的计算机上，内置的函数 `read.csv()` 总共花费了 `r time1[3]`s，**readr** 的 `read_csv()` 花费了 `r time2[3]`s，而 **data.table** 的 `fread()` 仅用了 `r time3[3]`s 左右。**好的、适合的工具可以帮助我们极大地提升工作效率**。
 
-### TSV
+如果我们进一步观察几种不同方式导入的数据格式，就会发现它们有些不太相同。
 
-TSV 文件除了以 `.tsv` 作为文件拓展名，也常用 `.txt` 作为文件拓展名（并不是所有的 `.txt` 文件都是以制表符分隔的喔）。
+```{r}
+z1
+z2
+z3
+```
 
-### 其他变体
+这个所谓的不同与结构中存储的数据信息无关，而是在不同的设计上。我们检查一下它们的类属性：
+
+```{r}
+class(z1)
+class(z2)
+class(z3)
+```
+
+不难看到这 3 个对象存在共有的类名 `data.frame`。我们使用内置函数读入数据仅包含该类名，而后两者还存在其他的类名，这是因为后两者继承了 `data.frame`。简单地说，后两者是增强版的 `data.frame`，它们赋予了不同于 R 内置数据框的特性，读者可以观察到的最明显的区别就是它们打印信息的方式不同。
+
+通常地说，我们将对象 `z2` 称为 `tibble`，因为它是由 [**tibble**](https://github.com/tidyverse/tibble) 包创建的类，是 **tidyverse** 系列包的数据结构基础，设计者称它为现代的 `data.frame`，在基础的使用方式上与 `data.frame` 并无不同，读者可以通过官方文档阅读更为详细的介绍。
+
+对象 `z3` 则常被称为 `data.table`，因为它的类名和包名都是 `data.table`.
+
+`tibble` 和 `data.table` 都有一系列强大高效的数据处理方法和操作，它们将在第 \@ref(clean) 章进行介绍。
+
+### TSV 与其他 CSV 变体
+
+另一种流行的数据存储格式是 TSV，与 CSV 唯一不同的是 TSV 使用制表符 `\t` 作为内容的分隔符。TSV 文件除了以 `.tsv` 作为文件拓展名，也常用 `.txt` 作为文件拓展名（并不是所有的 `.txt` 文件都是以制表符分隔）。
+
+通过将 `read.table()` 函数中的 `sep` 参数设定为制表符，我们可以轻松完成该格式文件内容的读取：
+
+```{r}
+mt <- read.table("data/data-import/mtcars.tsv", sep = "\t", header = TRUE)
+mt
+```
+
+而 **readr** 包提供了一系列的 `read_*()` 函数，方便用户将常见数据文件导入为 `tibble`：
+
+```{r}
+mt2 <- read_tsv("data/data-import/mtcars.tsv")
+mt2
+```
+
+使用 **data.table** 则更为轻松，因为所有分隔格式的数据都可以通过 `fread()` 读取完成：
+
+```{r}
+mt3 <- fread("data/data-import/mtcars.tsv")
+mt3
+```
+
+为什么 `fread()` 没有设置分隔符却可以导入 CSV 和 TSV 文件？其中的巧妙在于该函数的内部会自动检测数据文件内的分隔符号。
+
+通过查看该函数的参数，我们可以看到 `sep = "auto"`，这个参数我们可以人为指定，以适应不同的需求场景。
+
+```{r}
+args(fread)
+```
+
+上面展示出 `fread()` 存在众多的参数设置。R 的易用与友好在于此，众多 R 包提供的函数大多已经为用户恰当地设置好了默认选项，用户无需经常繁琐的操作即可快速获取所需的结果。
+
+在学习了如何导入 TSV 文件后，我们应该能地想到 CSV、TSV 本质上是一类数据格式文件。例如，我们也可以使用分号 `;`（西方不少国家的逗号分隔文件就是以分号分隔的文件）。我们统一以 CSV 作为代表，将其他类似格式文件称为 CSV 变体。
 
 ## Excel
 
-https://github.com/tidyverse/readxl
+**Excel** 是知名的微软 Office 套件之一，提供了日常的表格数据处理方案。尽管大多数数据分析人员不会产生和不想处理 Excel 文件，但由于它随着微软系统的流行而被广泛使用，因此读入 Excel 中的数据成为数据处理无法避免的日常工作任务之一。
+
+R 中有诸多拓展多可以导入 Excel 中的数据，其中最为推荐的就是本部分介绍的 [**readxl**](https://github.com/tidyverse/readxl) 包。
+
+使用该包，导入 Excel 中的数据可以像读入 CSV 文件一样简单。
+
+```{r}
+library(readxl)
+mt_excel <- read_excel("data/data-import/mtcars.xlsx")
+head(mt_excel)
+```
+
+`read_excel()` 同时支持 `.xls` 和 `xlsx` 两者文件格式。
+
+Excel 文件支持多个表格（Sheet），这种情况下默认第 1 个 Sheet 的内容会被读入。通过简单的设置，读者也可以轻松导入任意 Sheet 的内容。
+
+下面通过 **readxl** 包的官方示例展示这一过程。
+
+我们先查看下该包提供的示例数据：
+
+```{r}
+readxl_example()
+```
+
+选一个文件并查看其所在的路径：
+
+```{r}
+readxl_example("datasets.xlsx")
+# 将路径保存备用
+excel_path <- readxl_example("datasets.xlsx")
+```
+
+如果将路径传入 `excel_sheets()` 函数，读者可以获取文件中存在的 Sheets。
+
+```{r}
+excel_sheets(excel_path)
+```
+
+然后依旧是使用 `read_excel()` 函数，设定想要读入的 Sheet 名字即可。
+
+```{r}
+iris <- read_excel(excel_path, sheet = "iris")
+head(iris)
+```
+
+关于函数的更多用法读者可以通过 `?read_excel()` 查看。
+
+有时候人们会在同一个 Excel Sheet 中放置多个表格信息，这种情况无法通过简单地使用 **readxl** 包读入数据。只要数据是有规律的，读者可以尝试下通过 [**tidycells**](https://github.com/r-rudra/tidycells) 包导入数据。
+
+```{r, echo=FALSE, fig.cap="tidycells 包示例数据格式", fig.align="center"}
+knitr::include_graphics("https://github.com/r-rudra/tidycells/raw/master/vignettes/ext/marks.png")
+```
+
+具体的使用请读者参照 [README](https://github.com/r-rudra/tidycells/blob/master/README.md) 进行学习。
 
 ## JSON
 

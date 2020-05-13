@@ -185,8 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> 数据导入</a><ul>
 <li class="chapter" data-level="3.1" data-path="import.html"><a href="import.html#符号分隔文件"><i class="fa fa-check"></i><b>3.1</b> 符号分隔文件</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="import.html"><a href="import.html#csv"><i class="fa fa-check"></i><b>3.1.1</b> CSV</a></li>
-<li class="chapter" data-level="3.1.2" data-path="import.html"><a href="import.html#tsv"><i class="fa fa-check"></i><b>3.1.2</b> TSV</a></li>
-<li class="chapter" data-level="3.1.3" data-path="import.html"><a href="import.html#其他变体"><i class="fa fa-check"></i><b>3.1.3</b> 其他变体</a></li>
+<li class="chapter" data-level="3.1.2" data-path="import.html"><a href="import.html#tsv-与其他-csv-变体"><i class="fa fa-check"></i><b>3.1.2</b> TSV 与其他 CSV 变体</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="import.html"><a href="import.html#excel"><i class="fa fa-check"></i><b>3.2</b> Excel</a></li>
 <li class="chapter" data-level="3.3" data-path="import.html"><a href="import.html#json"><i class="fa fa-check"></i><b>3.3</b> JSON</a></li>
@@ -319,7 +318,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb180-3" data-line-number="3">)</a>
 <a class="sourceLine" id="cb180-4" data-line-number="4">time1</a>
 <a class="sourceLine" id="cb180-5" data-line-number="5"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb180-6" data-line-number="6"><span class="co">#&gt; 0.912 0.029 0.945</span></a></code></pre></div>
+<a class="sourceLine" id="cb180-6" data-line-number="6"><span class="co">#&gt; 1.008 0.048 1.176</span></a></code></pre></div>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
 <a class="sourceLine" id="cb181-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb181-3" data-line-number="3">time2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
@@ -327,7 +326,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb181-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb181-6" data-line-number="6">time2</a>
 <a class="sourceLine" id="cb181-7" data-line-number="7"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb181-8" data-line-number="8"><span class="co">#&gt; 0.295 0.010 0.306</span></a></code></pre></div>
+<a class="sourceLine" id="cb181-8" data-line-number="8"><span class="co">#&gt; 0.306 0.012 0.326</span></a></code></pre></div>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
 <a class="sourceLine" id="cb182-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb182-3" data-line-number="3">time3 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
@@ -335,20 +334,361 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb182-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb182-6" data-line-number="6">time3</a>
 <a class="sourceLine" id="cb182-7" data-line-number="7"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb182-8" data-line-number="8"><span class="co">#&gt; 0.045 0.006 0.050</span></a></code></pre></div>
-<p>上面我们使用了 320000 行数据进行测试，在我的计算机上，内置的函数 <code>read.csv()</code> 总共花费了 0.945s，<strong>readr</strong> 的 <code>read_csv()</code> 花费了 0.306s，而 <strong>data.table</strong> 的 <code>fread()</code> 仅用了 0.05s 左右。</p>
+<a class="sourceLine" id="cb182-8" data-line-number="8"><span class="co">#&gt; 0.047 0.007 0.054</span></a></code></pre></div>
+<p>上面我们使用了 320000 行数据进行测试，在我的计算机上，内置的函数 <code>read.csv()</code> 总共花费了 1.176s，<strong>readr</strong> 的 <code>read_csv()</code> 花费了 0.326s，而 <strong>data.table</strong> 的 <code>fread()</code> 仅用了 0.054s 左右。<strong>好的、适合的工具可以帮助我们极大地提升工作效率</strong>。</p>
+<p>如果我们进一步观察几种不同方式导入的数据格式，就会发现它们有些不太相同。</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">z1</a>
+<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></a>
+<a class="sourceLine" id="cb183-3" data-line-number="3"><span class="co">#&gt; 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></a>
+<a class="sourceLine" id="cb183-4" data-line-number="4"><span class="co">#&gt; 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></a>
+<a class="sourceLine" id="cb183-5" data-line-number="5"><span class="co">#&gt; 3  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-6" data-line-number="6"><span class="co">#&gt; 4  21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span></a>
+<a class="sourceLine" id="cb183-7" data-line-number="7"><span class="co">#&gt; 5  18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-8" data-line-number="8"><span class="co">#&gt; 6  18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span></a>
+<a class="sourceLine" id="cb183-9" data-line-number="9"><span class="co">#&gt; 7  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-10" data-line-number="10"><span class="co">#&gt; 8  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span></a>
+<a class="sourceLine" id="cb183-11" data-line-number="11"><span class="co">#&gt; 9  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span></a>
+<a class="sourceLine" id="cb183-12" data-line-number="12"><span class="co">#&gt; 10 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span></a>
+<a class="sourceLine" id="cb183-13" data-line-number="13"><span class="co">#&gt; 11 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span></a>
+<a class="sourceLine" id="cb183-14" data-line-number="14"><span class="co">#&gt; 12 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span></a>
+<a class="sourceLine" id="cb183-15" data-line-number="15"><span class="co">#&gt; 13 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span></a>
+<a class="sourceLine" id="cb183-16" data-line-number="16"><span class="co">#&gt; 14 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span></a>
+<a class="sourceLine" id="cb183-17" data-line-number="17"><span class="co">#&gt; 15 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-18" data-line-number="18"><span class="co">#&gt; 16 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-19" data-line-number="19"><span class="co">#&gt; 17 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-20" data-line-number="20"><span class="co">#&gt; 18 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-21" data-line-number="21"><span class="co">#&gt; 19 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span></a>
+<a class="sourceLine" id="cb183-22" data-line-number="22"><span class="co">#&gt; 20 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-23" data-line-number="23"><span class="co">#&gt; 21 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span></a>
+<a class="sourceLine" id="cb183-24" data-line-number="24"><span class="co">#&gt; 22 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-25" data-line-number="25"><span class="co">#&gt; 23 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-26" data-line-number="26"><span class="co">#&gt; 24 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-27" data-line-number="27"><span class="co">#&gt; 25 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-28" data-line-number="28"><span class="co">#&gt; 26 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-29" data-line-number="29"><span class="co">#&gt; 27 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</span></a>
+<a class="sourceLine" id="cb183-30" data-line-number="30"><span class="co">#&gt; 28 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</span></a>
+<a class="sourceLine" id="cb183-31" data-line-number="31"><span class="co">#&gt; 29 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</span></a>
+<a class="sourceLine" id="cb183-32" data-line-number="32"><span class="co">#&gt; 30 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span></a>
+<a class="sourceLine" id="cb183-33" data-line-number="33"><span class="co">#&gt; 31 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span></a>
+<a class="sourceLine" id="cb183-34" data-line-number="34"><span class="co">#&gt; 32 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span></a>
+<a class="sourceLine" id="cb183-35" data-line-number="35"><span class="co">#&gt; 33 21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></a>
+<a class="sourceLine" id="cb183-36" data-line-number="36"><span class="co">#&gt; 34 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></a>
+<a class="sourceLine" id="cb183-37" data-line-number="37"><span class="co">#&gt; 35 22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-38" data-line-number="38"><span class="co">#&gt; 36 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span></a>
+<a class="sourceLine" id="cb183-39" data-line-number="39"><span class="co">#&gt; 37 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-40" data-line-number="40"><span class="co">#&gt; 38 18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span></a>
+<a class="sourceLine" id="cb183-41" data-line-number="41"><span class="co">#&gt; 39 14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-42" data-line-number="42"><span class="co">#&gt; 40 24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span></a>
+<a class="sourceLine" id="cb183-43" data-line-number="43"><span class="co">#&gt; 41 22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span></a>
+<a class="sourceLine" id="cb183-44" data-line-number="44"><span class="co">#&gt; 42 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span></a>
+<a class="sourceLine" id="cb183-45" data-line-number="45"><span class="co">#&gt; 43 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span></a>
+<a class="sourceLine" id="cb183-46" data-line-number="46"><span class="co">#&gt; 44 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span></a>
+<a class="sourceLine" id="cb183-47" data-line-number="47"><span class="co">#&gt; 45 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span></a>
+<a class="sourceLine" id="cb183-48" data-line-number="48"><span class="co">#&gt; 46 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span></a>
+<a class="sourceLine" id="cb183-49" data-line-number="49"><span class="co">#&gt; 47 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-50" data-line-number="50"><span class="co">#&gt; 48 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-51" data-line-number="51"><span class="co">#&gt; 49 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-52" data-line-number="52"><span class="co">#&gt; 50 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-53" data-line-number="53"><span class="co">#&gt; 51 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span></a>
+<a class="sourceLine" id="cb183-54" data-line-number="54"><span class="co">#&gt; 52 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-55" data-line-number="55"><span class="co">#&gt; 53 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span></a>
+<a class="sourceLine" id="cb183-56" data-line-number="56"><span class="co">#&gt; 54 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-57" data-line-number="57"><span class="co">#&gt; 55 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-58" data-line-number="58"><span class="co">#&gt; 56 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-59" data-line-number="59"><span class="co">#&gt; 57 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-60" data-line-number="60"><span class="co">#&gt; 58 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-61" data-line-number="61"><span class="co">#&gt; 59 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</span></a>
+<a class="sourceLine" id="cb183-62" data-line-number="62"><span class="co">#&gt; 60 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</span></a>
+<a class="sourceLine" id="cb183-63" data-line-number="63"><span class="co">#&gt; 61 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</span></a>
+<a class="sourceLine" id="cb183-64" data-line-number="64"><span class="co">#&gt; 62 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span></a>
+<a class="sourceLine" id="cb183-65" data-line-number="65"><span class="co">#&gt; 63 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span></a>
+<a class="sourceLine" id="cb183-66" data-line-number="66"><span class="co">#&gt; 64 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span></a>
+<a class="sourceLine" id="cb183-67" data-line-number="67"><span class="co">#&gt; 65 21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></a>
+<a class="sourceLine" id="cb183-68" data-line-number="68"><span class="co">#&gt; 66 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></a>
+<a class="sourceLine" id="cb183-69" data-line-number="69"><span class="co">#&gt; 67 22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-70" data-line-number="70"><span class="co">#&gt; 68 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span></a>
+<a class="sourceLine" id="cb183-71" data-line-number="71"><span class="co">#&gt; 69 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-72" data-line-number="72"><span class="co">#&gt; 70 18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span></a>
+<a class="sourceLine" id="cb183-73" data-line-number="73"><span class="co">#&gt; 71 14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-74" data-line-number="74"><span class="co">#&gt; 72 24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span></a>
+<a class="sourceLine" id="cb183-75" data-line-number="75"><span class="co">#&gt; 73 22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span></a>
+<a class="sourceLine" id="cb183-76" data-line-number="76"><span class="co">#&gt; 74 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span></a>
+<a class="sourceLine" id="cb183-77" data-line-number="77"><span class="co">#&gt; 75 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span></a>
+<a class="sourceLine" id="cb183-78" data-line-number="78"><span class="co">#&gt; 76 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span></a>
+<a class="sourceLine" id="cb183-79" data-line-number="79"><span class="co">#&gt; 77 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span></a>
+<a class="sourceLine" id="cb183-80" data-line-number="80"><span class="co">#&gt; 78 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span></a>
+<a class="sourceLine" id="cb183-81" data-line-number="81"><span class="co">#&gt; 79 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-82" data-line-number="82"><span class="co">#&gt; 80 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-83" data-line-number="83"><span class="co">#&gt; 81 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-84" data-line-number="84"><span class="co">#&gt; 82 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-85" data-line-number="85"><span class="co">#&gt; 83 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span></a>
+<a class="sourceLine" id="cb183-86" data-line-number="86"><span class="co">#&gt; 84 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-87" data-line-number="87"><span class="co">#&gt; 85 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span></a>
+<a class="sourceLine" id="cb183-88" data-line-number="88"><span class="co">#&gt; 86 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-89" data-line-number="89"><span class="co">#&gt; 87 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-90" data-line-number="90"><span class="co">#&gt; 88 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span></a>
+<a class="sourceLine" id="cb183-91" data-line-number="91"><span class="co">#&gt; 89 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span></a>
+<a class="sourceLine" id="cb183-92" data-line-number="92"><span class="co">#&gt; 90 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span></a>
+<a class="sourceLine" id="cb183-93" data-line-number="93"><span class="co">#&gt;  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 319910 rows ]</span></a>
+<a class="sourceLine" id="cb183-94" data-line-number="94">z2</a>
+<a class="sourceLine" id="cb183-95" data-line-number="95"><span class="co">#&gt; # A tibble: 320,000 x 11</span></a>
+<a class="sourceLine" id="cb183-96" data-line-number="96"><span class="co">#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs</span></a>
+<a class="sourceLine" id="cb183-97" data-line-number="97"><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb183-98" data-line-number="98"><span class="co">#&gt;  1  21       6  160    110  3.9   2.62  16.5     0</span></a>
+<a class="sourceLine" id="cb183-99" data-line-number="99"><span class="co">#&gt;  2  21       6  160    110  3.9   2.88  17.0     0</span></a>
+<a class="sourceLine" id="cb183-100" data-line-number="100"><span class="co">#&gt;  3  22.8     4  108     93  3.85  2.32  18.6     1</span></a>
+<a class="sourceLine" id="cb183-101" data-line-number="101"><span class="co">#&gt;  4  21.4     6  258    110  3.08  3.22  19.4     1</span></a>
+<a class="sourceLine" id="cb183-102" data-line-number="102"><span class="co">#&gt;  5  18.7     8  360    175  3.15  3.44  17.0     0</span></a>
+<a class="sourceLine" id="cb183-103" data-line-number="103"><span class="co">#&gt;  6  18.1     6  225    105  2.76  3.46  20.2     1</span></a>
+<a class="sourceLine" id="cb183-104" data-line-number="104"><span class="co">#&gt;  7  14.3     8  360    245  3.21  3.57  15.8     0</span></a>
+<a class="sourceLine" id="cb183-105" data-line-number="105"><span class="co">#&gt;  8  24.4     4  147.    62  3.69  3.19  20       1</span></a>
+<a class="sourceLine" id="cb183-106" data-line-number="106"><span class="co">#&gt;  9  22.8     4  141.    95  3.92  3.15  22.9     1</span></a>
+<a class="sourceLine" id="cb183-107" data-line-number="107"><span class="co">#&gt; 10  19.2     6  168.   123  3.92  3.44  18.3     1</span></a>
+<a class="sourceLine" id="cb183-108" data-line-number="108"><span class="co">#&gt; # … with 319,990 more rows, and 3 more variables:</span></a>
+<a class="sourceLine" id="cb183-109" data-line-number="109"><span class="co">#&gt; #   am &lt;dbl&gt;, gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb183-110" data-line-number="110">z3</a>
+<a class="sourceLine" id="cb183-111" data-line-number="111"><span class="co">#&gt;          mpg cyl  disp  hp drat    wt  qsec vs am gear</span></a>
+<a class="sourceLine" id="cb183-112" data-line-number="112"><span class="co">#&gt;      1: 21.0   6 160.0 110 3.90 2.620 16.46  0  1    4</span></a>
+<a class="sourceLine" id="cb183-113" data-line-number="113"><span class="co">#&gt;      2: 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4</span></a>
+<a class="sourceLine" id="cb183-114" data-line-number="114"><span class="co">#&gt;      3: 22.8   4 108.0  93 3.85 2.320 18.61  1  1    4</span></a>
+<a class="sourceLine" id="cb183-115" data-line-number="115"><span class="co">#&gt;      4: 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3</span></a>
+<a class="sourceLine" id="cb183-116" data-line-number="116"><span class="co">#&gt;      5: 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3</span></a>
+<a class="sourceLine" id="cb183-117" data-line-number="117"><span class="co">#&gt;     ---                                               </span></a>
+<a class="sourceLine" id="cb183-118" data-line-number="118"><span class="co">#&gt; 319996: 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5</span></a>
+<a class="sourceLine" id="cb183-119" data-line-number="119"><span class="co">#&gt; 319997: 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5</span></a>
+<a class="sourceLine" id="cb183-120" data-line-number="120"><span class="co">#&gt; 319998: 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5</span></a>
+<a class="sourceLine" id="cb183-121" data-line-number="121"><span class="co">#&gt; 319999: 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5</span></a>
+<a class="sourceLine" id="cb183-122" data-line-number="122"><span class="co">#&gt; 320000: 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4</span></a>
+<a class="sourceLine" id="cb183-123" data-line-number="123"><span class="co">#&gt;         carb</span></a>
+<a class="sourceLine" id="cb183-124" data-line-number="124"><span class="co">#&gt;      1:    4</span></a>
+<a class="sourceLine" id="cb183-125" data-line-number="125"><span class="co">#&gt;      2:    4</span></a>
+<a class="sourceLine" id="cb183-126" data-line-number="126"><span class="co">#&gt;      3:    1</span></a>
+<a class="sourceLine" id="cb183-127" data-line-number="127"><span class="co">#&gt;      4:    1</span></a>
+<a class="sourceLine" id="cb183-128" data-line-number="128"><span class="co">#&gt;      5:    2</span></a>
+<a class="sourceLine" id="cb183-129" data-line-number="129"><span class="co">#&gt;     ---     </span></a>
+<a class="sourceLine" id="cb183-130" data-line-number="130"><span class="co">#&gt; 319996:    2</span></a>
+<a class="sourceLine" id="cb183-131" data-line-number="131"><span class="co">#&gt; 319997:    4</span></a>
+<a class="sourceLine" id="cb183-132" data-line-number="132"><span class="co">#&gt; 319998:    6</span></a>
+<a class="sourceLine" id="cb183-133" data-line-number="133"><span class="co">#&gt; 319999:    8</span></a>
+<a class="sourceLine" id="cb183-134" data-line-number="134"><span class="co">#&gt; 320000:    2</span></a></code></pre></div>
+<p>这个所谓的不同与结构中存储的数据信息无关，而是在不同的设计上。我们检查一下它们的类属性：</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">class</span>(z1)</a>
+<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="co">#&gt; [1] &quot;data.frame&quot;</span></a>
+<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="kw">class</span>(z2)</a>
+<a class="sourceLine" id="cb184-4" data-line-number="4"><span class="co">#&gt; [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;        </span></a>
+<a class="sourceLine" id="cb184-5" data-line-number="5"><span class="co">#&gt; [4] &quot;data.frame&quot;</span></a>
+<a class="sourceLine" id="cb184-6" data-line-number="6"><span class="kw">class</span>(z3)</a>
+<a class="sourceLine" id="cb184-7" data-line-number="7"><span class="co">#&gt; [1] &quot;data.table&quot; &quot;data.frame&quot;</span></a></code></pre></div>
+<p>不难看到这 3 个对象存在共有的类名 <code>data.frame</code>。我们使用内置函数读入数据仅包含该类名，而后两者还存在其他的类名，这是因为后两者继承了 <code>data.frame</code>。简单地说，后两者是增强版的 <code>data.frame</code>，它们赋予了不同于 R 内置数据框的特性，读者可以观察到的最明显的区别就是它们打印信息的方式不同。</p>
+<p>通常地说，我们将对象 <code>z2</code> 称为 <code>tibble</code>，因为它是由 <a href="https://github.com/tidyverse/tibble"><strong>tibble</strong></a> 包创建的类，是 <strong>tidyverse</strong> 系列包的数据结构基础，设计者称它为现代的 <code>data.frame</code>，在基础的使用方式上与 <code>data.frame</code> 并无不同，读者可以通过官方文档阅读更为详细的介绍。</p>
+<p>对象 <code>z3</code> 则常被称为 <code>data.table</code>，因为它的类名和包名都是 <code>data.table</code>.</p>
+<p><code>tibble</code> 和 <code>data.table</code> 都有一系列强大高效的数据处理方法和操作，它们将在第 <a href="clean.html#clean">4</a> 章进行介绍。</p>
 </div>
-<div id="tsv" class="section level3">
-<h3><span class="header-section-number">3.1.2</span> TSV</h3>
-<p>TSV 文件除了以 <code>.tsv</code> 作为文件拓展名，也常用 <code>.txt</code> 作为文件拓展名（并不是所有的 <code>.txt</code> 文件都是以制表符分隔的喔）。</p>
-</div>
-<div id="其他变体" class="section level3">
-<h3><span class="header-section-number">3.1.3</span> 其他变体</h3>
+<div id="tsv-与其他-csv-变体" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> TSV 与其他 CSV 变体</h3>
+<p>另一种流行的数据存储格式是 TSV，与 CSV 唯一不同的是 TSV 使用制表符 <code>\t</code> 作为内容的分隔符。TSV 文件除了以 <code>.tsv</code> 作为文件拓展名，也常用 <code>.txt</code> 作为文件拓展名（并不是所有的 <code>.txt</code> 文件都是以制表符分隔）。</p>
+<p>通过将 <code>read.table()</code> 函数中的 <code>sep</code> 参数设定为制表符，我们可以轻松完成该格式文件内容的读取：</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">mt &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/data-import/mtcars.tsv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb185-2" data-line-number="2">mt</a>
+<a class="sourceLine" id="cb185-3" data-line-number="3"><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></a>
+<a class="sourceLine" id="cb185-4" data-line-number="4"><span class="co">#&gt; 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></a>
+<a class="sourceLine" id="cb185-5" data-line-number="5"><span class="co">#&gt; 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></a>
+<a class="sourceLine" id="cb185-6" data-line-number="6"><span class="co">#&gt; 3  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span></a>
+<a class="sourceLine" id="cb185-7" data-line-number="7"><span class="co">#&gt; 4  21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span></a>
+<a class="sourceLine" id="cb185-8" data-line-number="8"><span class="co">#&gt; 5  18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span></a>
+<a class="sourceLine" id="cb185-9" data-line-number="9"><span class="co">#&gt; 6  18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span></a>
+<a class="sourceLine" id="cb185-10" data-line-number="10"><span class="co">#&gt; 7  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span></a>
+<a class="sourceLine" id="cb185-11" data-line-number="11"><span class="co">#&gt; 8  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span></a>
+<a class="sourceLine" id="cb185-12" data-line-number="12"><span class="co">#&gt; 9  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span></a>
+<a class="sourceLine" id="cb185-13" data-line-number="13"><span class="co">#&gt; 10 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span></a>
+<a class="sourceLine" id="cb185-14" data-line-number="14"><span class="co">#&gt; 11 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span></a>
+<a class="sourceLine" id="cb185-15" data-line-number="15"><span class="co">#&gt; 12 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span></a>
+<a class="sourceLine" id="cb185-16" data-line-number="16"><span class="co">#&gt; 13 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span></a>
+<a class="sourceLine" id="cb185-17" data-line-number="17"><span class="co">#&gt; 14 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span></a>
+<a class="sourceLine" id="cb185-18" data-line-number="18"><span class="co">#&gt; 15 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span></a>
+<a class="sourceLine" id="cb185-19" data-line-number="19"><span class="co">#&gt; 16 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span></a>
+<a class="sourceLine" id="cb185-20" data-line-number="20"><span class="co">#&gt; 17 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span></a>
+<a class="sourceLine" id="cb185-21" data-line-number="21"><span class="co">#&gt; 18 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span></a>
+<a class="sourceLine" id="cb185-22" data-line-number="22"><span class="co">#&gt; 19 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span></a>
+<a class="sourceLine" id="cb185-23" data-line-number="23"><span class="co">#&gt; 20 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span></a>
+<a class="sourceLine" id="cb185-24" data-line-number="24"><span class="co">#&gt; 21 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span></a>
+<a class="sourceLine" id="cb185-25" data-line-number="25"><span class="co">#&gt; 22 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span></a>
+<a class="sourceLine" id="cb185-26" data-line-number="26"><span class="co">#&gt; 23 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span></a>
+<a class="sourceLine" id="cb185-27" data-line-number="27"><span class="co">#&gt; 24 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span></a>
+<a class="sourceLine" id="cb185-28" data-line-number="28"><span class="co">#&gt; 25 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span></a>
+<a class="sourceLine" id="cb185-29" data-line-number="29"><span class="co">#&gt; 26 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span></a>
+<a class="sourceLine" id="cb185-30" data-line-number="30"><span class="co">#&gt; 27 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</span></a>
+<a class="sourceLine" id="cb185-31" data-line-number="31"><span class="co">#&gt; 28 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</span></a>
+<a class="sourceLine" id="cb185-32" data-line-number="32"><span class="co">#&gt; 29 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</span></a>
+<a class="sourceLine" id="cb185-33" data-line-number="33"><span class="co">#&gt; 30 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span></a>
+<a class="sourceLine" id="cb185-34" data-line-number="34"><span class="co">#&gt; 31 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span></a>
+<a class="sourceLine" id="cb185-35" data-line-number="35"><span class="co">#&gt; 32 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span></a></code></pre></div>
+<p>而 <strong>readr</strong> 包提供了一系列的 <code>read_*()</code> 函数，方便用户将常见数据文件导入为 <code>tibble</code>：</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">mt2 &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;data/data-import/mtcars.tsv&quot;</span>)</a>
+<a class="sourceLine" id="cb186-2" data-line-number="2">mt2</a>
+<a class="sourceLine" id="cb186-3" data-line-number="3"><span class="co">#&gt; # A tibble: 32 x 11</span></a>
+<a class="sourceLine" id="cb186-4" data-line-number="4"><span class="co">#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs</span></a>
+<a class="sourceLine" id="cb186-5" data-line-number="5"><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb186-6" data-line-number="6"><span class="co">#&gt;  1  21       6  160    110  3.9   2.62  16.5     0</span></a>
+<a class="sourceLine" id="cb186-7" data-line-number="7"><span class="co">#&gt;  2  21       6  160    110  3.9   2.88  17.0     0</span></a>
+<a class="sourceLine" id="cb186-8" data-line-number="8"><span class="co">#&gt;  3  22.8     4  108     93  3.85  2.32  18.6     1</span></a>
+<a class="sourceLine" id="cb186-9" data-line-number="9"><span class="co">#&gt;  4  21.4     6  258    110  3.08  3.22  19.4     1</span></a>
+<a class="sourceLine" id="cb186-10" data-line-number="10"><span class="co">#&gt;  5  18.7     8  360    175  3.15  3.44  17.0     0</span></a>
+<a class="sourceLine" id="cb186-11" data-line-number="11"><span class="co">#&gt;  6  18.1     6  225    105  2.76  3.46  20.2     1</span></a>
+<a class="sourceLine" id="cb186-12" data-line-number="12"><span class="co">#&gt;  7  14.3     8  360    245  3.21  3.57  15.8     0</span></a>
+<a class="sourceLine" id="cb186-13" data-line-number="13"><span class="co">#&gt;  8  24.4     4  147.    62  3.69  3.19  20       1</span></a>
+<a class="sourceLine" id="cb186-14" data-line-number="14"><span class="co">#&gt;  9  22.8     4  141.    95  3.92  3.15  22.9     1</span></a>
+<a class="sourceLine" id="cb186-15" data-line-number="15"><span class="co">#&gt; 10  19.2     6  168.   123  3.92  3.44  18.3     1</span></a>
+<a class="sourceLine" id="cb186-16" data-line-number="16"><span class="co">#&gt; # … with 22 more rows, and 3 more variables:</span></a>
+<a class="sourceLine" id="cb186-17" data-line-number="17"><span class="co">#&gt; #   am &lt;dbl&gt;, gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></a></code></pre></div>
+<p>使用 <strong>data.table</strong> 则更为轻松，因为所有分隔格式的数据都可以通过 <code>fread()</code> 读取完成：</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">mt3 &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;data/data-import/mtcars.tsv&quot;</span>)</a>
+<a class="sourceLine" id="cb187-2" data-line-number="2">mt3</a>
+<a class="sourceLine" id="cb187-3" data-line-number="3"><span class="co">#&gt;      mpg cyl  disp  hp drat    wt  qsec vs am gear</span></a>
+<a class="sourceLine" id="cb187-4" data-line-number="4"><span class="co">#&gt;  1: 21.0   6 160.0 110 3.90 2.620 16.46  0  1    4</span></a>
+<a class="sourceLine" id="cb187-5" data-line-number="5"><span class="co">#&gt;  2: 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4</span></a>
+<a class="sourceLine" id="cb187-6" data-line-number="6"><span class="co">#&gt;  3: 22.8   4 108.0  93 3.85 2.320 18.61  1  1    4</span></a>
+<a class="sourceLine" id="cb187-7" data-line-number="7"><span class="co">#&gt;  4: 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3</span></a>
+<a class="sourceLine" id="cb187-8" data-line-number="8"><span class="co">#&gt;  5: 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3</span></a>
+<a class="sourceLine" id="cb187-9" data-line-number="9"><span class="co">#&gt;  6: 18.1   6 225.0 105 2.76 3.460 20.22  1  0    3</span></a>
+<a class="sourceLine" id="cb187-10" data-line-number="10"><span class="co">#&gt;  7: 14.3   8 360.0 245 3.21 3.570 15.84  0  0    3</span></a>
+<a class="sourceLine" id="cb187-11" data-line-number="11"><span class="co">#&gt;  8: 24.4   4 146.7  62 3.69 3.190 20.00  1  0    4</span></a>
+<a class="sourceLine" id="cb187-12" data-line-number="12"><span class="co">#&gt;  9: 22.8   4 140.8  95 3.92 3.150 22.90  1  0    4</span></a>
+<a class="sourceLine" id="cb187-13" data-line-number="13"><span class="co">#&gt; 10: 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4</span></a>
+<a class="sourceLine" id="cb187-14" data-line-number="14"><span class="co">#&gt; 11: 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4</span></a>
+<a class="sourceLine" id="cb187-15" data-line-number="15"><span class="co">#&gt; 12: 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3</span></a>
+<a class="sourceLine" id="cb187-16" data-line-number="16"><span class="co">#&gt; 13: 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3</span></a>
+<a class="sourceLine" id="cb187-17" data-line-number="17"><span class="co">#&gt; 14: 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3</span></a>
+<a class="sourceLine" id="cb187-18" data-line-number="18"><span class="co">#&gt; 15: 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3</span></a>
+<a class="sourceLine" id="cb187-19" data-line-number="19"><span class="co">#&gt; 16: 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3</span></a>
+<a class="sourceLine" id="cb187-20" data-line-number="20"><span class="co">#&gt; 17: 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3</span></a>
+<a class="sourceLine" id="cb187-21" data-line-number="21"><span class="co">#&gt; 18: 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4</span></a>
+<a class="sourceLine" id="cb187-22" data-line-number="22"><span class="co">#&gt; 19: 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4</span></a>
+<a class="sourceLine" id="cb187-23" data-line-number="23"><span class="co">#&gt; 20: 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4</span></a>
+<a class="sourceLine" id="cb187-24" data-line-number="24"><span class="co">#&gt; 21: 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3</span></a>
+<a class="sourceLine" id="cb187-25" data-line-number="25"><span class="co">#&gt; 22: 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3</span></a>
+<a class="sourceLine" id="cb187-26" data-line-number="26"><span class="co">#&gt; 23: 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3</span></a>
+<a class="sourceLine" id="cb187-27" data-line-number="27"><span class="co">#&gt; 24: 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3</span></a>
+<a class="sourceLine" id="cb187-28" data-line-number="28"><span class="co">#&gt; 25: 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3</span></a>
+<a class="sourceLine" id="cb187-29" data-line-number="29"><span class="co">#&gt; 26: 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4</span></a>
+<a class="sourceLine" id="cb187-30" data-line-number="30"><span class="co">#&gt; 27: 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5</span></a>
+<a class="sourceLine" id="cb187-31" data-line-number="31"><span class="co">#&gt; 28: 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5</span></a>
+<a class="sourceLine" id="cb187-32" data-line-number="32"><span class="co">#&gt; 29: 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5</span></a>
+<a class="sourceLine" id="cb187-33" data-line-number="33"><span class="co">#&gt; 30: 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5</span></a>
+<a class="sourceLine" id="cb187-34" data-line-number="34"><span class="co">#&gt; 31: 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5</span></a>
+<a class="sourceLine" id="cb187-35" data-line-number="35"><span class="co">#&gt; 32: 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4</span></a>
+<a class="sourceLine" id="cb187-36" data-line-number="36"><span class="co">#&gt;      mpg cyl  disp  hp drat    wt  qsec vs am gear</span></a>
+<a class="sourceLine" id="cb187-37" data-line-number="37"><span class="co">#&gt;     carb</span></a>
+<a class="sourceLine" id="cb187-38" data-line-number="38"><span class="co">#&gt;  1:    4</span></a>
+<a class="sourceLine" id="cb187-39" data-line-number="39"><span class="co">#&gt;  2:    4</span></a>
+<a class="sourceLine" id="cb187-40" data-line-number="40"><span class="co">#&gt;  3:    1</span></a>
+<a class="sourceLine" id="cb187-41" data-line-number="41"><span class="co">#&gt;  4:    1</span></a>
+<a class="sourceLine" id="cb187-42" data-line-number="42"><span class="co">#&gt;  5:    2</span></a>
+<a class="sourceLine" id="cb187-43" data-line-number="43"><span class="co">#&gt;  6:    1</span></a>
+<a class="sourceLine" id="cb187-44" data-line-number="44"><span class="co">#&gt;  7:    4</span></a>
+<a class="sourceLine" id="cb187-45" data-line-number="45"><span class="co">#&gt;  8:    2</span></a>
+<a class="sourceLine" id="cb187-46" data-line-number="46"><span class="co">#&gt;  9:    2</span></a>
+<a class="sourceLine" id="cb187-47" data-line-number="47"><span class="co">#&gt; 10:    4</span></a>
+<a class="sourceLine" id="cb187-48" data-line-number="48"><span class="co">#&gt; 11:    4</span></a>
+<a class="sourceLine" id="cb187-49" data-line-number="49"><span class="co">#&gt; 12:    3</span></a>
+<a class="sourceLine" id="cb187-50" data-line-number="50"><span class="co">#&gt; 13:    3</span></a>
+<a class="sourceLine" id="cb187-51" data-line-number="51"><span class="co">#&gt; 14:    3</span></a>
+<a class="sourceLine" id="cb187-52" data-line-number="52"><span class="co">#&gt; 15:    4</span></a>
+<a class="sourceLine" id="cb187-53" data-line-number="53"><span class="co">#&gt; 16:    4</span></a>
+<a class="sourceLine" id="cb187-54" data-line-number="54"><span class="co">#&gt; 17:    4</span></a>
+<a class="sourceLine" id="cb187-55" data-line-number="55"><span class="co">#&gt; 18:    1</span></a>
+<a class="sourceLine" id="cb187-56" data-line-number="56"><span class="co">#&gt; 19:    2</span></a>
+<a class="sourceLine" id="cb187-57" data-line-number="57"><span class="co">#&gt; 20:    1</span></a>
+<a class="sourceLine" id="cb187-58" data-line-number="58"><span class="co">#&gt; 21:    1</span></a>
+<a class="sourceLine" id="cb187-59" data-line-number="59"><span class="co">#&gt; 22:    2</span></a>
+<a class="sourceLine" id="cb187-60" data-line-number="60"><span class="co">#&gt; 23:    2</span></a>
+<a class="sourceLine" id="cb187-61" data-line-number="61"><span class="co">#&gt; 24:    4</span></a>
+<a class="sourceLine" id="cb187-62" data-line-number="62"><span class="co">#&gt; 25:    2</span></a>
+<a class="sourceLine" id="cb187-63" data-line-number="63"><span class="co">#&gt; 26:    1</span></a>
+<a class="sourceLine" id="cb187-64" data-line-number="64"><span class="co">#&gt; 27:    2</span></a>
+<a class="sourceLine" id="cb187-65" data-line-number="65"><span class="co">#&gt; 28:    2</span></a>
+<a class="sourceLine" id="cb187-66" data-line-number="66"><span class="co">#&gt; 29:    4</span></a>
+<a class="sourceLine" id="cb187-67" data-line-number="67"><span class="co">#&gt; 30:    6</span></a>
+<a class="sourceLine" id="cb187-68" data-line-number="68"><span class="co">#&gt; 31:    8</span></a>
+<a class="sourceLine" id="cb187-69" data-line-number="69"><span class="co">#&gt; 32:    2</span></a>
+<a class="sourceLine" id="cb187-70" data-line-number="70"><span class="co">#&gt;     carb</span></a></code></pre></div>
+<p>为什么 <code>fread()</code> 没有设置分隔符却可以导入 CSV 和 TSV 文件？其中的巧妙在于该函数的内部会自动检测数据文件内的分隔符号。</p>
+<p>通过查看该函数的参数，我们可以看到 <code>sep = &quot;auto&quot;</code>，这个参数我们可以人为指定，以适应不同的需求场景。</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1"><span class="kw">args</span>(fread)</a>
+<a class="sourceLine" id="cb188-2" data-line-number="2"><span class="co">#&gt; function (input = &quot;&quot;, file = NULL, text = NULL, cmd = NULL, sep = &quot;auto&quot;, </span></a>
+<a class="sourceLine" id="cb188-3" data-line-number="3"><span class="co">#&gt;     sep2 = &quot;auto&quot;, dec = &quot;.&quot;, quote = &quot;\&quot;&quot;, nrows = Inf, header = &quot;auto&quot;, </span></a>
+<a class="sourceLine" id="cb188-4" data-line-number="4"><span class="co">#&gt;     na.strings = getOption(&quot;datatable.na.strings&quot;, &quot;NA&quot;), stringsAsFactors = FALSE, </span></a>
+<a class="sourceLine" id="cb188-5" data-line-number="5"><span class="co">#&gt;     verbose = getOption(&quot;datatable.verbose&quot;, FALSE), skip = &quot;__auto__&quot;, </span></a>
+<a class="sourceLine" id="cb188-6" data-line-number="6"><span class="co">#&gt;     select = NULL, drop = NULL, colClasses = NULL, integer64 = getOption(&quot;datatable.integer64&quot;, </span></a>
+<a class="sourceLine" id="cb188-7" data-line-number="7"><span class="co">#&gt;         &quot;integer64&quot;), col.names, check.names = FALSE, encoding = &quot;unknown&quot;, </span></a>
+<a class="sourceLine" id="cb188-8" data-line-number="8"><span class="co">#&gt;     strip.white = TRUE, fill = FALSE, blank.lines.skip = FALSE, </span></a>
+<a class="sourceLine" id="cb188-9" data-line-number="9"><span class="co">#&gt;     key = NULL, index = NULL, showProgress = getOption(&quot;datatable.showProgress&quot;, </span></a>
+<a class="sourceLine" id="cb188-10" data-line-number="10"><span class="co">#&gt;         interactive()), data.table = getOption(&quot;datatable.fread.datatable&quot;, </span></a>
+<a class="sourceLine" id="cb188-11" data-line-number="11"><span class="co">#&gt;         TRUE), nThread = getDTthreads(verbose), logical01 = getOption(&quot;datatable.logical01&quot;, </span></a>
+<a class="sourceLine" id="cb188-12" data-line-number="12"><span class="co">#&gt;         FALSE), keepLeadingZeros = getOption(&quot;datatable.keepLeadingZeros&quot;, </span></a>
+<a class="sourceLine" id="cb188-13" data-line-number="13"><span class="co">#&gt;         FALSE), yaml = FALSE, autostart = NA, tmpdir = tempdir()) </span></a>
+<a class="sourceLine" id="cb188-14" data-line-number="14"><span class="co">#&gt; NULL</span></a></code></pre></div>
+<p>上面展示出 <code>fread()</code> 存在众多的参数设置。R 的易用与友好在于此，众多 R 包提供的函数大多已经为用户恰当地设置好了默认选项，用户无需经常繁琐的操作即可快速获取所需的结果。</p>
+<p>在学习了如何导入 TSV 文件后，我们应该能地想到 CSV、TSV 本质上是一类数据格式文件。例如，我们也可以使用分号 <code>;</code>（西方不少国家的逗号分隔文件就是以分号分隔的文件）。我们统一以 CSV 作为代表，将其他类似格式文件称为 CSV 变体。</p>
 </div>
 </div>
 <div id="excel" class="section level2">
 <h2><span class="header-section-number">3.2</span> Excel</h2>
-<p><a href="https://github.com/tidyverse/readxl" class="uri">https://github.com/tidyverse/readxl</a></p>
+<p><strong>Excel</strong> 是知名的微软 Office 套件之一，提供了日常的表格数据处理方案。尽管大多数数据分析人员不会产生和不想处理 Excel 文件，但由于它随着微软系统的流行而被广泛使用，因此读入 Excel 中的数据成为数据处理无法避免的日常工作任务之一。</p>
+<p>R 中有诸多拓展多可以导入 Excel 中的数据，其中最为推荐的就是本部分介绍的 <a href="https://github.com/tidyverse/readxl"><strong>readxl</strong></a> 包。</p>
+<p>使用该包，导入 Excel 中的数据可以像读入 CSV 文件一样简单。</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb189-2" data-line-number="2">mt_excel &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data-import/mtcars.xlsx&quot;</span>)</a>
+<a class="sourceLine" id="cb189-3" data-line-number="3"><span class="kw">head</span>(mt_excel)</a>
+<a class="sourceLine" id="cb189-4" data-line-number="4"><span class="co">#&gt; # A tibble: 6 x 11</span></a>
+<a class="sourceLine" id="cb189-5" data-line-number="5"><span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am</span></a>
+<a class="sourceLine" id="cb189-6" data-line-number="6"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb189-7" data-line-number="7"><span class="co">#&gt; 1  21       6   160   110  3.9   2.62  16.5     0     1</span></a>
+<a class="sourceLine" id="cb189-8" data-line-number="8"><span class="co">#&gt; 2  21       6   160   110  3.9   2.88  17.0     0     1</span></a>
+<a class="sourceLine" id="cb189-9" data-line-number="9"><span class="co">#&gt; 3  22.8     4   108    93  3.85  2.32  18.6     1     1</span></a>
+<a class="sourceLine" id="cb189-10" data-line-number="10"><span class="co">#&gt; 4  21.4     6   258   110  3.08  3.22  19.4     1     0</span></a>
+<a class="sourceLine" id="cb189-11" data-line-number="11"><span class="co">#&gt; 5  18.7     8   360   175  3.15  3.44  17.0     0     0</span></a>
+<a class="sourceLine" id="cb189-12" data-line-number="12"><span class="co">#&gt; 6  18.1     6   225   105  2.76  3.46  20.2     1     0</span></a>
+<a class="sourceLine" id="cb189-13" data-line-number="13"><span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></a></code></pre></div>
+<p><code>read_excel()</code> 同时支持 <code>.xls</code> 和 <code>xlsx</code> 两者文件格式。</p>
+<p>Excel 文件支持多个表格（Sheet），这种情况下默认第 1 个 Sheet 的内容会被读入。通过简单的设置，读者也可以轻松导入任意 Sheet 的内容。</p>
+<p>下面通过 <strong>readxl</strong> 包的官方示例展示这一过程。</p>
+<p>我们先查看下该包提供的示例数据：</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="kw">readxl_example</span>()</a>
+<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;clippy.xls&quot;    &quot;clippy.xlsx&quot;   &quot;datasets.xls&quot; </span></a>
+<a class="sourceLine" id="cb190-3" data-line-number="3"><span class="co">#&gt;  [4] &quot;datasets.xlsx&quot; &quot;deaths.xls&quot;    &quot;deaths.xlsx&quot;  </span></a>
+<a class="sourceLine" id="cb190-4" data-line-number="4"><span class="co">#&gt;  [7] &quot;geometry.xls&quot;  &quot;geometry.xlsx&quot; &quot;type-me.xls&quot;  </span></a>
+<a class="sourceLine" id="cb190-5" data-line-number="5"><span class="co">#&gt; [10] &quot;type-me.xlsx&quot;</span></a></code></pre></div>
+<p>选一个文件并查看其所在的路径：</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="kw">readxl_example</span>(<span class="st">&quot;datasets.xlsx&quot;</span>)</a>
+<a class="sourceLine" id="cb191-2" data-line-number="2"><span class="co">#&gt; [1] &quot;/Users/wsx/R_Library/readxl/extdata/datasets.xlsx&quot;</span></a>
+<a class="sourceLine" id="cb191-3" data-line-number="3"><span class="co"># 将路径保存备用</span></a>
+<a class="sourceLine" id="cb191-4" data-line-number="4">excel_path &lt;-<span class="st"> </span><span class="kw">readxl_example</span>(<span class="st">&quot;datasets.xlsx&quot;</span>)</a></code></pre></div>
+<p>如果将路径传入 <code>excel_sheets()</code> 函数，读者可以获取文件中存在的 Sheets。</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="kw">excel_sheets</span>(excel_path)</a>
+<a class="sourceLine" id="cb192-2" data-line-number="2"><span class="co">#&gt; [1] &quot;iris&quot;     &quot;mtcars&quot;   &quot;chickwts&quot; &quot;quakes&quot;</span></a></code></pre></div>
+<p>然后依旧是使用 <code>read_excel()</code> 函数，设定想要读入的 Sheet 名字即可。</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1">iris &lt;-<span class="st"> </span><span class="kw">read_excel</span>(excel_path, <span class="dt">sheet =</span> <span class="st">&quot;iris&quot;</span>)</a>
+<a class="sourceLine" id="cb193-2" data-line-number="2"><span class="kw">head</span>(iris)</a>
+<a class="sourceLine" id="cb193-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 5</span></a>
+<a class="sourceLine" id="cb193-4" data-line-number="4"><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width</span></a>
+<a class="sourceLine" id="cb193-5" data-line-number="5"><span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb193-6" data-line-number="6"><span class="co">#&gt; 1          5.1         3.5          1.4         0.2</span></a>
+<a class="sourceLine" id="cb193-7" data-line-number="7"><span class="co">#&gt; 2          4.9         3            1.4         0.2</span></a>
+<a class="sourceLine" id="cb193-8" data-line-number="8"><span class="co">#&gt; 3          4.7         3.2          1.3         0.2</span></a>
+<a class="sourceLine" id="cb193-9" data-line-number="9"><span class="co">#&gt; 4          4.6         3.1          1.5         0.2</span></a>
+<a class="sourceLine" id="cb193-10" data-line-number="10"><span class="co">#&gt; 5          5           3.6          1.4         0.2</span></a>
+<a class="sourceLine" id="cb193-11" data-line-number="11"><span class="co">#&gt; 6          5.4         3.9          1.7         0.4</span></a>
+<a class="sourceLine" id="cb193-12" data-line-number="12"><span class="co">#&gt; # … with 1 more variable: Species &lt;chr&gt;</span></a></code></pre></div>
+<p>关于函数的更多用法读者可以通过 <code>?read_excel()</code> 查看。</p>
+<p>有时候人们会在同一个 Excel Sheet 中放置多个表格信息，这种情况无法通过简单地使用 <strong>readxl</strong> 包读入数据。只要数据是有规律的，读者可以尝试下通过 <a href="https://github.com/r-rudra/tidycells"><strong>tidycells</strong></a> 包导入数据。</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-182"></span>
+<img src="https://github.com/r-rudra/tidycells/raw/master/vignettes/ext/marks.png" alt="tidycells 包示例数据格式"  />
+<p class="caption">
+图 3.1: tidycells 包示例数据格式
+</p>
+</div>
+<p>具体的使用请读者参照 <a href="https://github.com/r-rudra/tidycells/blob/master/README.md">README</a> 进行学习。</p>
 </div>
 <div id="json" class="section level2">
 <h2><span class="header-section-number">3.3</span> JSON</h2>
