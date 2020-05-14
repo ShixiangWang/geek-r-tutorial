@@ -318,7 +318,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb180-3" data-line-number="3">)</a>
 <a class="sourceLine" id="cb180-4" data-line-number="4">time1</a>
 <a class="sourceLine" id="cb180-5" data-line-number="5"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb180-6" data-line-number="6"><span class="co">#&gt; 1.008 0.048 1.176</span></a></code></pre></div>
+<a class="sourceLine" id="cb180-6" data-line-number="6"><span class="co">#&gt; 0.921 0.025 0.947</span></a></code></pre></div>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
 <a class="sourceLine" id="cb181-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb181-3" data-line-number="3">time2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
@@ -326,7 +326,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb181-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb181-6" data-line-number="6">time2</a>
 <a class="sourceLine" id="cb181-7" data-line-number="7"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb181-8" data-line-number="8"><span class="co">#&gt; 0.306 0.012 0.326</span></a></code></pre></div>
+<a class="sourceLine" id="cb181-8" data-line-number="8"><span class="co">#&gt; 0.311 0.023 0.346</span></a></code></pre></div>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
 <a class="sourceLine" id="cb182-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb182-3" data-line-number="3">time3 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
@@ -334,8 +334,8 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb182-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb182-6" data-line-number="6">time3</a>
 <a class="sourceLine" id="cb182-7" data-line-number="7"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb182-8" data-line-number="8"><span class="co">#&gt; 0.047 0.007 0.054</span></a></code></pre></div>
-<p>上面我们使用了 320000 行数据进行测试，在我的计算机上，内置的函数 <code>read.csv()</code> 总共花费了 1.176s，<strong>readr</strong> 的 <code>read_csv()</code> 花费了 0.326s，而 <strong>data.table</strong> 的 <code>fread()</code> 仅用了 0.054s 左右。<strong>好的、适合的工具可以帮助我们极大地提升工作效率</strong>。</p>
+<a class="sourceLine" id="cb182-8" data-line-number="8"><span class="co">#&gt; 0.050 0.007 0.056</span></a></code></pre></div>
+<p>上面我们使用了 320000 行数据进行测试，在我的计算机上，内置的函数 <code>read.csv()</code> 总共花费了 0.947s，<strong>readr</strong> 的 <code>read_csv()</code> 花费了 0.346s，而 <strong>data.table</strong> 的 <code>fread()</code> 仅用了 0.056s 左右。<strong>好的、适合的工具可以帮助我们极大地提升工作效率</strong>。</p>
 <p>如果我们进一步观察几种不同方式导入的数据格式，就会发现它们有些不太相同。</p>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">z1</a>
 <a class="sourceLine" id="cb183-2" data-line-number="2"><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></a>
@@ -628,14 +628,14 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb188-12" data-line-number="12"><span class="co">#&gt;         FALSE), keepLeadingZeros = getOption(&quot;datatable.keepLeadingZeros&quot;, </span></a>
 <a class="sourceLine" id="cb188-13" data-line-number="13"><span class="co">#&gt;         FALSE), yaml = FALSE, autostart = NA, tmpdir = tempdir()) </span></a>
 <a class="sourceLine" id="cb188-14" data-line-number="14"><span class="co">#&gt; NULL</span></a></code></pre></div>
-<p>上面展示出 <code>fread()</code> 存在众多的参数设置。R 的易用与友好在于此，众多 R 包提供的函数大多已经为用户恰当地设置好了默认选项，用户无需经常繁琐的操作即可快速获取所需的结果。</p>
-<p>在学习了如何导入 TSV 文件后，我们应该能地想到 CSV、TSV 本质上是一类数据格式文件。例如，我们也可以使用分号 <code>;</code>（西方不少国家的逗号分隔文件就是以分号分隔的文件）。我们统一以 CSV 作为代表，将其他类似格式文件称为 CSV 变体。</p>
+<p>上面展示出 <code>fread()</code> 存在众多的参数设置。R 的易用与友好在于此，众多 R 包提供的函数大多已经为用户恰当地设置好了默认选项，用户无需经过繁琐的操作即可快速获取所需的结果。</p>
+<p>在学习了如何导入 TSV 文件后，我们应该能够归纳出 CSV、TSV 本质上是一类数据格式文件。例如，我们也可以使用分号 <code>;</code>（西方不少国家的逗号分隔文件就是以分号分隔的文件）。我们统一以 CSV 作为代表，将其他类似格式文件称为 CSV 变体。</p>
 </div>
 </div>
 <div id="excel" class="section level2">
 <h2><span class="header-section-number">3.2</span> Excel</h2>
 <p><strong>Excel</strong> 是知名的微软 Office 套件之一，提供了日常的表格数据处理方案。尽管大多数数据分析人员不会产生和不想处理 Excel 文件，但由于它随着微软系统的流行而被广泛使用，因此读入 Excel 中的数据成为数据处理无法避免的日常工作任务之一。</p>
-<p>R 中有诸多拓展多可以导入 Excel 中的数据，其中最为推荐的就是本部分介绍的 <a href="https://github.com/tidyverse/readxl"><strong>readxl</strong></a> 包。</p>
+<p>R 中有诸多拓展包可以导入 Excel 中的数据，其中最为推荐的就是本部分介绍的 <a href="https://github.com/tidyverse/readxl"><strong>readxl</strong></a> 包。</p>
 <p>使用该包，导入 Excel 中的数据可以像读入 CSV 文件一样简单。</p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="kw">library</span>(readxl)</a>
 <a class="sourceLine" id="cb189-2" data-line-number="2">mt_excel &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data-import/mtcars.xlsx&quot;</span>)</a>
