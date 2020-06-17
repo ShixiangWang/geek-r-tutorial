@@ -1776,3 +1776,13 @@ str(sex)
 sex <- factor(c(as.character(sex), "M", "M"))
 sex
 ```
+
+
+### 理解 R 计算
+
+* 一切皆是对象。
+* 一切皆是函数调用。
+
+```{block2, type='flushright', html.tag='p'}
+John Chambers
+```

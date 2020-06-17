@@ -180,6 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.2" data-path="base.html"><a href="base.html#与---的区别"><i class="fa fa-check"></i><b>2.6.2</b> = 与 &lt;- 的区别</a></li>
 <li class="chapter" data-level="2.6.3" data-path="base.html"><a href="base.html#显式使用包函数时-与-的区别"><i class="fa fa-check"></i><b>2.6.3</b> 显式使用包函数时 :: 与 ::: 的区别</a></li>
 <li class="chapter" data-level="2.6.4" data-path="base.html"><a href="base.html#因子重构"><i class="fa fa-check"></i><b>2.6.4</b> 因子重构</a></li>
+<li class="chapter" data-level="2.6.5" data-path="base.html"><a href="base.html#理解-r-计算"><i class="fa fa-check"></i><b>2.6.5</b> 理解 R 计算</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> 数据导入</a><ul>
@@ -322,7 +323,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb182-3" data-line-number="3">)</a>
 <a class="sourceLine" id="cb182-4" data-line-number="4">time1</a>
 <a class="sourceLine" id="cb182-5" data-line-number="5"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb182-6" data-line-number="6"><span class="co">#&gt; 0.979 0.036 1.031</span></a></code></pre></div>
+<a class="sourceLine" id="cb182-6" data-line-number="6"><span class="co">#&gt; 0.927 0.031 0.958</span></a></code></pre></div>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
 <a class="sourceLine" id="cb183-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb183-3" data-line-number="3">time2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
@@ -330,7 +331,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb183-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb183-6" data-line-number="6">time2</a>
 <a class="sourceLine" id="cb183-7" data-line-number="7"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb183-8" data-line-number="8"><span class="co">#&gt; 0.333 0.010 0.344</span></a></code></pre></div>
+<a class="sourceLine" id="cb183-8" data-line-number="8"><span class="co">#&gt; 0.281 0.009 0.291</span></a></code></pre></div>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
 <a class="sourceLine" id="cb184-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb184-3" data-line-number="3">time3 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
@@ -338,8 +339,8 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb184-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb184-6" data-line-number="6">time3</a>
 <a class="sourceLine" id="cb184-7" data-line-number="7"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb184-8" data-line-number="8"><span class="co">#&gt; 0.053 0.007 0.060</span></a></code></pre></div>
-<p>上面我们使用了 320000 行数据进行测试，在我的计算机上，内置的函数 <code>read.csv()</code> 总共花费了 1.031s，<strong>readr</strong> 的 <code>read_csv()</code> 花费了 0.344s，而 <strong>data.table</strong> 的 <code>fread()</code> 仅用了 0.06s 左右。<strong>好的、适合的工具可以帮助我们极大地提升工作效率</strong>。</p>
+<a class="sourceLine" id="cb184-8" data-line-number="8"><span class="co">#&gt; 0.047 0.007 0.054</span></a></code></pre></div>
+<p>上面我们使用了 320000 行数据进行测试，在我的计算机上，内置的函数 <code>read.csv()</code> 总共花费了 0.958s，<strong>readr</strong> 的 <code>read_csv()</code> 花费了 0.291s，而 <strong>data.table</strong> 的 <code>fread()</code> 仅用了 0.054s 左右。<strong>好的、适合的工具可以帮助我们极大地提升工作效率</strong>。</p>
 <p>如果我们进一步观察几种不同方式导入的数据格式，就会发现它们有些不太相同。</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">z1</a>
 <a class="sourceLine" id="cb185-2" data-line-number="2"><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></a>
@@ -665,7 +666,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb192-5" data-line-number="5"><span class="co">#&gt; [10] &quot;type-me.xlsx&quot;</span></a></code></pre></div>
 <p>选一个文件并查看其所在的路径：</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="kw">readxl_example</span>(<span class="st">&quot;datasets.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb193-2" data-line-number="2"><span class="co">#&gt; [1] &quot;/Users/wsx/R_Library/readxl/extdata/datasets.xlsx&quot;</span></a>
+<a class="sourceLine" id="cb193-2" data-line-number="2"><span class="co">#&gt; [1] &quot;/Users/wsx/R_library/readxl/extdata/datasets.xlsx&quot;</span></a>
 <a class="sourceLine" id="cb193-3" data-line-number="3"><span class="co"># 将路径保存备用</span></a>
 <a class="sourceLine" id="cb193-4" data-line-number="4">excel_path &lt;-<span class="st"> </span><span class="kw">readxl_example</span>(<span class="st">&quot;datasets.xlsx&quot;</span>)</a></code></pre></div>
 <p>如果将路径传入 <code>excel_sheets()</code> 函数，读者可以获取文件中存在的 Sheets。</p>
@@ -686,7 +687,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb195-12" data-line-number="12"><span class="co">#&gt; # … with 1 more variable: Species &lt;chr&gt;</span></a></code></pre></div>
 <p>关于函数的更多用法读者可以通过 <code>?read_excel()</code> 查看。</p>
 <p>有时候人们会在同一个 Excel Sheet 中放置多个表格信息，这种情况无法通过简单地使用 <strong>readxl</strong> 包读入数据。只要数据是有规律的，读者可以尝试下通过 <a href="https://github.com/r-rudra/tidycells"><strong>tidycells</strong></a> 包导入数据。</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-184"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-185"></span>
 <img src="https://github.com/r-rudra/tidycells/raw/master/vignettes/ext/marks.png" alt="tidycells 包示例数据格式"  />
 <p class="caption">
 图 3.1: tidycells 包示例数据格式
