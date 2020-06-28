@@ -201,10 +201,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> 数据清洗</a><ul>
-<li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#单个数据集"><i class="fa fa-check"></i><b>4.1</b> 单个数据集</a></li>
-<li class="chapter" data-level="4.2" data-path="clean.html"><a href="clean.html#两个数据集"><i class="fa fa-check"></i><b>4.2</b> 两个数据集</a></li>
-<li class="chapter" data-level="4.3" data-path="clean.html"><a href="clean.html#多个数据集"><i class="fa fa-check"></i><b>4.3</b> 多个数据集</a></li>
-<li class="chapter" data-level="4.4" data-path="clean.html"><a href="clean.html#常见问题与方案-3"><i class="fa fa-check"></i><b>4.4</b> 常见问题与方案</a></li>
+<li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#向量-1"><i class="fa fa-check"></i><b>4.1</b> 向量</a></li>
+<li class="chapter" data-level="4.2" data-path="clean.html"><a href="clean.html#单个数据集"><i class="fa fa-check"></i><b>4.2</b> 单个数据集</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="clean.html"><a href="clean.html#选择列"><i class="fa fa-check"></i><b>4.2.1</b> 选择列</a></li>
+<li class="chapter" data-level="4.2.2" data-path="clean.html"><a href="clean.html#过滤行"><i class="fa fa-check"></i><b>4.2.2</b> 过滤行</a></li>
+<li class="chapter" data-level="4.2.3" data-path="clean.html"><a href="clean.html#新增列"><i class="fa fa-check"></i><b>4.2.3</b> 新增列</a></li>
+<li class="chapter" data-level="4.2.4" data-path="clean.html"><a href="clean.html#聚合运算"><i class="fa fa-check"></i><b>4.2.4</b> 聚合运算</a></li>
+<li class="chapter" data-level="4.2.5" data-path="clean.html"><a href="clean.html#分组计算"><i class="fa fa-check"></i><b>4.2.5</b> 分组计算</a></li>
+<li class="chapter" data-level="4.2.6" data-path="clean.html"><a href="clean.html#缺失值填充"><i class="fa fa-check"></i><b>4.2.6</b> 缺失值填充</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="clean.html"><a href="clean.html#两个数据集"><i class="fa fa-check"></i><b>4.3</b> 两个数据集</a></li>
+<li class="chapter" data-level="4.4" data-path="clean.html"><a href="clean.html#多个数据集"><i class="fa fa-check"></i><b>4.4</b> 多个数据集</a></li>
+<li class="chapter" data-level="4.5" data-path="clean.html"><a href="clean.html#常见问题与方案-3"><i class="fa fa-check"></i><b>4.5</b> 常见问题与方案</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> 数据可视化</a><ul>
 <li class="chapter" data-level="" data-path="visualization.html"><a href="visualization.html#常见问题与方案-4"><i class="fa fa-check"></i>常见问题与方案</a></li>
@@ -1311,10 +1319,10 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <p>最后，我们来了解一下函数的计算效率。这里我们将创建的 <code>customMean()</code> 函数与 R 内置的 <code>mean()</code> 函数进行对比。<code>system.time()</code> 函数用来判断函数执行消耗的时间。</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">system.time</span>(<span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e7</span>))</a>
 <a class="sourceLine" id="cb117-2" data-line-number="2"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb117-3" data-line-number="3"><span class="co">#&gt; 0.283 0.001 0.301</span></a>
+<a class="sourceLine" id="cb117-3" data-line-number="3"><span class="co">#&gt; 0.280 0.001 0.283</span></a>
 <a class="sourceLine" id="cb117-4" data-line-number="4"><span class="kw">system.time</span>(<span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e7</span>))</a>
 <a class="sourceLine" id="cb117-5" data-line-number="5"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb117-6" data-line-number="6"><span class="co">#&gt; 0.048 0.001 0.048</span></a></code></pre></div>
+<a class="sourceLine" id="cb117-6" data-line-number="6"><span class="co">#&gt; 0.047 0.000 0.047</span></a></code></pre></div>
 <p><code>elapsed</code> 项给出了计算机执行函数消耗的总时间（以秒为单位），可以看出，内置的函数还是要快很多的。当然，这并不是一个严格的性能测评，但它已经能清楚地表明两者的差距。</p>
 </div>
 <div id="作用域" class="section level3">
@@ -1476,13 +1484,13 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <a class="sourceLine" id="cb133-2" data-line-number="2">  rm &lt;-<span class="st"> </span><span class="kw">calcRowMeans</span>(mat)</a>
 <a class="sourceLine" id="cb133-3" data-line-number="3">)</a>
 <a class="sourceLine" id="cb133-4" data-line-number="4"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb133-5" data-line-number="5"><span class="co">#&gt; 0.445 0.030 0.476</span></a></code></pre></div>
+<a class="sourceLine" id="cb133-5" data-line-number="5"><span class="co">#&gt; 0.456 0.032 0.492</span></a></code></pre></div>
 <p>10 万行的过程花了不到 1 秒的时间，计算效率着实不低。如果是 <code>apply()</code> 该怎么写呢？效率又如何？</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">system.time</span>(</a>
 <a class="sourceLine" id="cb134-2" data-line-number="2">  rm &lt;-<span class="st"> </span><span class="kw">apply</span>(mat, <span class="dv">1</span>, mean)</a>
 <a class="sourceLine" id="cb134-3" data-line-number="3">)</a>
 <a class="sourceLine" id="cb134-4" data-line-number="4"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb134-5" data-line-number="5"><span class="co">#&gt; 0.652 0.046 0.716</span></a></code></pre></div>
+<a class="sourceLine" id="cb134-5" data-line-number="5"><span class="co">#&gt; 0.503 0.038 0.541</span></a></code></pre></div>
 <p>在 apply 写法中，我们没有新建函数，而是直接利用 R 内置的 <code>mean()</code> 函数直接进行计算，相比 for 循环此处的计算效率虽然未见明显提升，但代码却被极度精简了。</p>
 <p>让我们来看一下 <code>apply()</code> 是如何完成计算的，其结构如下：</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="kw">apply</span>(X, MARGIN, FUN, ...)</a></code></pre></div>
@@ -1775,8 +1783,8 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <p>就我个人的使用而言，它的区别在调用函数时比较明显。</p>
 <p>例如，计算程序运行时间：</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">system.time</span>(m &lt;-<span class="st"> </span><span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e6</span>))</a>
-<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="co">#&gt; 0.029 0.000 0.030</span></a></code></pre></div>
+<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="co">#&gt; 用户 系统 流逝 </span></a>
+<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="co">#&gt; 0.03 0.00 0.03</span></a></code></pre></div>
 <p>下面的写法是错误的，因为 <code>system.time()</code> 把输入作为参数而不是一个表达式，而该函数并没有 <code>m</code> 这个参数。</p>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="kw">system.time</span>(<span class="dt">m =</span> <span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e6</span>))</a>
 <a class="sourceLine" id="cb168-2" data-line-number="2"><span class="co">#&gt; Error in system.time(m = customMean(1:1e+06)): 参数没有用(m = customMean(1:1e+06))</span></a></code></pre></div>

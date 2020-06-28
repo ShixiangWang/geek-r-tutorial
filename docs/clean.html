@@ -201,10 +201,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="clean.html"><a href="clean.html"><i class="fa fa-check"></i><b>4</b> 数据清洗</a><ul>
-<li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#单个数据集"><i class="fa fa-check"></i><b>4.1</b> 单个数据集</a></li>
-<li class="chapter" data-level="4.2" data-path="clean.html"><a href="clean.html#两个数据集"><i class="fa fa-check"></i><b>4.2</b> 两个数据集</a></li>
-<li class="chapter" data-level="4.3" data-path="clean.html"><a href="clean.html#多个数据集"><i class="fa fa-check"></i><b>4.3</b> 多个数据集</a></li>
-<li class="chapter" data-level="4.4" data-path="clean.html"><a href="clean.html#常见问题与方案-3"><i class="fa fa-check"></i><b>4.4</b> 常见问题与方案</a></li>
+<li class="chapter" data-level="4.1" data-path="clean.html"><a href="clean.html#向量-1"><i class="fa fa-check"></i><b>4.1</b> 向量</a></li>
+<li class="chapter" data-level="4.2" data-path="clean.html"><a href="clean.html#单个数据集"><i class="fa fa-check"></i><b>4.2</b> 单个数据集</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="clean.html"><a href="clean.html#选择列"><i class="fa fa-check"></i><b>4.2.1</b> 选择列</a></li>
+<li class="chapter" data-level="4.2.2" data-path="clean.html"><a href="clean.html#过滤行"><i class="fa fa-check"></i><b>4.2.2</b> 过滤行</a></li>
+<li class="chapter" data-level="4.2.3" data-path="clean.html"><a href="clean.html#新增列"><i class="fa fa-check"></i><b>4.2.3</b> 新增列</a></li>
+<li class="chapter" data-level="4.2.4" data-path="clean.html"><a href="clean.html#聚合运算"><i class="fa fa-check"></i><b>4.2.4</b> 聚合运算</a></li>
+<li class="chapter" data-level="4.2.5" data-path="clean.html"><a href="clean.html#分组计算"><i class="fa fa-check"></i><b>4.2.5</b> 分组计算</a></li>
+<li class="chapter" data-level="4.2.6" data-path="clean.html"><a href="clean.html#缺失值填充"><i class="fa fa-check"></i><b>4.2.6</b> 缺失值填充</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="clean.html"><a href="clean.html#两个数据集"><i class="fa fa-check"></i><b>4.3</b> 两个数据集</a></li>
+<li class="chapter" data-level="4.4" data-path="clean.html"><a href="clean.html#多个数据集"><i class="fa fa-check"></i><b>4.4</b> 多个数据集</a></li>
+<li class="chapter" data-level="4.5" data-path="clean.html"><a href="clean.html#常见问题与方案-3"><i class="fa fa-check"></i><b>4.5</b> 常见问题与方案</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> 数据可视化</a><ul>
 <li class="chapter" data-level="" data-path="visualization.html"><a href="visualization.html#常见问题与方案-4"><i class="fa fa-check"></i>常见问题与方案</a></li>
@@ -263,18 +271,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="clean" class="section level1">
 <h1><span class="header-section-number">第 4 章</span> 数据清洗</h1>
-<p>瞎扯几句。</p>
+<p>数据的清洗是数据分析最核心的技能，读者需要长时间的学习和实战方能掌握。复杂的操作往往由基础的操作堆砌组合而成，本章的重点就是帮助读者快速学习和掌握数据清理最核心的操作单元。我将逐步讲解如何处理向量、单个数据集、两个数据集和多个数据集最基础且实用的数据操作方式，其他相关的内容将放到本章<strong>【常见问题与方案】</strong>一节作为补充介绍。。</p>
+<p>R 丰富的特性支持以多种方式完成相同的操作，对于大部分的操作，我将介绍 3 种不同的解决方案：</p>
+<ol style="list-style-type: decimal">
+<li>tidyverse 方式。</li>
+<li>R 内置操作方式。</li>
+<li>data.table 方式。</li>
+</ol>
+<p>读者可以根据自己的需求选择性的学习，也可以进行全面的了解和学习。<strong>tidyverse</strong> 方式目前已经成为 R 处理数据的主流方案，我推荐读者重点掌握。注意，读者切勿画地为牢，数据分析重在<strong>解决</strong>，而不在于<strong>手段</strong>，实际处理数据时应当灵活使用可以运用的工具方法，上述 3 种方式有时也可以有机地组合运用，并非相互排斥。</p>
+<div id="向量-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> 向量</h2>
+</div>
 <div id="单个数据集" class="section level2">
-<h2><span class="header-section-number">4.1</span> 单个数据集</h2>
+<h2><span class="header-section-number">4.2</span> 单个数据集</h2>
+<div id="选择列" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> 选择列</h3>
+</div>
+<div id="过滤行" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> 过滤行</h3>
+</div>
+<div id="新增列" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> 新增列</h3>
+</div>
+<div id="聚合运算" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> 聚合运算</h3>
+</div>
+<div id="分组计算" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> 分组计算</h3>
+</div>
+<div id="缺失值填充" class="section level3">
+<h3><span class="header-section-number">4.2.6</span> 缺失值填充</h3>
+</div>
 </div>
 <div id="两个数据集" class="section level2">
-<h2><span class="header-section-number">4.2</span> 两个数据集</h2>
+<h2><span class="header-section-number">4.3</span> 两个数据集</h2>
 </div>
 <div id="多个数据集" class="section level2">
-<h2><span class="header-section-number">4.3</span> 多个数据集</h2>
+<h2><span class="header-section-number">4.4</span> 多个数据集</h2>
 </div>
 <div id="常见问题与方案-3" class="section level2">
-<h2><span class="header-section-number">4.4</span> 常见问题与方案</h2>
+<h2><span class="header-section-number">4.5</span> 常见问题与方案</h2>
 <p>除了本节目前罗列的问题，读者在学习本章内容时遇到的其他问题都可以通过 <a href="https://github.com/ShixiangWang/geek-r-tutorial/issues">GitHub Issue</a> 提出和进行讨论。如果读者提出的是通性问题，将增补到该节。</p>
 
 </div>
