@@ -196,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="import.html"><a href="import.html#常见问题与方案-2"><i class="fa fa-check"></i><b>3.5</b> 常见问题与方案</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="import.html"><a href="import.html#通过键盘和剪贴板载入数据"><i class="fa fa-check"></i><b>3.5.1</b> 通过键盘和剪贴板载入数据</a></li>
-<li class="chapter" data-level="3.5.2" data-path="import.html"><a href="import.html#逐行读取文件"><i class="fa fa-check"></i><b>3.5.2</b> 逐行读取文件</a></li>
+<li class="chapter" data-level="3.5.2" data-path="import.html"><a href="import.html#逐行读取数据"><i class="fa fa-check"></i><b>3.5.2</b> 逐行读取数据</a></li>
 <li class="chapter" data-level="3.5.3" data-path="import.html"><a href="import.html#读取等宽格式数据"><i class="fa fa-check"></i><b>3.5.3</b> 读取等宽格式数据</a></li>
 </ul></li>
 </ul></li>
@@ -1311,10 +1311,10 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <p>最后，我们来了解一下函数的计算效率。这里我们将创建的 <code>customMean()</code> 函数与 R 内置的 <code>mean()</code> 函数进行对比。<code>system.time()</code> 函数用来判断函数执行消耗的时间。</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">system.time</span>(<span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e7</span>))</a>
 <a class="sourceLine" id="cb117-2" data-line-number="2"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb117-3" data-line-number="3"><span class="co">#&gt; 0.332 0.002 0.344</span></a>
+<a class="sourceLine" id="cb117-3" data-line-number="3"><span class="co">#&gt; 0.283 0.001 0.301</span></a>
 <a class="sourceLine" id="cb117-4" data-line-number="4"><span class="kw">system.time</span>(<span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e7</span>))</a>
 <a class="sourceLine" id="cb117-5" data-line-number="5"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb117-6" data-line-number="6"><span class="co">#&gt; 0.042 0.000 0.042</span></a></code></pre></div>
+<a class="sourceLine" id="cb117-6" data-line-number="6"><span class="co">#&gt; 0.048 0.001 0.048</span></a></code></pre></div>
 <p><code>elapsed</code> 项给出了计算机执行函数消耗的总时间（以秒为单位），可以看出，内置的函数还是要快很多的。当然，这并不是一个严格的性能测评，但它已经能清楚地表明两者的差距。</p>
 </div>
 <div id="作用域" class="section level3">
@@ -1323,14 +1323,14 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <p>R 中所有的对象都处于各自的环境之中，我们可以把环境想象成城市里各种不同房子，而对象是处于其中的物品。当然这只是一些形象的比喻，实际上 R 的工作原理可能远不仅如此，但它已经能够很好地帮助理解我们这个概念了。</p>
 <p>在启动 R 之后，我们就进去了一个全局环境之中（Global Environment），我们创建的各自变量、函数都会处于其中。这一点我们可以轻易地从 RStudio 右上角的环境窗口中观察到，如图 <a href="base.html#fig:rstudio-env-panel">2.4</a> 所示：</p>
 <div class="figure" style="text-align: center"><span id="fig:rstudio-env-panel"></span>
-<img src="fig/ch02-rstudio-env-panel.PNG" alt="RStudio 的环境窗口" width="341" />
+<img src="fig/ch02-rstudio-env-panel.PNG" alt="RStudio 的环境窗口"  />
 <p class="caption">
 图 2.4: RStudio 的环境窗口
 </p>
 </div>
 <p>一个函数（如 <code>customMean()</code>）与全局环境的关系可以简单用下面两个嵌套的矩形表示：</p>
 <div class="figure" style="text-align: center"><span id="fig:fun-env"></span>
-<img src="fig/ch02-fun-env.png" alt="全局环境与在其中创建的一个函数" width="184" />
+<img src="fig/ch02-fun-env.png" alt="全局环境与在其中创建的一个函数"  />
 <p class="caption">
 图 2.5: 全局环境与在其中创建的一个函数
 </p>
@@ -1423,14 +1423,14 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">f2</span>(<span class="st">&quot;mean&quot;</span>)</a>
 <a class="sourceLine" id="cb129-2" data-line-number="2"><span class="co">#&gt; function (x, ...) </span></a>
 <a class="sourceLine" id="cb129-3" data-line-number="3"><span class="co">#&gt; UseMethod(&quot;mean&quot;)</span></a>
-<a class="sourceLine" id="cb129-4" data-line-number="4"><span class="co">#&gt; &lt;bytecode: 0x7f9c5d3f9e70&gt;</span></a>
+<a class="sourceLine" id="cb129-4" data-line-number="4"><span class="co">#&gt; &lt;bytecode: 0x7ff794a58e00&gt;</span></a>
 <a class="sourceLine" id="cb129-5" data-line-number="5"><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></a>
 <a class="sourceLine" id="cb129-6" data-line-number="6"><span class="kw">f2</span>(<span class="st">&quot;sum&quot;</span>)</a>
 <a class="sourceLine" id="cb129-7" data-line-number="7"><span class="co">#&gt; function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)</span></a>
 <a class="sourceLine" id="cb129-8" data-line-number="8"><span class="kw">f2</span>(<span class="st">&quot;quantile&quot;</span>)</a>
 <a class="sourceLine" id="cb129-9" data-line-number="9"><span class="co">#&gt; function (x, ...) </span></a>
 <a class="sourceLine" id="cb129-10" data-line-number="10"><span class="co">#&gt; UseMethod(&quot;quantile&quot;)</span></a>
-<a class="sourceLine" id="cb129-11" data-line-number="11"><span class="co">#&gt; &lt;bytecode: 0x7f9c5d0310f8&gt;</span></a>
+<a class="sourceLine" id="cb129-11" data-line-number="11"><span class="co">#&gt; &lt;bytecode: 0x7ff794b2c9e0&gt;</span></a>
 <a class="sourceLine" id="cb129-12" data-line-number="12"><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></a></code></pre></div>
 <p>返回的全部都是函数，那么我们是不是可以直接调用它呢？</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">f2</span>(<span class="st">&quot;mean&quot;</span>)(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
@@ -1476,13 +1476,13 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <a class="sourceLine" id="cb133-2" data-line-number="2">  rm &lt;-<span class="st"> </span><span class="kw">calcRowMeans</span>(mat)</a>
 <a class="sourceLine" id="cb133-3" data-line-number="3">)</a>
 <a class="sourceLine" id="cb133-4" data-line-number="4"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb133-5" data-line-number="5"><span class="co">#&gt; 0.515 0.027 0.542</span></a></code></pre></div>
+<a class="sourceLine" id="cb133-5" data-line-number="5"><span class="co">#&gt; 0.445 0.030 0.476</span></a></code></pre></div>
 <p>10 万行的过程花了不到 1 秒的时间，计算效率着实不低。如果是 <code>apply()</code> 该怎么写呢？效率又如何？</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">system.time</span>(</a>
 <a class="sourceLine" id="cb134-2" data-line-number="2">  rm &lt;-<span class="st"> </span><span class="kw">apply</span>(mat, <span class="dv">1</span>, mean)</a>
 <a class="sourceLine" id="cb134-3" data-line-number="3">)</a>
 <a class="sourceLine" id="cb134-4" data-line-number="4"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb134-5" data-line-number="5"><span class="co">#&gt; 0.556 0.038 0.593</span></a></code></pre></div>
+<a class="sourceLine" id="cb134-5" data-line-number="5"><span class="co">#&gt; 0.652 0.046 0.716</span></a></code></pre></div>
 <p>在 apply 写法中，我们没有新建函数，而是直接利用 R 内置的 <code>mean()</code> 函数直接进行计算，相比 for 循环此处的计算效率虽然未见明显提升，但代码却被极度精简了。</p>
 <p>让我们来看一下 <code>apply()</code> 是如何完成计算的，其结构如下：</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="kw">apply</span>(X, MARGIN, FUN, ...)</a></code></pre></div>
@@ -1613,14 +1613,13 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <a class="sourceLine" id="cb153-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;readxl&quot;     &quot;data.table&quot; &quot;readr&quot;     </span></a>
 <a class="sourceLine" id="cb153-3" data-line-number="3"><span class="co">#&gt;  [4] &quot;dplyr&quot;      &quot;ggplot2&quot;    &quot;stats&quot;     </span></a>
 <a class="sourceLine" id="cb153-4" data-line-number="4"><span class="co">#&gt;  [7] &quot;graphics&quot;   &quot;grDevices&quot;  &quot;utils&quot;     </span></a>
-<a class="sourceLine" id="cb153-5" data-line-number="5"><span class="co">#&gt; [10] &quot;datasets&quot;   &quot;roxytest&quot;   &quot;pacman&quot;    </span></a>
-<a class="sourceLine" id="cb153-6" data-line-number="6"><span class="co">#&gt; [13] &quot;methods&quot;    &quot;base&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb153-5" data-line-number="5"><span class="co">#&gt; [10] &quot;datasets&quot;   &quot;methods&quot;    &quot;base&quot;</span></a></code></pre></div>
 <p>由于在第 <a href="prepare.html#prepare">1</a> 章的配置一节中我有介绍使用 <strong>pacman</strong> 包作为第三方的包管理器，在 <code>~/.Rprofile</code> 中进行了设置，所以该包随着 R 的启动也被加载了。</p>
 <p>整个 R 会话当前的所有信息都可以通过 <code>sessionInfo()</code> 获取，在向他人提问时提交该命令结果是一个良好的习惯。</p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">sessionInfo</span>()</a>
 <a class="sourceLine" id="cb154-2" data-line-number="2"><span class="co">#&gt; R version 4.0.0 (2020-04-24)</span></a>
 <a class="sourceLine" id="cb154-3" data-line-number="3"><span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span></a>
-<a class="sourceLine" id="cb154-4" data-line-number="4"><span class="co">#&gt; Running under: macOS High Sierra 10.13.6</span></a>
+<a class="sourceLine" id="cb154-4" data-line-number="4"><span class="co">#&gt; Running under: macOS Catalina 10.15.4</span></a>
 <a class="sourceLine" id="cb154-5" data-line-number="5"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb154-6" data-line-number="6"><span class="co">#&gt; Matrix products: default</span></a>
 <a class="sourceLine" id="cb154-7" data-line-number="7"><span class="co">#&gt; BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib</span></a>
@@ -1635,35 +1634,32 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <a class="sourceLine" id="cb154-16" data-line-number="16"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb154-17" data-line-number="17"><span class="co">#&gt; other attached packages:</span></a>
 <a class="sourceLine" id="cb154-18" data-line-number="18"><span class="co">#&gt; [1] readxl_1.3.1      data.table_1.12.8</span></a>
-<a class="sourceLine" id="cb154-19" data-line-number="19"><span class="co">#&gt; [3] readr_1.3.1       dplyr_1.0.0      </span></a>
-<a class="sourceLine" id="cb154-20" data-line-number="20"><span class="co">#&gt; [5] ggplot2_3.3.1     roxytest_0.0.1   </span></a>
-<a class="sourceLine" id="cb154-21" data-line-number="21"><span class="co">#&gt; [7] pacman_0.5.1     </span></a>
-<a class="sourceLine" id="cb154-22" data-line-number="22"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb154-23" data-line-number="23"><span class="co">#&gt; loaded via a namespace (and not attached):</span></a>
-<a class="sourceLine" id="cb154-24" data-line-number="24"><span class="co">#&gt;  [1] Rcpp_1.0.4.6        cellranger_1.1.0   </span></a>
-<a class="sourceLine" id="cb154-25" data-line-number="25"><span class="co">#&gt;  [3] compiler_4.0.0      pillar_1.4.4       </span></a>
-<a class="sourceLine" id="cb154-26" data-line-number="26"><span class="co">#&gt;  [5] BiocManager_1.30.10 highr_0.8          </span></a>
-<a class="sourceLine" id="cb154-27" data-line-number="27"><span class="co">#&gt;  [7] tools_4.0.0         digest_0.6.25      </span></a>
-<a class="sourceLine" id="cb154-28" data-line-number="28"><span class="co">#&gt;  [9] jsonlite_1.6.1      evaluate_0.14      </span></a>
-<a class="sourceLine" id="cb154-29" data-line-number="29"><span class="co">#&gt; [11] lifecycle_0.2.0     tibble_3.0.1       </span></a>
-<a class="sourceLine" id="cb154-30" data-line-number="30"><span class="co">#&gt; [13] gtable_0.3.0        pkgconfig_2.0.3    </span></a>
-<a class="sourceLine" id="cb154-31" data-line-number="31"><span class="co">#&gt; [15] png_0.1-7           rlang_0.4.6        </span></a>
-<a class="sourceLine" id="cb154-32" data-line-number="32"><span class="co">#&gt; [17] cli_2.0.2           rstudioapi_0.11    </span></a>
-<a class="sourceLine" id="cb154-33" data-line-number="33"><span class="co">#&gt; [19] yaml_2.2.1          xfun_0.14          </span></a>
-<a class="sourceLine" id="cb154-34" data-line-number="34"><span class="co">#&gt; [21] withr_2.2.0         stringr_1.4.0      </span></a>
-<a class="sourceLine" id="cb154-35" data-line-number="35"><span class="co">#&gt; [23] roxygen2_7.1.0      xml2_1.3.2         </span></a>
-<a class="sourceLine" id="cb154-36" data-line-number="36"><span class="co">#&gt; [25] knitr_1.28          hms_0.5.3          </span></a>
-<a class="sourceLine" id="cb154-37" data-line-number="37"><span class="co">#&gt; [27] generics_0.0.2      vctrs_0.3.1        </span></a>
-<a class="sourceLine" id="cb154-38" data-line-number="38"><span class="co">#&gt; [29] tidyselect_1.1.0    grid_4.0.0         </span></a>
-<a class="sourceLine" id="cb154-39" data-line-number="39"><span class="co">#&gt; [31] glue_1.4.1          R6_2.4.1           </span></a>
-<a class="sourceLine" id="cb154-40" data-line-number="40"><span class="co">#&gt; [33] fansi_0.4.1         rmarkdown_2.2      </span></a>
-<a class="sourceLine" id="cb154-41" data-line-number="41"><span class="co">#&gt; [35] bookdown_0.19       farver_2.0.3       </span></a>
-<a class="sourceLine" id="cb154-42" data-line-number="42"><span class="co">#&gt; [37] purrr_0.3.4         magrittr_1.5       </span></a>
-<a class="sourceLine" id="cb154-43" data-line-number="43"><span class="co">#&gt; [39] scales_1.1.1        htmltools_0.4.0    </span></a>
-<a class="sourceLine" id="cb154-44" data-line-number="44"><span class="co">#&gt; [41] ellipsis_0.3.1      assertthat_0.2.1   </span></a>
-<a class="sourceLine" id="cb154-45" data-line-number="45"><span class="co">#&gt; [43] colorspace_1.4-1    labeling_0.3       </span></a>
-<a class="sourceLine" id="cb154-46" data-line-number="46"><span class="co">#&gt; [45] utf8_1.1.4          stringi_1.4.6      </span></a>
-<a class="sourceLine" id="cb154-47" data-line-number="47"><span class="co">#&gt; [47] munsell_0.5.0       crayon_1.3.4</span></a></code></pre></div>
+<a class="sourceLine" id="cb154-19" data-line-number="19"><span class="co">#&gt; [3] readr_1.3.1       dplyr_0.8.5      </span></a>
+<a class="sourceLine" id="cb154-20" data-line-number="20"><span class="co">#&gt; [5] ggplot2_3.3.0    </span></a>
+<a class="sourceLine" id="cb154-21" data-line-number="21"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb154-22" data-line-number="22"><span class="co">#&gt; loaded via a namespace (and not attached):</span></a>
+<a class="sourceLine" id="cb154-23" data-line-number="23"><span class="co">#&gt;  [1] Rcpp_1.0.4.6        cellranger_1.1.0   </span></a>
+<a class="sourceLine" id="cb154-24" data-line-number="24"><span class="co">#&gt;  [3] pillar_1.4.4        compiler_4.0.0     </span></a>
+<a class="sourceLine" id="cb154-25" data-line-number="25"><span class="co">#&gt;  [5] BiocManager_1.30.10 highr_0.8          </span></a>
+<a class="sourceLine" id="cb154-26" data-line-number="26"><span class="co">#&gt;  [7] tools_4.0.0         digest_0.6.25      </span></a>
+<a class="sourceLine" id="cb154-27" data-line-number="27"><span class="co">#&gt;  [9] jsonlite_1.6.1      evaluate_0.14      </span></a>
+<a class="sourceLine" id="cb154-28" data-line-number="28"><span class="co">#&gt; [11] lifecycle_0.2.0     tibble_3.0.1       </span></a>
+<a class="sourceLine" id="cb154-29" data-line-number="29"><span class="co">#&gt; [13] gtable_0.3.0        pkgconfig_2.0.3    </span></a>
+<a class="sourceLine" id="cb154-30" data-line-number="30"><span class="co">#&gt; [15] rlang_0.4.6         cli_2.0.2          </span></a>
+<a class="sourceLine" id="cb154-31" data-line-number="31"><span class="co">#&gt; [17] rstudioapi_0.11     yaml_2.2.1         </span></a>
+<a class="sourceLine" id="cb154-32" data-line-number="32"><span class="co">#&gt; [19] xfun_0.14           withr_2.2.0        </span></a>
+<a class="sourceLine" id="cb154-33" data-line-number="33"><span class="co">#&gt; [21] stringr_1.4.0       knitr_1.28         </span></a>
+<a class="sourceLine" id="cb154-34" data-line-number="34"><span class="co">#&gt; [23] vctrs_0.3.0         hms_0.5.3          </span></a>
+<a class="sourceLine" id="cb154-35" data-line-number="35"><span class="co">#&gt; [25] grid_4.0.0          tidyselect_1.1.0   </span></a>
+<a class="sourceLine" id="cb154-36" data-line-number="36"><span class="co">#&gt; [27] glue_1.4.1          R6_2.4.1           </span></a>
+<a class="sourceLine" id="cb154-37" data-line-number="37"><span class="co">#&gt; [29] fansi_0.4.1         rmarkdown_2.1      </span></a>
+<a class="sourceLine" id="cb154-38" data-line-number="38"><span class="co">#&gt; [31] bookdown_0.19       purrr_0.3.4        </span></a>
+<a class="sourceLine" id="cb154-39" data-line-number="39"><span class="co">#&gt; [33] farver_2.0.3        magrittr_1.5       </span></a>
+<a class="sourceLine" id="cb154-40" data-line-number="40"><span class="co">#&gt; [35] scales_1.1.1        ellipsis_0.3.1     </span></a>
+<a class="sourceLine" id="cb154-41" data-line-number="41"><span class="co">#&gt; [37] htmltools_0.4.0     assertthat_0.2.1   </span></a>
+<a class="sourceLine" id="cb154-42" data-line-number="42"><span class="co">#&gt; [39] colorspace_1.4-1    labeling_0.3       </span></a>
+<a class="sourceLine" id="cb154-43" data-line-number="43"><span class="co">#&gt; [41] utf8_1.1.4          stringi_1.4.6      </span></a>
+<a class="sourceLine" id="cb154-44" data-line-number="44"><span class="co">#&gt; [43] munsell_0.5.0       crayon_1.3.4</span></a></code></pre></div>
 <div id="导入包" class="section level4">
 <h4><span class="header-section-number">2.4.4.1</span> 导入包</h4>
 <p>当我们需要导入（加载）一个包时，我们可以使用 <code>library()</code> 或 <code>require()</code> 函数。</p>
@@ -1780,7 +1776,7 @@ sd = \sqrt\frac{\sum(x_i - \mu)^2}{n - 1}
 <p>例如，计算程序运行时间：</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">system.time</span>(m &lt;-<span class="st"> </span><span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e6</span>))</a>
 <a class="sourceLine" id="cb167-2" data-line-number="2"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="co">#&gt; 0.032 0.000 0.032</span></a></code></pre></div>
+<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="co">#&gt; 0.029 0.000 0.030</span></a></code></pre></div>
 <p>下面的写法是错误的，因为 <code>system.time()</code> 把输入作为参数而不是一个表达式，而该函数并没有 <code>m</code> 这个参数。</p>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="kw">system.time</span>(<span class="dt">m =</span> <span class="kw">customMean</span>(<span class="dv">1</span><span class="op">:</span><span class="fl">1e6</span>))</a>
 <a class="sourceLine" id="cb168-2" data-line-number="2"><span class="co">#&gt; Error in system.time(m = customMean(1:1e+06)): 参数没有用(m = customMean(1:1e+06))</span></a></code></pre></div>

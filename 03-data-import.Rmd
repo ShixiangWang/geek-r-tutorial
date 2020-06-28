@@ -259,9 +259,59 @@ jsonlite::read_json("data/data-import/example.json", simplifyVector = TRUE)
 
 ## R 数据文件
 
+使用 R 自身提供的数据存储格式是一种有效且常见的方式，非常适合数据分析项目。相比于通用格式如 CSV，它可以避免外部程序的删改，且有效利用磁盘存储空间。
+R 内置的格式有 RData 和 RDS 两种。
+
 ### RData
 
+RData 可能是读者最常见的一种 R 存储格式，它用于保存用户空间一个或多个对象。存储时使用 `save()` 函数，导入时使用 `load()` 函数。
+
+```{r}
+## 清除空间所有对象
+rm(list = ls())
+## 创建两个对象
+d1 <- mtcars
+d2 <- mtcars
+ls()
+```
+
+上面我们在空间创建了 2 个示例对象，我们将其保存如下：
+
+```{r}
+save(d1, d2, file = "data/data-import/mtcars.RData")
+```
+
+
+这里注意一定要写明 `file = `，这是一个新手常犯的错误，如果不指明参数名称，路径将被看作一个对象，这会导致报错：
+
+
+```{r, error=TRUE}
+save(d1, d2, "data/data-import/mtcars.RData")
+```
+
+导入时这一操作则是非必需的：
+
+```{r}
+rm(list = ls())
+
+load("data/data-import/mtcars.RData")
+
+ls()
+```
+
+这里我们之前保存的两个对象都会被直接导入环境空间，对象名称也不会改变。如果读者想要迅速保存当前环境所有的对象，有效的方式是使用 `save.image()` 函数。
+
 ### RDS
+
+有时候我们想要保存单个的对象，且在导入时可以直接重命名该对象，这时我们可以用 RDS 格式。存储时使用 `saveRDS()` 函数，导入时使用 `readRDS()` 函数。
+
+```{r}
+saveRDS(mtcars, file = "data/data-import/mtcars.rds")
+mtcars_rename <- readRDS("data/data-import/mtcars.rds")
+
+head(mtcars_rename)
+```
+
 
 ## 常见问题与方案
 
@@ -269,12 +319,56 @@ jsonlite::read_json("data/data-import/example.json", simplifyVector = TRUE)
 
 ### 通过键盘和剪贴板载入数据
 
-https://openbiox.github.io/Cookbook-for-R-Chinese/section-5.html
+如果读者想要从键盘读取数据，我们需要使用到标准输入 `stdin()` 函数进行辅助。
 
-### 逐行读取文件
+```{r, eval=FALSE}
+data <- read.table(stdin())
+## 运行后输入文本
+```
 
-readline()
+这种操作并不好用，稍微好一点的是先将数据拷贝到剪切板，然后使用下面的命令读入：
 
-readlines()
+```{r, eval=FALSE}
+data <- read.table('clipboard', header=TRUE)
+```
+
+
+### 逐行读取数据
+
+如果读者想要简单地从用户输入交互地读取一些信息，`readline()` 是一个好办法，例如：
+
+```r
+> readline("输入年龄：")
+输入年龄：22
+[1] "22"
+```
+
+如果是想要将文件的内容按行的方式读取进来，需要使用 `readLines()` 函数。
+
+下面是一个来自 `readLines()` 的官方示例：
+
+```{r}
+fil <- tempfile(fileext = ".data")
+cat("TITLE extra line", "2 3 5 7", "", "11 13 17", file = fil,
+    sep = "\n")
+readLines(fil, n = -1)
+unlink(fil) # 清理文件
+```
 
 ### 读取等宽格式数据
+
+有时候我们会碰到数据的列宽度是固定的，我们称它为定宽文本文件，像下面这样：
+
+```
+  First     Last  Sex Number
+ Currer     Bell    F      2
+    Dr.    Seuss    M     49
+    ""   Student   NA     21
+```
+
+导入的方法这里推荐使用 2 种：
+
+1. R 内置的 `read.fwf()` 函数。
+2. **readr** 包提供的 `read_fwf()`。
+
+详细的使用方法请读者参考文档学习。

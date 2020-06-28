@@ -196,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="import.html"><a href="import.html#常见问题与方案-2"><i class="fa fa-check"></i><b>3.5</b> 常见问题与方案</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="import.html"><a href="import.html#通过键盘和剪贴板载入数据"><i class="fa fa-check"></i><b>3.5.1</b> 通过键盘和剪贴板载入数据</a></li>
-<li class="chapter" data-level="3.5.2" data-path="import.html"><a href="import.html#逐行读取文件"><i class="fa fa-check"></i><b>3.5.2</b> 逐行读取文件</a></li>
+<li class="chapter" data-level="3.5.2" data-path="import.html"><a href="import.html#逐行读取数据"><i class="fa fa-check"></i><b>3.5.2</b> 逐行读取数据</a></li>
 <li class="chapter" data-level="3.5.3" data-path="import.html"><a href="import.html#读取等宽格式数据"><i class="fa fa-check"></i><b>3.5.3</b> 读取等宽格式数据</a></li>
 </ul></li>
 </ul></li>
@@ -323,7 +323,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb182-3" data-line-number="3">)</a>
 <a class="sourceLine" id="cb182-4" data-line-number="4">time1</a>
 <a class="sourceLine" id="cb182-5" data-line-number="5"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb182-6" data-line-number="6"><span class="co">#&gt; 0.927 0.031 0.958</span></a></code></pre></div>
+<a class="sourceLine" id="cb182-6" data-line-number="6"><span class="co">#&gt; 0.946 0.028 0.979</span></a></code></pre></div>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
 <a class="sourceLine" id="cb183-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb183-3" data-line-number="3">time2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
@@ -331,7 +331,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb183-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb183-6" data-line-number="6">time2</a>
 <a class="sourceLine" id="cb183-7" data-line-number="7"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb183-8" data-line-number="8"><span class="co">#&gt; 0.281 0.009 0.291</span></a></code></pre></div>
+<a class="sourceLine" id="cb183-8" data-line-number="8"><span class="co">#&gt; 0.296 0.010 0.307</span></a></code></pre></div>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
 <a class="sourceLine" id="cb184-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb184-3" data-line-number="3">time3 &lt;-<span class="st"> </span><span class="kw">system.time</span>(</a>
@@ -339,8 +339,8 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb184-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb184-6" data-line-number="6">time3</a>
 <a class="sourceLine" id="cb184-7" data-line-number="7"><span class="co">#&gt;  用户  系统  流逝 </span></a>
-<a class="sourceLine" id="cb184-8" data-line-number="8"><span class="co">#&gt; 0.047 0.007 0.054</span></a></code></pre></div>
-<p>上面我们使用了 320000 行数据进行测试，在我的计算机上，内置的函数 <code>read.csv()</code> 总共花费了 0.958s，<strong>readr</strong> 的 <code>read_csv()</code> 花费了 0.291s，而 <strong>data.table</strong> 的 <code>fread()</code> 仅用了 0.054s 左右。<strong>好的、适合的工具可以帮助我们极大地提升工作效率</strong>。</p>
+<a class="sourceLine" id="cb184-8" data-line-number="8"><span class="co">#&gt; 0.045 0.006 0.054</span></a></code></pre></div>
+<p>上面我们使用了 320000 行数据进行测试，在我的计算机上，内置的函数 <code>read.csv()</code> 总共花费了 0.979s，<strong>readr</strong> 的 <code>read_csv()</code> 花费了 0.307s，而 <strong>data.table</strong> 的 <code>fread()</code> 仅用了 0.054s 左右。<strong>好的、适合的工具可以帮助我们极大地提升工作效率</strong>。</p>
 <p>如果我们进一步观察几种不同方式导入的数据格式，就会发现它们有些不太相同。</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">z1</a>
 <a class="sourceLine" id="cb185-2" data-line-number="2"><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></a>
@@ -666,7 +666,7 @@ stu2,60,50,88</code></pre>
 <a class="sourceLine" id="cb192-5" data-line-number="5"><span class="co">#&gt; [10] &quot;type-me.xlsx&quot;</span></a></code></pre></div>
 <p>选一个文件并查看其所在的路径：</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="kw">readxl_example</span>(<span class="st">&quot;datasets.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb193-2" data-line-number="2"><span class="co">#&gt; [1] &quot;/Users/wsx/R_library/readxl/extdata/datasets.xlsx&quot;</span></a>
+<a class="sourceLine" id="cb193-2" data-line-number="2"><span class="co">#&gt; [1] &quot;/Users/wsx/R_Library/readxl/extdata/datasets.xlsx&quot;</span></a>
 <a class="sourceLine" id="cb193-3" data-line-number="3"><span class="co"># 将路径保存备用</span></a>
 <a class="sourceLine" id="cb193-4" data-line-number="4">excel_path &lt;-<span class="st"> </span><span class="kw">readxl_example</span>(<span class="st">&quot;datasets.xlsx&quot;</span>)</a></code></pre></div>
 <p>如果将路径传入 <code>excel_sheets()</code> 函数，读者可以获取文件中存在的 Sheets。</p>
@@ -759,11 +759,53 @@ stu2,60,50,88</code></pre>
 </div>
 <div id="r-数据文件" class="section level2">
 <h2><span class="header-section-number">3.4</span> R 数据文件</h2>
+<p>使用 R 自身提供的数据存储格式是一种有效且常见的方式，非常适合数据分析项目。相比于通用格式如 CSV，它可以避免外部程序的删改，且有效利用磁盘存储空间。
+R 内置的格式有 RData 和 RDS 两种。</p>
 <div id="rdata" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> RData</h3>
+<p>RData 可能是读者最常见的一种 R 存储格式，它用于保存用户空间一个或多个对象。存储时使用 <code>save()</code> 函数，导入时使用 <code>load()</code> 函数。</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="co">## 清除空间所有对象</span></a>
+<a class="sourceLine" id="cb200-2" data-line-number="2"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb200-3" data-line-number="3"><span class="co">## 创建两个对象</span></a>
+<a class="sourceLine" id="cb200-4" data-line-number="4">d1 &lt;-<span class="st"> </span>mtcars</a>
+<a class="sourceLine" id="cb200-5" data-line-number="5">d2 &lt;-<span class="st"> </span>mtcars</a>
+<a class="sourceLine" id="cb200-6" data-line-number="6"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb200-7" data-line-number="7"><span class="co">#&gt; [1] &quot;d1&quot; &quot;d2&quot;</span></a></code></pre></div>
+<p>上面我们在空间创建了 2 个示例对象，我们将其保存如下：</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1"><span class="kw">save</span>(d1, d2, <span class="dt">file =</span> <span class="st">&quot;data/data-import/mtcars.RData&quot;</span>)</a></code></pre></div>
+<p>这里注意一定要写明 <code>file =</code>，这是一个新手常犯的错误，如果不指明参数名称，路径将被看作一个对象，这会导致报错：</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="kw">save</span>(d1, d2, <span class="st">&quot;data/data-import/mtcars.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb202-2" data-line-number="2"><span class="co">#&gt; Error in save(d1, d2, &quot;data/data-import/mtcars.RData&quot;): 目标对象&#39;data/data-import/mtcars.RData&#39;不存在</span></a></code></pre></div>
+<p>导入时这一操作则是非必需的：</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb203-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb203-3" data-line-number="3"><span class="kw">load</span>(<span class="st">&quot;data/data-import/mtcars.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb203-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb203-5" data-line-number="5"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb203-6" data-line-number="6"><span class="co">#&gt; [1] &quot;d1&quot; &quot;d2&quot;</span></a></code></pre></div>
+<p>这里我们之前保存的两个对象都会被直接导入环境空间，对象名称也不会改变。如果读者想要迅速保存当前环境所有的对象，有效的方式是使用 <code>save.image()</code> 函数。</p>
 </div>
 <div id="rds" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> RDS</h3>
+<p>有时候我们想要保存单个的对象，且在导入时可以直接重命名该对象，这时我们可以用 RDS 格式。存储时使用 <code>saveRDS()</code> 函数，导入时使用 <code>readRDS()</code> 函数。</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="kw">saveRDS</span>(mtcars, <span class="dt">file =</span> <span class="st">&quot;data/data-import/mtcars.rds&quot;</span>)</a>
+<a class="sourceLine" id="cb204-2" data-line-number="2">mtcars_rename &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/data-import/mtcars.rds&quot;</span>)</a>
+<a class="sourceLine" id="cb204-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb204-4" data-line-number="4"><span class="kw">head</span>(mtcars_rename)</a>
+<a class="sourceLine" id="cb204-5" data-line-number="5"><span class="co">#&gt;                    mpg cyl disp  hp drat    wt  qsec</span></a>
+<a class="sourceLine" id="cb204-6" data-line-number="6"><span class="co">#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46</span></a>
+<a class="sourceLine" id="cb204-7" data-line-number="7"><span class="co">#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02</span></a>
+<a class="sourceLine" id="cb204-8" data-line-number="8"><span class="co">#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61</span></a>
+<a class="sourceLine" id="cb204-9" data-line-number="9"><span class="co">#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44</span></a>
+<a class="sourceLine" id="cb204-10" data-line-number="10"><span class="co">#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02</span></a>
+<a class="sourceLine" id="cb204-11" data-line-number="11"><span class="co">#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22</span></a>
+<a class="sourceLine" id="cb204-12" data-line-number="12"><span class="co">#&gt;                   vs am gear carb</span></a>
+<a class="sourceLine" id="cb204-13" data-line-number="13"><span class="co">#&gt; Mazda RX4          0  1    4    4</span></a>
+<a class="sourceLine" id="cb204-14" data-line-number="14"><span class="co">#&gt; Mazda RX4 Wag      0  1    4    4</span></a>
+<a class="sourceLine" id="cb204-15" data-line-number="15"><span class="co">#&gt; Datsun 710         1  1    4    1</span></a>
+<a class="sourceLine" id="cb204-16" data-line-number="16"><span class="co">#&gt; Hornet 4 Drive     1  0    3    1</span></a>
+<a class="sourceLine" id="cb204-17" data-line-number="17"><span class="co">#&gt; Hornet Sportabout  0  0    3    2</span></a>
+<a class="sourceLine" id="cb204-18" data-line-number="18"><span class="co">#&gt; Valiant            1  0    3    1</span></a></code></pre></div>
 </div>
 </div>
 <div id="常见问题与方案-2" class="section level2">
@@ -771,15 +813,41 @@ stu2,60,50,88</code></pre>
 <p>除了本节目前罗列的问题，读者在学习本章内容时遇到的其他问题都可以通过 <a href="https://github.com/ShixiangWang/geek-r-tutorial/issues">GitHub Issue</a> 提出和进行讨论。如果读者提出的是通性问题，将增补到该节。</p>
 <div id="通过键盘和剪贴板载入数据" class="section level3">
 <h3><span class="header-section-number">3.5.1</span> 通过键盘和剪贴板载入数据</h3>
-<p><a href="https://openbiox.github.io/Cookbook-for-R-Chinese/section-5.html" class="uri">https://openbiox.github.io/Cookbook-for-R-Chinese/section-5.html</a></p>
+<p>如果读者想要从键盘读取数据，我们需要使用到标准输入 <code>stdin()</code> 函数进行辅助。</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="kw">stdin</span>())</a>
+<a class="sourceLine" id="cb205-2" data-line-number="2"><span class="co">## 运行后输入文本</span></a></code></pre></div>
+<p>这种操作并不好用，稍微好一点的是先将数据拷贝到剪切板，然后使用下面的命令读入：</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;clipboard&#39;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
-<div id="逐行读取文件" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> 逐行读取文件</h3>
-<p>readline()</p>
-<p>readlines()</p>
+<div id="逐行读取数据" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> 逐行读取数据</h3>
+<p>如果读者想要简单地从用户输入交互地读取一些信息，<code>readline()</code> 是一个好办法，例如：</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">readline</span>(<span class="st">&quot;输入年龄：&quot;</span>)</a>
+<a class="sourceLine" id="cb207-2" data-line-number="2">输入年龄：<span class="dv">22</span></a>
+<a class="sourceLine" id="cb207-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;22&quot;</span></a></code></pre></div>
+<p>如果是想要将文件的内容按行的方式读取进来，需要使用 <code>readLines()</code> 函数。</p>
+<p>下面是一个来自 <code>readLines()</code> 的官方示例：</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1">fil &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.data&quot;</span>)</a>
+<a class="sourceLine" id="cb208-2" data-line-number="2"><span class="kw">cat</span>(<span class="st">&quot;TITLE extra line&quot;</span>, <span class="st">&quot;2 3 5 7&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;11 13 17&quot;</span>, <span class="dt">file =</span> fil,</a>
+<a class="sourceLine" id="cb208-3" data-line-number="3">    <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb208-4" data-line-number="4"><span class="kw">readLines</span>(fil, <span class="dt">n =</span> <span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb208-5" data-line-number="5"><span class="co">#&gt; [1] &quot;TITLE extra line&quot; &quot;2 3 5 7&quot;         </span></a>
+<a class="sourceLine" id="cb208-6" data-line-number="6"><span class="co">#&gt; [3] &quot;&quot;                 &quot;11 13 17&quot;</span></a>
+<a class="sourceLine" id="cb208-7" data-line-number="7"><span class="kw">unlink</span>(fil) <span class="co"># 清理文件</span></a></code></pre></div>
 </div>
 <div id="读取等宽格式数据" class="section level3">
 <h3><span class="header-section-number">3.5.3</span> 读取等宽格式数据</h3>
+<p>有时候我们会碰到数据的列宽度是固定的，我们称它为定宽文本文件，像下面这样：</p>
+<pre><code>  First     Last  Sex Number
+ Currer     Bell    F      2
+    Dr.    Seuss    M     49
+    &quot;&quot;   Student   NA     21</code></pre>
+<p>导入的方法这里推荐使用 2 种：</p>
+<ol style="list-style-type: decimal">
+<li>R 内置的 <code>read.fwf()</code> 函数。</li>
+<li><strong>readr</strong> 包提供的 <code>read_fwf()</code>。</li>
+</ol>
+<p>详细的使用方法请读者参考文档学习。</p>
 
 </div>
 </div>
