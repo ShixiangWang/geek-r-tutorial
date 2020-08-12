@@ -2,6 +2,8 @@
 
 [![HitCount](http://hits.dwyl.com/ShixiangWang/geek-r-tutorial.svg)](http://hits.dwyl.com/ShixiangWang/geek-r-tutorial)
 
+[GitHub 仓库](https://github.com/ShixiangWang/geek-r-tutorial) | [Gitee 仓库](https://gitee.com/ShixiangWang/geek-r-tutorial)
+
 这是生信技能树的 R 入门教程，由 [**bookdown**](https://bookdown.org/yihui/bookdown) 驱动编写而成。
 
 - 阅读请点击：<https://shixiangwang.github.io/geek-r-tutorial/>，Gitee 有一个镜像 <https://shixiangwang.gitee.io/geek-r-tutorial/>，对国内读者更加友好。
